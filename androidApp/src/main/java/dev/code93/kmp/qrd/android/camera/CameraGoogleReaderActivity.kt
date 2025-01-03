@@ -13,10 +13,15 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.mlkit.vision.MlKitAnalyzer
 import androidx.camera.view.LifecycleCameraController
 import androidx.camera.view.PreviewView
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -43,7 +48,6 @@ class CameraGoogleReaderActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         cameraExecutor = Executors.newSingleThreadExecutor()
 
-        // Solicitar permisos y configurar Compose
         if (allPermissionsGranted()) {
             setContent {
                 MyApplicationTheme {
@@ -70,7 +74,6 @@ class CameraGoogleReaderActivity : ComponentActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        // Create try cash
         try {
             cameraExecutor.shutdown()
             barcodeScanner.close()
@@ -133,7 +136,6 @@ fun CameraScreen(onQrScanned: (String?) -> Unit) {
         modifier = Modifier
             .fillMaxSize()
     ) {
-        // PreviewView
         AndroidView(
             factory = { ctx ->
                 PreviewView(ctx).apply {
@@ -147,15 +149,15 @@ fun CameraScreen(onQrScanned: (String?) -> Unit) {
             modifier = Modifier.fillMaxSize()
         )
 
-        // Rectángulo
         Box(
             modifier = Modifier
-                .size(200.dp)
+                .padding(horizontal = 60.dp)
                 .align(Alignment.Center)
+                .fillMaxWidth()
+                .aspectRatio(1f)
                 .border(2.dp, Color.White, shape = androidx.compose.foundation.shape.RoundedCornerShape(10.dp))
         )
 
-        // Configurar el analizador
         cameraController.setImageAnalysisAnalyzer(
             ContextCompat.getMainExecutor(context),
             MlKitAnalyzer(
