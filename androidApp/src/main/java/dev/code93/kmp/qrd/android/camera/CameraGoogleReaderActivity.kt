@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -55,6 +56,7 @@ class CameraGoogleReaderActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        handleIncomingIntent()
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         mediaPicker = registerForActivityResult(PickVisualMedia()) { uri ->
@@ -83,6 +85,23 @@ class CameraGoogleReaderActivity : ComponentActivity() {
             ActivityCompat.requestPermissions(
                 this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
             )
+        }
+    }
+
+    private fun handleIncomingIntent() {
+        val intent = intent
+        val action = intent.action
+        val type = intent.type
+        if (Intent.ACTION_SEND == action && type != null) {
+            if (type.startsWith("image/")) {
+                handleSendImage(intent)
+            }
+        }
+    }
+
+    private fun handleSendImage(intent: Intent) {
+        (intent.getParcelableExtra<Parcelable>(Intent.EXTRA_STREAM) as? Uri)?.let {
+            processUriMediaPicker(it)
         }
     }
 

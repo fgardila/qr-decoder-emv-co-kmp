@@ -136,6 +136,37 @@ struct QRScannerView: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }
 
+struct QRScannerViewWrapper: View {
+    @Binding var scannedCode: String
+    @State private var showImagePicker = false
+    @State private var selectedImage: UIImage?
+
+    var body: some View {
+        ZStack {
+            QRScannerView(scannedCode: $scannedCode)
+                .edgesIgnoringSafeArea(.all)
+            
+            VStack {
+                Spacer()
+
+                Button(action: {
+                    showImagePicker = true
+                }) {
+                    Text("Seleccionar Imagen")
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
+                .padding(.bottom, 30)
+                .sheet(isPresented: $showImagePicker) {
+                    ImagePicker(selectedImage: $selectedImage)
+                }
+            }
+        }
+    }
+}
+
 extension QRScannerView.Coordinator {
     @objc func closeScanner() {
         parent.presentationMode.wrappedValue.dismiss()

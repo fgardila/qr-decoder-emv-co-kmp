@@ -14,6 +14,7 @@
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		AF062EBB2D21BCEE002AD23D /* QRScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF062EBA2D21BCED002AD23D /* QRScannerView.swift */; };
 		AFB4D33C2D21DFB30033C875 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB4D33B2D21DFAF0033C875 /* Constants.swift */; };
+		AFE678F52D64F03C003F2FA2 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE678F42D64F035003F2FA2 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +40,7 @@
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF062EBA2D21BCED002AD23D /* QRScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerView.swift; sourceTree = "<group>"; };
 		AFB4D33B2D21DFAF0033C875 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		AFE678F42D64F035003F2FA2 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				AFE678F42D64F035003F2FA2 /* ImagePicker.swift */,
 				AFB4D33B2D21DFAF0033C875 /* Constants.swift */,
 				AF062EBA2D21BCED002AD23D /* QRScannerView.swift */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
@@ -195,6 +198,7 @@
 				AFB4D33C2D21DFB30033C875 /* Constants.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				AFE678F52D64F03C003F2FA2 /* ImagePicker.swift in Sources */,
 				AF062EBB2D21BCEE002AD23D /* QRScannerView.swift in Sources */,
 				58555DF419F6966EFB3EE396 /* MainViewModel.swift in Sources */,
 			);

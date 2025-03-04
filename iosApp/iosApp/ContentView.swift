@@ -20,7 +20,9 @@ struct ContentView: View {
                         .padding(.top, 48)
                     
                     // Botón estilo iOS
-                    Button(action: onReadQrScan) {
+                    Button(action: {
+                        isShowingScanner = true
+                    }) {
                         Text("Open Camera Reader")
                             .font(.headline)
                             .frame(maxWidth: .infinity)
@@ -38,7 +40,7 @@ struct ContentView: View {
                                     .frame(maxWidth: geometry.size.width > 600 ? 500 : .infinity) // Ancho limitado en iPad
                             }
                         }
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity)#imageLiteral(resourceName: "simulator_screenshot_BCE9A02F-8322-4CA6-8F96-AFD911FC9F00.png")
                     }
                 }
                 .padding(.horizontal, 16)
@@ -62,7 +64,7 @@ struct ContentView: View {
                     }
                 }
                 .sheet(isPresented: $isShowingScanner) {
-                    QRScannerView(scannedCode: $scannedQRCode)
+                    QRScannerViewWrapper(scannedCode: $scannedQRCode)
                         .onDisappear {
                             if !scannedQRCode.isEmpty {
                                 viewModel.processQRCode(data: scannedQRCode)
