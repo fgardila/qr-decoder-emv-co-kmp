@@ -5,6 +5,9 @@ plugins {
     alias(libs.plugins.androidKmpLibrary)
 }
 
+group = "dev.code93"
+version = "1.0.0"
+
 kotlin {
     android {
         namespace = "dev.code93.android.qrd"

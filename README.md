@@ -1,46 +1,85 @@
-# EMV Decoder Project
+# EMV QR Decoder — Colombia (Kotlin Multiplatform)
 
-This project is a Kotlin Multiplatform (KMP) application designed to decode EMV QR codes. It provides shared business logic in the `emvdecoder` module and platform-specific implementations in the `androidApp` and `iosApp`.
+[![CI](https://github.com/fgardila/qr-decoder-emv-co-kmp/actions/workflows/ci.yml/badge.svg)](https://github.com/fgardila/qr-decoder-emv-co-kmp/actions/workflows/ci.yml)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.3.21-7F52FF?logo=kotlin&logoColor=white)](https://kotlinlang.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-The `emvdecoder` module contains the core logic for parsing and interpreting EMV QR code data.
+> 🇪🇸 [Versión en español](README.es.md)
 
-The project follows the [recommended KMP project structure](https://kotlinlang.org/docs/multiplatform/multiplatform-project-recommended-structure.html) (separate entry-point modules per platform, shared KMP library) and builds with **Gradle 9.5.1**, **AGP 9.2.1** (`com.android.kotlin.multiplatform.library` plugin) and **Kotlin 2.3.21**. JDK 17+ is required to run the build.
+A Kotlin Multiplatform library that parses **EMVCo Merchant-Presented QR codes** following the **Colombian industry standard (EASPBV v1.4-2025)** — the spec behind QR payments on networks like Redeban, Credibanco and the Bre-B instant payment system.
 
-## Building
+It ships as an **Android AAR** and an **iOS Framework** from a single Kotlin codebase, with native demo apps (Jetpack Compose and SwiftUI) that scan and decode real payment QRs.
 
-### Android AAR
+## Features
 
-To generate the Android AAR library from the `emvdecoder` module, run the following command in the root of the project:
+- **TLV parsing** of the full EMVCo payload (tag / 2-digit length / value), including nested templates.
+- **Complete EASPBV v1.4 coverage**: immediate-payment keys (Llaves / Bre-B), acquirer network, merchant codes, IVA/INC taxes, channel, transaction ID (tag `90`, with legacy tag `86` fallback), discounts, transfers/collections fields, and alternate-language merchant info.
+- **CRC-16/CCITT-FALSE validation** (`CRCValidator`) as a separate, opt-in step.
+- **Lenient by design**: malformed input never throws — the parser extracts everything it can and stops at the first invalid element. Standard compliance is the authorizing backend's job, not the client's.
+- **No dependencies** in the shared module. Pure Kotlin `commonMain`.
 
-```bash
-./gradlew :emvdecoder:assemble
+## Usage
+
+### Kotlin (Android / JVM)
+
+```kotlin
+val rawText = "00020101021126310014CO.COM.RBM.LLA0409@ocfrf115..." // from your QR scanner
+
+if (CRCValidator.validate(rawText)) {
+    val data = EmvQrCodeDecoder(rawText).decode()
+
+    data.transactionDetailData?.transactionValue   // "15000.00"
+    data.additionalMerchantInformationData?.transactionId
+    data.merchantInformationData?.immediatePaymentKey
+        ?.get(ImmediatePaymentKeyType.ALPHANUMERIC_DATA) // "@ocfrf115"
+}
 ```
 
-The AAR file will be located at `emvdecoder/build/outputs/aar/emvdecoder.aar`.
+### Swift (iOS)
 
-> Note: the Android-KMP library plugin has a single build variant, so there is no `assembleRelease`/`assembleDebug` distinction for the library anymore.
+```swift
+import emvdecoder
 
-### iOS Framework
+let rawText = "00020101021126310014CO.COM.RBM.LLA0409@ocfrf115..." // from your QR scanner
 
-To generate the iOS Framework (`emvdecoder.framework`) from the `emvdecoder` module, run:
-
-```bash
-./gradlew :emvdecoder:linkReleaseFrameworkIosArm64          # device
-./gradlew :emvdecoder:linkDebugFrameworkIosSimulatorArm64   # Apple Silicon simulator
+if CRCValidator.Companion().validate(qrCode: rawText) {
+    let data = EmvQrCodeDecoder(qrCode: rawText).decode()
+    let amount = data.transactionDetailData?.transactionValue
+}
 ```
 
-The frameworks are generated under:
-* `emvdecoder/build/bin/iosArm64/releaseFramework/emvdecoder.framework`
-* `emvdecoder/build/bin/iosSimulatorArm64/debugFramework/emvdecoder.framework`
+## Supported fields (EASPBV v1.4-2025)
 
-Supported iOS targets are `iosArm64` and `iosSimulatorArm64` (Intel simulators / `iosX64` are no longer built, matching the current KMP template).
+| Spec section | Tags | Decoded into |
+|---|---|---|
+| I. Conventions | `00`, `01`, `63`, `91` | `ConventionsQrCodeEmvCoData` |
+| II. Merchant information | `26` (subs 00–05), `49`, `50`, `51` | `MerchantInformationData` |
+| III. Additional merchant info | `52`, `58`–`61`, `80`–`85`, `90` | `AdditionalMerchantInformationData` |
+| IV. Other transactions | `92`–`98`, `99` (subs 00–06) | `OtherTransactionsFieldsData` |
+| V. Language template | `64` (subs 00–02) | `MerchantInformationLanguageData` |
+| VI. Additional data field | `62` (subs 01–11) | `MerchantAdditionalFieldsData` |
+| VII. Transaction detail | `53`–`57` | `TransactionDetailData` |
 
-The `iosApp` Xcode project consumes the framework through the `embedAndSignAppleFrameworkForXcode` Gradle task in its build phase.
+The full specification PDF (`EASPBV-Campos-QRCode-EMVCo-Industria-v1.4-2025.pdf`) is included in the repository.
 
-### Android app
+## Installation
+
+Publication to **Maven Central** is in progress. Until then, build the artifacts from source:
 
 ```bash
-./gradlew :androidApp:assembleDebug
+./gradlew :emvdecoder:assemble                               # Android AAR → emvdecoder/build/outputs/aar/
+./gradlew :emvdecoder:linkReleaseFrameworkIosArm64           # iOS device framework
+./gradlew :emvdecoder:linkDebugFrameworkIosSimulatorArm64    # iOS simulator framework → build/bin/
+```
+
+## Project structure
+
+Follows the [recommended KMP project structure](https://kotlinlang.org/docs/multiplatform/multiplatform-project-recommended-structure.html) with **Gradle 9.5.1**, **AGP 9.2.1** (`com.android.kotlin.multiplatform.library` plugin) and **Kotlin 2.3.21**. JDK 17+ required.
+
+```
+emvdecoder/   Kotlin Multiplatform library (commonMain: all parsing logic)
+androidApp/   Demo app — Jetpack Compose + CameraX + ML Kit scanning
+iosApp/       Demo app — SwiftUI (links the framework via embedAndSignAppleFrameworkForXcode)
 ```
 
 ## Testing
@@ -51,4 +90,8 @@ The `iosApp` Xcode project consumes the framework through the `embedAndSignApple
 ./gradlew :emvdecoder:iosSimulatorArm64Test    # iOS simulator tests only
 ```
 
-Common tests live in `emvdecoder/src/commonTest` and run on every target; Android-specific host tests live in `emvdecoder/src/androidHostTest`.
+The suite includes real Redeban QR samples, full-coverage synthetic QRs built with a TLV/CRC helper, malformed-input cases, and the standard CRC-16/CCITT-FALSE test vector (`"123456789" → 0x29B1`).
+
+## License
+
+[MIT](LICENSE). The CRC validation logic is derived from [emv_qrcode](https://github.com/mohamedayed/emv_qrcode) by Mohamed Ayed (MIT).
