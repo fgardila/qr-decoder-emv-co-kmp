@@ -46,6 +46,9 @@ captures/
 gpg-maven-central-secrets.txt
 *.asc
 
+# Notas locales de planeación
+pending/
+
 # External native build folder generated in Android Studio
 .externalNativeBuild
 .cxx/
