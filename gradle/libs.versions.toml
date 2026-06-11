@@ -7,6 +7,7 @@ camerax = "1.6.1"
 mlkit = "17.3.0"
 lifecycleRuntimeKtx = "2.10.0"
 materialIcons = "1.7.8"
+mavenPublish = "0.36.0"
 android-compileSdk = "36"
 android-minSdk = "28"
 android-targetSdk = "36"
@@ -39,3 +40,4 @@ androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidKmpLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+mavenPublish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }

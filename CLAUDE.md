@@ -27,6 +27,10 @@ Kotlin Multiplatform (KMP) library and demo apps for decoding EMV QR codes (Colo
 
 iOS app smoke build (no signing): `xcodebuild -project iosApp/iosApp.xcodeproj -scheme iosApp -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' ARCHS=arm64 ONLY_ACTIVE_ARCH=YES build CODE_SIGNING_ALLOWED=NO` (x86_64 is unsupported since `iosX64` was dropped).
 
+## Releasing
+
+The library publishes to Maven Central as `dev.code93:emvdecoder` via the vanniktech maven-publish plugin. Pushing a `v*` tag triggers `.github/workflows/release.yml` (tests → `publishAndReleaseToMavenCentral` → GitHub Release). The version lives in the `coordinates(...)` call in `emvdecoder/build.gradle.kts` — bump it there before tagging. Signing/credentials come from repository secrets (`MAVEN_CENTRAL_USERNAME/PASSWORD`, `SIGNING_KEY/PASSWORD`); local test: `./gradlew :emvdecoder:publishToMavenLocal --no-configuration-cache`.
+
 ## Architecture
 
 Decoding lives entirely in `emvdecoder/src/commonMain/kotlin/dev/code93/kmp/qrd/`:

@@ -1,6 +1,7 @@
 # EMV QR Decoder — Colombia (Kotlin Multiplatform)
 
 [![CI](https://github.com/fgardila/qr-decoder-emv-co-kmp/actions/workflows/ci.yml/badge.svg)](https://github.com/fgardila/qr-decoder-emv-co-kmp/actions/workflows/ci.yml)
+[![Maven Central](https://img.shields.io/maven-central/v/dev.code93/emvdecoder)](https://central.sonatype.com/artifact/dev.code93/emvdecoder)
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.3.21-7F52FF?logo=kotlin&logoColor=white)](https://kotlinlang.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
@@ -64,10 +65,18 @@ El PDF completo de la especificación (`EASPBV-Campos-QRCode-EMVCo-Industria-v1.
 
 ## Instalación
 
-La publicación en **Maven Central** está en progreso. Mientras tanto, construye los artefactos desde el código fuente:
+La librería está publicada en **Maven Central**:
+
+```kotlin
+// Android / JVM (o el commonMain de tu propio proyecto KMP)
+dependencies {
+    implementation("dev.code93:emvdecoder:1.0.0")
+}
+```
+
+Para iOS también puedes construir el framework desde el código fuente:
 
 ```bash
-./gradlew :emvdecoder:assemble                               # AAR Android → emvdecoder/build/outputs/aar/
 ./gradlew :emvdecoder:linkReleaseFrameworkIosArm64           # framework iOS dispositivo
 ./gradlew :emvdecoder:linkDebugFrameworkIosSimulatorArm64    # framework iOS simulador → build/bin/
 ```
