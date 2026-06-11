@@ -2,22 +2,60 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.androidKmpLibrary)
+    alias(libs.plugins.mavenPublish)
+}
+
+mavenPublishing {
+    publishToMavenCentral()
+    signAllPublications()
+
+    coordinates("dev.code93", "emvdecoder", "1.0.0")
+
+    pom {
+        name.set("EMV QR Decoder Colombia")
+        description.set(
+            "Kotlin Multiplatform library to parse EMVCo merchant-presented QR codes " +
+                "per the Colombian EASPBV industry standard (Redeban, Credibanco, Bre-B)."
+        )
+        inceptionYear.set("2024")
+        url.set("https://github.com/fgardila/qr-decoder-emv-co-kmp")
+        licenses {
+            license {
+                name.set("MIT License")
+                url.set("https://opensource.org/license/mit/")
+                distribution.set("repo")
+            }
+        }
+        developers {
+            developer {
+                id.set("fgardila")
+                name.set("Fabian Guillermo Ardila Castro")
+                url.set("https://github.com/fgardila")
+            }
+        }
+        scm {
+            url.set("https://github.com/fgardila/qr-decoder-emv-co-kmp")
+            connection.set("scm:git:git://github.com/fgardila/qr-decoder-emv-co-kmp.git")
+            developerConnection.set("scm:git:ssh://git@github.com/fgardila/qr-decoder-emv-co-kmp.git")
+        }
+    }
 }
 
 kotlin {
-    androidTarget {
-        compilations.all {
-            compileTaskProvider.configure {
-                compilerOptions {
-                    jvmTarget.set(JvmTarget.JVM_1_8)
-                }
-            }
+    android {
+        namespace = "dev.code93.android.qrd"
+        compileSdk = libs.versions.android.compileSdk.get().toInt()
+        minSdk = libs.versions.android.minSdk.get().toInt()
+
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
         }
+
+        withHostTestBuilder {}.configure {}
     }
-    
+
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach {
@@ -34,17 +72,5 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
-    }
-}
-
-android {
-    namespace = "dev.code93.android.qrd"
-    compileSdk = 35
-    defaultConfig {
-        minSdk = 28
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }

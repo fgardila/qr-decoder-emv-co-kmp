@@ -14,6 +14,7 @@ data class OtherTransactionsFieldsData(
 )
 
 enum class DiscountApplicationType(override val subTag: String) : SubFieldType {
+    GUID("00"),                  // Globally Unique Identifier (CO.COM.RBM.DESC / CO.COM.CRB.DESC)
     DISCOUNT_INDICATOR("01"),    // Indicador de descuento
     DISCOUNT_AMOUNT("02"),       // Monto del descuento
     IVA_DISCOUNT_AMOUNT("03"),   // IVA sobre el monto del descuento

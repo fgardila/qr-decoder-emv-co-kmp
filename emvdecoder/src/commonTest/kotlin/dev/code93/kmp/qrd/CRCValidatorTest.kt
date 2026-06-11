@@ -7,26 +7,54 @@ import kotlin.test.assertTrue
 class CRCValidatorTest {
 
     @Test
-    fun `validate should return true for a valid QR code string and CRC`() {
-        val validQRCode = "00020101021226280009SAR000000101030032703003SAR520458125303123540510.005802SA5913Dummy Merchant6009RIYADHADD62070503***6304C9AE"
-        assertTrue(CRCValidator.validate(validQRCode), "Validation failed for a valid QR code")
+    fun validateKnownCrc16CcittVector() {
+        // Vector estándar CRC-16/CCITT-FALSE: "123456789" -> 0x29B1
+        assertTrue(CRCValidator.validate("123456789" + "29B1"))
     }
 
     @Test
-    fun `validate should return false for a QR code string with an invalid CRC`() {
-        val invalidQRCode = "00020101021226280009SAR000000101030032703003SAR520458125303123540510.005802SA5913Dummy Merchant6009RIYADHADD62070503***6304FFFF"
-        assertFalse(CRCValidator.validate(invalidQRCode), "Validation passed for an invalid QR code")
+    fun validateAcceptsLowercaseCrc() {
+        assertTrue(CRCValidator.validate("123456789" + "29b1"))
     }
 
     @Test
-    fun `validate should return false for a QR code string that is too short`() {
-        val shortQRCode = "123"
-        assertFalse(CRCValidator.validate(shortQRCode), "Validation passed for a short QR code")
+    fun validateRejectsWrongCrc() {
+        assertFalse(CRCValidator.validate("123456789" + "FFFF"))
     }
 
     @Test
-    fun `validate should return false for an empty QR code string`() {
-        val emptyQRCode = ""
-        assertFalse(CRCValidator.validate(emptyQRCode), "Validation passed for an empty QR code")
+    fun validateGeneratedQrRoundTrip() {
+        val qr = withCrc(tlv("00", "01") + tlv("59", "Tienda Prueba") + tlv("60", "Bogota"))
+        assertTrue(CRCValidator.validate(qr))
+    }
+
+    @Test
+    fun validateRejectsTamperedPayload() {
+        val qr = withCrc(tlv("00", "01") + tlv("59", "Tienda Prueba"))
+        val tampered = qr.replaceFirst("Tienda", "TIENDA")
+        assertFalse(CRCValidator.validate(tampered))
+    }
+
+    @Test
+    fun validatePayloadWithMultibyteCharacters() {
+        // El CRC se calcula sobre los bytes UTF-8 del payload
+        val qr = withCrc(tlv("00", "01") + tlv("59", "Café Bogotá"))
+        assertTrue(CRCValidator.validate(qr))
+    }
+
+    @Test
+    fun validateRejectsEmptyString() {
+        assertFalse(CRCValidator.validate(""))
+    }
+
+    @Test
+    fun validateRejectsStringShorterThanCrc() {
+        assertFalse(CRCValidator.validate("123"))
+    }
+
+    @Test
+    fun validateRejectsCrcOnlyString() {
+        // 4 chars: payload vacío + "FFFF" no coincide con CRC("") por el valor inicial
+        assertFalse(CRCValidator.validate("0000"))
     }
 }
