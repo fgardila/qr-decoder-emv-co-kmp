@@ -156,8 +156,12 @@ class EmvQrCodeDecoder(qrCode: String) {
         val taxIvaBase = extractSubFields<TaxIvaBaseType>("83")[TaxIvaBaseType.BASE_VALUE]
         val taxIncCondition = extractSubFields<IncConditionType>("84")[IncConditionType.VALUE]
         val taxIncValue = extractSubFields<IncValueType>("85")[IncValueType.VALUE]
+        // Estándar EASPBV v1.4: el Consecutivo de la Transacción (TRXID) viaja en el
+        // tag 90; los tags 86-89 quedaron reservados para próximos impuestos. Se
+        // conserva el tag 86 como fallback para QRs de versiones previas del estándar.
         val transactionId =
-            extractSubFields<TransactionIdType>("86")[TransactionIdType.TRANSACTION_ID]
+            extractSubFields<TransactionIdType>("90")[TransactionIdType.TRANSACTION_ID]
+                ?: extractSubFields<TransactionIdType>("86")[TransactionIdType.TRANSACTION_ID]
 
         return AdditionalMerchantInformationData(
             merchantCategoryCode = dataElements["52"] ?: "",

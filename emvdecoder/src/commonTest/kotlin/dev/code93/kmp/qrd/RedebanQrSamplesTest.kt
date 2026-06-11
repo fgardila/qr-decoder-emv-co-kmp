@@ -11,10 +11,8 @@ import kotlin.test.assertTrue
  * Casos de prueba con rawText reales de QR Redeban (red CO.COM.RBM):
  * QR estáticos (tipo 11) de Llaves/pagos inmediatos con CRC válido.
  *
- * Nota sobre el contrato actual: estos QR transportan el ID de transacción
- * en el tag 90 (CO.COM.RBM.TRXID), que el decoder NO mapea (lee el tag 86).
- * Por eso transactionId se espera null; si el decoder llegara a soportar el
- * tag 90, estos tests deben actualizarse.
+ * El ID de transacción viaja en el tag 90 (CO.COM.RBM.TRXID) según el
+ * estándar EASPBV v1.4.
  */
 class RedebanQrSamplesTest {
 
@@ -97,8 +95,7 @@ class RedebanQrSamplesTest {
         assertEquals("0.00", additional.taxIvaBase)
         assertEquals("02", additional.taxIncCondition)
         assertEquals("0.00", additional.taxIncValue)
-        // El ID viaja en el tag 90 (no mapeado), no en el 86
-        assertNull(additional.transactionId)
+        assertEquals("177742sRKijVmYXHacX", additional.transactionId) // tag 90 TRXID
     }
 
     @Test
@@ -194,7 +191,7 @@ class RedebanQrSamplesTest {
         assertEquals("0.00", additional.taxIvaBase)
         assertEquals("02", additional.taxIncCondition)
         assertEquals("0.00", additional.taxIncValue)
-        assertNull(additional.transactionId) // tag 90 no mapeado
+        assertEquals("177756H6oFRyaUweotz", additional.transactionId) // tag 90 TRXID
     }
 
     @Test

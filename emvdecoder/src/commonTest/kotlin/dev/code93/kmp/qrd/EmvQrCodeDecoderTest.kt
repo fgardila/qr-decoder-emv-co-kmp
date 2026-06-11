@@ -57,7 +57,7 @@ class EmvQrCodeDecoderTest {
             append(tlv("83", tlv("00", "CO.COM.RBM") + tlv("01", "10000")))    // Base IVA
             append(tlv("84", tlv("00", "CO.COM.RBM") + tlv("01", "02")))       // Condición INC
             append(tlv("85", tlv("00", "CO.COM.RBM") + tlv("01", "800")))      // Valor INC
-            append(tlv("86", tlv("00", "CO.COM.RBM") + tlv("01", "TX123456"))) // ID transacción
+            append(tlv("90", tlv("00", "CO.COM.RED.TRXID") + tlv("01", "TX123456"))) // Consecutivo de la transacción
             append(tlv("91", tlv("00", "CO.COM.RBM") + tlv("01", "A1B2C3D4"))) // Campo de seguridad
             append(tlv("92", "01"))                                  // Código de servicio
             append(tlv("93", "REF-PAGO"))                            // Referencia de pago
@@ -69,7 +69,8 @@ class EmvQrCodeDecoderTest {
             append(
                 tlv(
                     "99",                                            // Aplicación de descuento
-                    tlv("01", "S") + tlv("02", "500") + tlv("03", "95") +
+                    tlv("00", "CO.COM.RBM.DESC") +
+                        tlv("01", "S") + tlv("02", "500") + tlv("03", "95") +
                         tlv("04", "5") + tlv("05", "500") + tlv("06", "N")
                 )
             )
@@ -180,6 +181,7 @@ class EmvQrCodeDecoderTest {
         assertEquals("03", other.transferProductType)
 
         val discount = assertNotNull(other.discountApplication)
+        assertEquals("CO.COM.RBM.DESC", discount[DiscountApplicationType.GUID])
         assertEquals("S", discount[DiscountApplicationType.DISCOUNT_INDICATOR])
         assertEquals("500", discount[DiscountApplicationType.DISCOUNT_AMOUNT])
         assertEquals("95", discount[DiscountApplicationType.IVA_DISCOUNT_AMOUNT])
@@ -288,6 +290,32 @@ class EmvQrCodeDecoderTest {
         val paymentKey = assertNotNull(data.merchantInformationData?.immediatePaymentKey)
         assertEquals("M999", paymentKey[ImmediatePaymentKeyType.MERCHANT_ID])
         assertNull(paymentKey[ImmediatePaymentKeyType.PHONE_NUMBER])
+    }
+
+    @Test
+    fun decodeTransactionIdFromTag90() {
+        val qr = withCrc(tlv("00", "01") + tlv("90", tlv("00", "CO.COM.RED.TRXID") + tlv("01", "177742sRKijVmYXHacX")))
+        val data = EmvQrCodeDecoder(qr).decode()
+        assertEquals("177742sRKijVmYXHacX", data.additionalMerchantInformationData?.transactionId)
+    }
+
+    @Test
+    fun decodeTransactionIdFallsBackToLegacyTag86() {
+        // Compatibilidad con QRs emitidos bajo versiones previas del estándar
+        val qr = withCrc(tlv("00", "01") + tlv("86", tlv("00", "CO.COM.RBM") + tlv("01", "LEGACY86")))
+        val data = EmvQrCodeDecoder(qr).decode()
+        assertEquals("LEGACY86", data.additionalMerchantInformationData?.transactionId)
+    }
+
+    @Test
+    fun decodeTransactionIdPrefersTag90OverTag86() {
+        val qr = withCrc(
+            tlv("00", "01") +
+                tlv("86", tlv("01", "LEGACY86")) +
+                tlv("90", tlv("00", "CO.COM.RED.TRXID") + tlv("01", "TRX90"))
+        )
+        val data = EmvQrCodeDecoder(qr).decode()
+        assertEquals("TRX90", data.additionalMerchantInformationData?.transactionId)
     }
 
     @Test

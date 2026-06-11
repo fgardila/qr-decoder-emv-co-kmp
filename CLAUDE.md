@@ -32,7 +32,7 @@ iOS app smoke build (no signing): `xcodebuild -project iosApp/iosApp.xcodeproj -
 Decoding lives entirely in `emvdecoder/src/commonMain/kotlin/dev/code93/kmp/qrd/`:
 
 - `EmvQrCodeDecoder` parses the QR payload as TLV (2-char tag, 2-char length, value) into a tag→value map, then maps tags into typed data classes, returning `QRCodeEmvCoColombiaData` from `decode()`. Malformed input never throws — parsing stops at the first invalid element.
-- Composite tags (e.g. `26`, `62`, `64`, `80`–`86`, `91`, `99`) contain nested TLV. Sub-fields are modeled as enums implementing `SubFieldType` (each enum constant carries its `subTag`); `extractSubFields<T>()` reflects over the enum to pull every sub-value. To add a new field: define/extend an enum in `data/` and wire it into the corresponding `get...Data()` method in `EmvQrCodeDecoder`.
+- Composite tags (e.g. `26`, `62`, `64`, `80`–`86`, `90`, `91`, `99`) contain nested TLV. Per the EASPBV v1.4 spec (PDF in repo root), the transaction ID lives in tag `90` (`TRXID`); the decoder falls back to tag `86` for QRs from older spec versions (`86`–`89` are now reserved for future taxes). Sub-fields are modeled as enums implementing `SubFieldType` (each enum constant carries its `subTag`); `extractSubFields<T>()` reflects over the enum to pull every sub-value. To add a new field: define/extend an enum in `data/` and wire it into the corresponding `get...Data()` method in `EmvQrCodeDecoder`.
 - `CRCValidator.validate()` checks the trailing 4-char CRC-16/CCITT-FALSE. Callers (both apps' `MainViewModel`s) validate CRC and then decode — the decoder itself does not validate.
 - Data classes live in `data/` (one file per QR section: merchant info, transaction detail, taxes, etc.).
 
