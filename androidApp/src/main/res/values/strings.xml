@@ -1,4 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Pruebas QR Colombia</string>
-    <string name="title_activity_image_receiver">ImageReceiverActivity</string>
+    <string name="app_name">QR EMV Colombia</string>
+
+    <!-- Navegación -->
+    <string name="nav_scanner">Escáner</string>
+    <string name="nav_generate">Generar</string>
+    <string name="nav_settings">Ajustes</string>
+
+    <!-- Escáner -->
+    <string name="scanner_title">Escanear código QR</string>
+    <string name="scanner_subtitle">Decodifica códigos QR de pago del estándar colombiano EMVCo (EASPBV v1.4)</string>
+    <string name="scanner_open_camera">Abrir cámara</string>
+    <string name="scanner_pick_image">Elegir de la galería</string>
+    <string name="scanner_empty_hint">Escanea un QR con la cámara o selecciona una imagen para ver aquí los datos decodificados.</string>
+    <string name="scanner_decoding">Decodificando…</string>
+    <string name="scanner_error_no_qr">No se encontró un código QR en la imagen seleccionada.</string>
+    <string name="scanner_error_generic">No fue posible procesar el código QR.</string>
+    <string name="scanner_crc_valid">CRC válido</string>
+    <string name="scanner_crc_invalid">CRC inválido</string>
+    <string name="scanner_diagnostics">%1$d tags · %2$s</string>
+    <string name="scanner_parse_complete">parse completo</string>
+    <string name="scanner_parse_partial">parse parcial (%1$d/%2$d caracteres)</string>
+    <string name="scanner_raw_section">Texto crudo</string>
+    <string name="scanner_scan_again">Escanear otro</string>
+
+    <!-- Cámara -->
+    <string name="camera_title">Apunta al código QR</string>
+    <string name="camera_permission_title">Se necesita acceso a la cámara</string>
+    <string name="camera_permission_message">La cámara se usa únicamente para escanear códigos QR. No se capturan ni almacenan imágenes.</string>
+    <string name="camera_permission_grant">Conceder permiso</string>
+    <string name="camera_close">Cerrar cámara</string>
+
+    <!-- Generador -->
+    <string name="generate_title">Generar QR de prueba</string>
+    <string name="generate_subtitle">Crea un QR estático según el estándar EASPBV v1.4 para pruebas de integración</string>
+    <string name="generate_network">Red adquirente</string>
+    <string name="generate_key_type">Tipo de llave</string>
+    <string name="generate_key_value">Valor de la llave</string>
+    <string name="generate_merchant_code">Código de comercio</string>
+    <string name="generate_merchant_name">Nombre del comercio</string>
+    <string name="generate_city">Ciudad</string>
+    <string name="generate_amount">Monto (opcional)</string>
+    <string name="generate_button">Generar QR</string>
+    <string name="generate_share">Compartir</string>
+    <string name="generate_copy_raw">Copiar texto</string>
+    <string name="generate_raw_copied">Texto del QR copiado</string>
+    <string name="generate_error_name_required">El nombre del comercio es obligatorio</string>
+    <string name="generate_error_name_long">Máximo 25 caracteres</string>
+    <string name="generate_error_city_required">La ciudad es obligatoria</string>
+    <string name="generate_error_city_long">Máximo 15 caracteres</string>
+    <string name="generate_error_key_or_code">Ingresa una llave o un código de comercio</string>
+    <string name="generate_error_amount_invalid">Monto inválido (solo dígitos y hasta 2 decimales)</string>
+    <string name="generate_key_none">Sin llave (usar código de comercio)</string>
+    <string name="generate_key_phone">Número celular</string>
+    <string name="generate_key_email">Correo electrónico</string>
+    <string name="generate_key_alphanumeric">Alfanumérica</string>
+    <string name="generate_key_merchant_id">Merchant ID</string>
+    <string name="generate_result_hint">Este QR es válido según el estándar: puedes escanearlo desde la pestaña Escáner.</string>
+
+    <!-- Ajustes -->
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_developer_section">Desarrollador</string>
+    <string name="settings_developer_name">Fabian Ardila</string>
+    <string name="settings_developer_role">Senior Mobile Developer · Android &amp; iOS</string>
+    <string name="settings_website">Sitio web — code93.dev</string>
+    <string name="settings_github">Código fuente en GitHub</string>
+    <string name="settings_docs">Documentación de la API (Dokka)</string>
+    <string name="settings_library">Librería emvdecoder en Maven Central</string>
+    <string name="settings_about_section">Acerca de la app</string>
+    <string name="settings_licenses">Licencias de software</string>
+    <string name="settings_version">Versión</string>
+    <string name="settings_links_section">Enlaces</string>
+
+    <!-- Compartir -->
+    <string name="share_qr_subject">QR EMV Colombia — código de prueba</string>
 </resources>
