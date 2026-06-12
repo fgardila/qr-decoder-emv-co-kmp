@@ -1,0 +1,344 @@
+public final class dev/code93/kmp/qrd/EmvQr {
+	public static final field INSTANCE Ldev/code93/kmp/qrd/EmvQr;
+	public final fun decode (Ljava/lang/String;)Ldev/code93/kmp/qrd/QRCodeEmvCoColombiaData;
+	public final fun decodeWithDiagnostics (Ljava/lang/String;)Ldev/code93/kmp/qrd/EmvQrDecodeResult;
+	public final fun isCrcValid (Ljava/lang/String;)Z
+}
+
+public final class dev/code93/kmp/qrd/EmvQrDecodeResult {
+	public final fun component1 ()Ldev/code93/kmp/qrd/QRCodeEmvCoColombiaData;
+	public final fun component2 ()Ldev/code93/kmp/qrd/ParseDiagnostics;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getData ()Ldev/code93/kmp/qrd/QRCodeEmvCoColombiaData;
+	public final fun getDiagnostics ()Ldev/code93/kmp/qrd/ParseDiagnostics;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/code93/kmp/qrd/ParseDiagnostics {
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun component3 ()I
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getConsumedChars ()I
+	public final fun getParsedTagCount ()I
+	public final fun getTotalChars ()I
+	public fun hashCode ()I
+	public final fun isFullyParsed ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/code93/kmp/qrd/QRCodeEmvCoColombiaData {
+	public final fun component1 ()Ldev/code93/kmp/qrd/data/ConventionsQrCodeEmvCoData;
+	public final fun component2 ()Ldev/code93/kmp/qrd/data/MerchantInformationData;
+	public final fun component3 ()Ldev/code93/kmp/qrd/data/AdditionalMerchantInformationData;
+	public final fun component4 ()Ldev/code93/kmp/qrd/data/OtherTransactionsFieldsData;
+	public final fun component5 ()Ldev/code93/kmp/qrd/data/MerchantInformationLanguageData;
+	public final fun component6 ()Ldev/code93/kmp/qrd/data/MerchantAdditionalFieldsData;
+	public final fun component7 ()Ldev/code93/kmp/qrd/data/TransactionDetailData;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAdditionalMerchantInformationData ()Ldev/code93/kmp/qrd/data/AdditionalMerchantInformationData;
+	public final fun getConventionsQrCodeEmvCoData ()Ldev/code93/kmp/qrd/data/ConventionsQrCodeEmvCoData;
+	public final fun getMerchantAdditionalFieldsData ()Ldev/code93/kmp/qrd/data/MerchantAdditionalFieldsData;
+	public final fun getMerchantInformationData ()Ldev/code93/kmp/qrd/data/MerchantInformationData;
+	public final fun getMerchantInformationLanguageData ()Ldev/code93/kmp/qrd/data/MerchantInformationLanguageData;
+	public final fun getOtherTransactionsFieldsData ()Ldev/code93/kmp/qrd/data/OtherTransactionsFieldsData;
+	public final fun getTransactionDetailData ()Ldev/code93/kmp/qrd/data/TransactionDetailData;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class dev/code93/kmp/qrd/SubFieldType {
+	public abstract fun getSubTag ()Ljava/lang/String;
+}
+
+public final class dev/code93/kmp/qrd/data/AcquirerNetworkIdType : java/lang/Enum, dev/code93/kmp/qrd/SubFieldType {
+	public static final field GUID Ldev/code93/kmp/qrd/data/AcquirerNetworkIdType;
+	public static final field NETWORK_IDENTIFIER Ldev/code93/kmp/qrd/data/AcquirerNetworkIdType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public fun getSubTag ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/code93/kmp/qrd/data/AcquirerNetworkIdType;
+	public static fun values ()[Ldev/code93/kmp/qrd/data/AcquirerNetworkIdType;
+}
+
+public final class dev/code93/kmp/qrd/data/AdditionalMerchantInformationData {
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Ljava/lang/String;
+	public final fun component11 ()Ljava/lang/String;
+	public final fun component12 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun component9 ()Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getChannel ()Ljava/lang/String;
+	public final fun getCountryCode ()Ljava/lang/String;
+	public final fun getMerchantCategoryCode ()Ljava/lang/String;
+	public final fun getMerchantCity ()Ljava/lang/String;
+	public final fun getMerchantName ()Ljava/lang/String;
+	public final fun getPostalCode ()Ljava/lang/String;
+	public final fun getTaxIncCondition ()Ljava/lang/String;
+	public final fun getTaxIncValue ()Ljava/lang/String;
+	public final fun getTaxIvaBase ()Ljava/lang/String;
+	public final fun getTaxIvaCondition ()Ljava/lang/String;
+	public final fun getTaxIvaValue ()Ljava/lang/String;
+	public final fun getTransactionId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/code93/kmp/qrd/data/AggregatorMerchantCodeType : java/lang/Enum, dev/code93/kmp/qrd/SubFieldType {
+	public static final field GUID Ldev/code93/kmp/qrd/data/AggregatorMerchantCodeType;
+	public static final field IDENTIFIER Ldev/code93/kmp/qrd/data/AggregatorMerchantCodeType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public fun getSubTag ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/code93/kmp/qrd/data/AggregatorMerchantCodeType;
+	public static fun values ()[Ldev/code93/kmp/qrd/data/AggregatorMerchantCodeType;
+}
+
+public final class dev/code93/kmp/qrd/data/ChannelType : java/lang/Enum, dev/code93/kmp/qrd/SubFieldType {
+	public static final field CHANNEL_VALUE Ldev/code93/kmp/qrd/data/ChannelType;
+	public static final field GUID Ldev/code93/kmp/qrd/data/ChannelType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public fun getSubTag ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/code93/kmp/qrd/data/ChannelType;
+	public static fun values ()[Ldev/code93/kmp/qrd/data/ChannelType;
+}
+
+public final class dev/code93/kmp/qrd/data/ConventionsQrCodeEmvCoData {
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCyclicRedundancyCheck ()Ljava/lang/String;
+	public final fun getIndicatorEmv ()Ljava/lang/String;
+	public final fun getQrType ()Ljava/lang/String;
+	public final fun getSecurityField ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/code93/kmp/qrd/data/DiscountApplicationType : java/lang/Enum, dev/code93/kmp/qrd/SubFieldType {
+	public static final field DISCOUNT_AMOUNT Ldev/code93/kmp/qrd/data/DiscountApplicationType;
+	public static final field DISCOUNT_INDICATOR Ldev/code93/kmp/qrd/data/DiscountApplicationType;
+	public static final field DISCOUNT_PERCENTAGE Ldev/code93/kmp/qrd/data/DiscountApplicationType;
+	public static final field DISCOUNT_QUERY Ldev/code93/kmp/qrd/data/DiscountApplicationType;
+	public static final field DISCOUNT_VALUE Ldev/code93/kmp/qrd/data/DiscountApplicationType;
+	public static final field GUID Ldev/code93/kmp/qrd/data/DiscountApplicationType;
+	public static final field IVA_DISCOUNT_AMOUNT Ldev/code93/kmp/qrd/data/DiscountApplicationType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public fun getSubTag ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/code93/kmp/qrd/data/DiscountApplicationType;
+	public static fun values ()[Ldev/code93/kmp/qrd/data/DiscountApplicationType;
+}
+
+public final class dev/code93/kmp/qrd/data/ImmediatePaymentKeyType : java/lang/Enum, dev/code93/kmp/qrd/SubFieldType {
+	public static final field ALPHANUMERIC_DATA Ldev/code93/kmp/qrd/data/ImmediatePaymentKeyType;
+	public static final field EMAIL_ADDRESS Ldev/code93/kmp/qrd/data/ImmediatePaymentKeyType;
+	public static final field IDENTIFICATION_TYPE Ldev/code93/kmp/qrd/data/ImmediatePaymentKeyType;
+	public static final field MERCHANT_ID Ldev/code93/kmp/qrd/data/ImmediatePaymentKeyType;
+	public static final field NETWORK_ID Ldev/code93/kmp/qrd/data/ImmediatePaymentKeyType;
+	public static final field PHONE_NUMBER Ldev/code93/kmp/qrd/data/ImmediatePaymentKeyType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public fun getSubTag ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/code93/kmp/qrd/data/ImmediatePaymentKeyType;
+	public static fun values ()[Ldev/code93/kmp/qrd/data/ImmediatePaymentKeyType;
+}
+
+public final class dev/code93/kmp/qrd/data/IncConditionType : java/lang/Enum, dev/code93/kmp/qrd/SubFieldType {
+	public static final field GUID Ldev/code93/kmp/qrd/data/IncConditionType;
+	public static final field VALUE Ldev/code93/kmp/qrd/data/IncConditionType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public fun getSubTag ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/code93/kmp/qrd/data/IncConditionType;
+	public static fun values ()[Ldev/code93/kmp/qrd/data/IncConditionType;
+}
+
+public final class dev/code93/kmp/qrd/data/IncValueType : java/lang/Enum, dev/code93/kmp/qrd/SubFieldType {
+	public static final field GUID Ldev/code93/kmp/qrd/data/IncValueType;
+	public static final field VALUE Ldev/code93/kmp/qrd/data/IncValueType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public fun getSubTag ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/code93/kmp/qrd/data/IncValueType;
+	public static fun values ()[Ldev/code93/kmp/qrd/data/IncValueType;
+}
+
+public final class dev/code93/kmp/qrd/data/MerchantAdditionalDataFieldType : java/lang/Enum, dev/code93/kmp/qrd/SubFieldType {
+	public static final field ADDITIONAL_CONSUMER_DATA Ldev/code93/kmp/qrd/data/MerchantAdditionalDataFieldType;
+	public static final field BILLING_NUMBER Ldev/code93/kmp/qrd/data/MerchantAdditionalDataFieldType;
+	public static final field CUSTOMER_LABEL Ldev/code93/kmp/qrd/data/MerchantAdditionalDataFieldType;
+	public static final field LOYALTY_NUMBER Ldev/code93/kmp/qrd/data/MerchantAdditionalDataFieldType;
+	public static final field MERCHANT_TAX_ID Ldev/code93/kmp/qrd/data/MerchantAdditionalDataFieldType;
+	public static final field MOBILE_NUMBER Ldev/code93/kmp/qrd/data/MerchantAdditionalDataFieldType;
+	public static final field ORIGIN_CHANNEL Ldev/code93/kmp/qrd/data/MerchantAdditionalDataFieldType;
+	public static final field PURPOSE_OF_TRANSACTION Ldev/code93/kmp/qrd/data/MerchantAdditionalDataFieldType;
+	public static final field REFERENCE_LABEL Ldev/code93/kmp/qrd/data/MerchantAdditionalDataFieldType;
+	public static final field STORE_LABEL Ldev/code93/kmp/qrd/data/MerchantAdditionalDataFieldType;
+	public static final field TERMINAL_LABEL Ldev/code93/kmp/qrd/data/MerchantAdditionalDataFieldType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public fun getSubTag ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/code93/kmp/qrd/data/MerchantAdditionalDataFieldType;
+	public static fun values ()[Ldev/code93/kmp/qrd/data/MerchantAdditionalDataFieldType;
+}
+
+public final class dev/code93/kmp/qrd/data/MerchantAdditionalFieldsData {
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Ljava/lang/String;
+	public final fun component11 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun component9 ()Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAdditionalConsumerData ()Ljava/lang/String;
+	public final fun getBillingNumber ()Ljava/lang/String;
+	public final fun getCustomerLabel ()Ljava/lang/String;
+	public final fun getLoyaltyNumber ()Ljava/lang/String;
+	public final fun getMerchantTaxId ()Ljava/lang/String;
+	public final fun getMobileNumber ()Ljava/lang/String;
+	public final fun getOriginChannel ()Ljava/lang/String;
+	public final fun getReferenceLabel ()Ljava/lang/String;
+	public final fun getStoreLabel ()Ljava/lang/String;
+	public final fun getTerminalLabel ()Ljava/lang/String;
+	public final fun getTransactionPurpose ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/code93/kmp/qrd/data/MerchantCodeType : java/lang/Enum, dev/code93/kmp/qrd/SubFieldType {
+	public static final field CODE Ldev/code93/kmp/qrd/data/MerchantCodeType;
+	public static final field GUID Ldev/code93/kmp/qrd/data/MerchantCodeType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public fun getSubTag ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/code93/kmp/qrd/data/MerchantCodeType;
+	public static fun values ()[Ldev/code93/kmp/qrd/data/MerchantCodeType;
+}
+
+public final class dev/code93/kmp/qrd/data/MerchantInformationData {
+	public final fun component1 ()Ljava/util/Map;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAcquirerNetworkId ()Ljava/lang/String;
+	public final fun getAggregatorMerchantCode ()Ljava/lang/String;
+	public final fun getImmediatePaymentKey ()Ljava/util/Map;
+	public final fun getMerchantCode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/code93/kmp/qrd/data/MerchantInformationLanguageData {
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAlternateMerchantCity ()Ljava/lang/String;
+	public final fun getAlternateMerchantName ()Ljava/lang/String;
+	public final fun getLanguagePreference ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/code93/kmp/qrd/data/MerchantInformationLanguageDataType : java/lang/Enum, dev/code93/kmp/qrd/SubFieldType {
+	public static final field ALTERNATE_MERCHANT_CITY Ldev/code93/kmp/qrd/data/MerchantInformationLanguageDataType;
+	public static final field ALTERNATE_MERCHANT_NAME Ldev/code93/kmp/qrd/data/MerchantInformationLanguageDataType;
+	public static final field LANGUAGE_PREFERENCE Ldev/code93/kmp/qrd/data/MerchantInformationLanguageDataType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public fun getSubTag ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/code93/kmp/qrd/data/MerchantInformationLanguageDataType;
+	public static fun values ()[Ldev/code93/kmp/qrd/data/MerchantInformationLanguageDataType;
+}
+
+public final class dev/code93/kmp/qrd/data/OtherTransactionsFieldsData {
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/util/Map;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDestinationAccount ()Ljava/lang/String;
+	public final fun getDestinationAccountReference ()Ljava/lang/String;
+	public final fun getDiscountApplication ()Ljava/util/Map;
+	public final fun getPaymentReference ()Ljava/lang/String;
+	public final fun getProductType ()Ljava/lang/String;
+	public final fun getServiceCode ()Ljava/lang/String;
+	public final fun getSourceAccount ()Ljava/lang/String;
+	public final fun getTransferProductType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/code93/kmp/qrd/data/SecurityFieldType : java/lang/Enum, dev/code93/kmp/qrd/SubFieldType {
+	public static final field HASH_VALUE Ldev/code93/kmp/qrd/data/SecurityFieldType;
+	public static final field NETWORK_ID Ldev/code93/kmp/qrd/data/SecurityFieldType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public fun getSubTag ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/code93/kmp/qrd/data/SecurityFieldType;
+	public static fun values ()[Ldev/code93/kmp/qrd/data/SecurityFieldType;
+}
+
+public final class dev/code93/kmp/qrd/data/TaxIvaBaseType : java/lang/Enum, dev/code93/kmp/qrd/SubFieldType {
+	public static final field BASE_VALUE Ldev/code93/kmp/qrd/data/TaxIvaBaseType;
+	public static final field GUID Ldev/code93/kmp/qrd/data/TaxIvaBaseType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public fun getSubTag ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/code93/kmp/qrd/data/TaxIvaBaseType;
+	public static fun values ()[Ldev/code93/kmp/qrd/data/TaxIvaBaseType;
+}
+
+public final class dev/code93/kmp/qrd/data/TaxIvaConditionType : java/lang/Enum, dev/code93/kmp/qrd/SubFieldType {
+	public static final field GUID Ldev/code93/kmp/qrd/data/TaxIvaConditionType;
+	public static final field VALUE Ldev/code93/kmp/qrd/data/TaxIvaConditionType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public fun getSubTag ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/code93/kmp/qrd/data/TaxIvaConditionType;
+	public static fun values ()[Ldev/code93/kmp/qrd/data/TaxIvaConditionType;
+}
+
+public final class dev/code93/kmp/qrd/data/TaxIvaValueType : java/lang/Enum, dev/code93/kmp/qrd/SubFieldType {
+	public static final field GUID Ldev/code93/kmp/qrd/data/TaxIvaValueType;
+	public static final field VALUE Ldev/code93/kmp/qrd/data/TaxIvaValueType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public fun getSubTag ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/code93/kmp/qrd/data/TaxIvaValueType;
+	public static fun values ()[Ldev/code93/kmp/qrd/data/TaxIvaValueType;
+}
+
+public final class dev/code93/kmp/qrd/data/TransactionDetailData {
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCurrencyCode ()Ljava/lang/String;
+	public final fun getTipIndicator ()Ljava/lang/String;
+	public final fun getTipPercentage ()Ljava/lang/String;
+	public final fun getTipValue ()Ljava/lang/String;
+	public final fun getTransactionValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/code93/kmp/qrd/data/TransactionIdType : java/lang/Enum, dev/code93/kmp/qrd/SubFieldType {
+	public static final field GUID Ldev/code93/kmp/qrd/data/TransactionIdType;
+	public static final field TRANSACTION_ID Ldev/code93/kmp/qrd/data/TransactionIdType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public fun getSubTag ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Ldev/code93/kmp/qrd/data/TransactionIdType;
+	public static fun values ()[Ldev/code93/kmp/qrd/data/TransactionIdType;
+}
+

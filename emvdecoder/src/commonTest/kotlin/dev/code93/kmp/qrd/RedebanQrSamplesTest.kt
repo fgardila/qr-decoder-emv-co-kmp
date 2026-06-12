@@ -38,21 +38,21 @@ class RedebanQrSamplesTest {
 
     @Test
     fun redebanQrsPassCrcValidation() {
-        assertTrue(CRCValidator.validate(qrLlaveOcfrf))
-        assertTrue(CRCValidator.validate(qrMiLlave))
+        assertTrue(EmvQr.isCrcValid(qrLlaveOcfrf))
+        assertTrue(EmvQr.isCrcValid(qrMiLlave))
     }
 
     @Test
     fun redebanQrRejectsTamperedAmount() {
         val tampered = qrLlaveOcfrf.replaceFirst("15000.00", "99000.00")
-        assertTrue(!CRCValidator.validate(tampered))
+        assertTrue(!EmvQr.isCrcValid(tampered))
     }
 
     // ---------- QR 1: llave @ocfrf115 ----------
 
     @Test
     fun qrLlaveOcfrfConventions() {
-        val data = EmvQrCodeDecoder(qrLlaveOcfrf).decode()
+        val data = EmvQr.decode(qrLlaveOcfrf)
 
         val conventions = assertNotNull(data.conventionsQrCodeEmvCoData)
         assertEquals("01", conventions.indicatorEmv)
@@ -63,7 +63,7 @@ class RedebanQrSamplesTest {
 
     @Test
     fun qrLlaveOcfrfMerchantInformation() {
-        val data = EmvQrCodeDecoder(qrLlaveOcfrf).decode()
+        val data = EmvQr.decode(qrLlaveOcfrf)
 
         val merchant = assertNotNull(data.merchantInformationData)
         val paymentKey = assertNotNull(merchant.immediatePaymentKey)
@@ -81,7 +81,7 @@ class RedebanQrSamplesTest {
 
     @Test
     fun qrLlaveOcfrfAdditionalMerchantInformation() {
-        val data = EmvQrCodeDecoder(qrLlaveOcfrf).decode()
+        val data = EmvQr.decode(qrLlaveOcfrf)
 
         val additional = assertNotNull(data.additionalMerchantInformationData)
         assertEquals("0000", additional.merchantCategoryCode)
@@ -100,7 +100,7 @@ class RedebanQrSamplesTest {
 
     @Test
     fun qrLlaveOcfrfTransactionDetail() {
-        val data = EmvQrCodeDecoder(qrLlaveOcfrf).decode()
+        val data = EmvQr.decode(qrLlaveOcfrf)
 
         val transaction = assertNotNull(data.transactionDetailData)
         assertEquals("170", transaction.currencyCode) // COP
@@ -112,7 +112,7 @@ class RedebanQrSamplesTest {
 
     @Test
     fun qrLlaveOcfrfMerchantAdditionalFields() {
-        val data = EmvQrCodeDecoder(qrLlaveOcfrf).decode()
+        val data = EmvQr.decode(qrLlaveOcfrf)
 
         val fields = assertNotNull(data.merchantAdditionalFieldsData)
         assertEquals("CC1130622115", fields.terminalLabel)
@@ -130,7 +130,7 @@ class RedebanQrSamplesTest {
 
     @Test
     fun qrLlaveOcfrfHasNoTransferOrLanguageData() {
-        val data = EmvQrCodeDecoder(qrLlaveOcfrf).decode()
+        val data = EmvQr.decode(qrLlaveOcfrf)
 
         val other = assertNotNull(data.otherTransactionsFieldsData)
         assertNull(other.serviceCode)
@@ -148,7 +148,7 @@ class RedebanQrSamplesTest {
 
     @Test
     fun qrMiLlaveConventions() {
-        val data = EmvQrCodeDecoder(qrMiLlave).decode()
+        val data = EmvQr.decode(qrMiLlave)
 
         val conventions = assertNotNull(data.conventionsQrCodeEmvCoData)
         assertEquals("01", conventions.indicatorEmv)
@@ -159,7 +159,7 @@ class RedebanQrSamplesTest {
 
     @Test
     fun qrMiLlaveMerchantInformation() {
-        val data = EmvQrCodeDecoder(qrMiLlave).decode()
+        val data = EmvQr.decode(qrMiLlave)
 
         val merchant = assertNotNull(data.merchantInformationData)
         val paymentKey = assertNotNull(merchant.immediatePaymentKey)
@@ -173,7 +173,7 @@ class RedebanQrSamplesTest {
 
     @Test
     fun qrMiLlaveTransactionDetailWithLargeAmount() {
-        val data = EmvQrCodeDecoder(qrMiLlave).decode()
+        val data = EmvQr.decode(qrMiLlave)
 
         val transaction = assertNotNull(data.transactionDetailData)
         assertEquals("170", transaction.currencyCode)
@@ -182,7 +182,7 @@ class RedebanQrSamplesTest {
 
     @Test
     fun qrMiLlaveTaxesAndChannel() {
-        val data = EmvQrCodeDecoder(qrMiLlave).decode()
+        val data = EmvQr.decode(qrMiLlave)
 
         val additional = assertNotNull(data.additionalMerchantInformationData)
         assertEquals("APP", additional.channel)
@@ -196,7 +196,7 @@ class RedebanQrSamplesTest {
 
     @Test
     fun qrMiLlaveMerchantAdditionalFields() {
-        val data = EmvQrCodeDecoder(qrMiLlave).decode()
+        val data = EmvQr.decode(qrMiLlave)
 
         val fields = assertNotNull(data.merchantAdditionalFieldsData)
         assertEquals("CC1098741992", fields.terminalLabel)

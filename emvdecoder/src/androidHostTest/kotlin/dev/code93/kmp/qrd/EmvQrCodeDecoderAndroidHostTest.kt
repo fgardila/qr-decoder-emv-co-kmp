@@ -12,7 +12,7 @@ class EmvQrCodeDecoderAndroidHostTest {
 
     @Test
     fun decodeBasicTagsOnAndroidHost() {
-        val data = EmvQrCodeDecoder("0002015303170540510.005802CO").decode()
+        val data = EmvQr.decode("0002015303170540510.005802CO")
 
         assertEquals("01", data.conventionsQrCodeEmvCoData?.indicatorEmv)
         assertEquals("170", data.transactionDetailData?.currencyCode)
@@ -22,6 +22,6 @@ class EmvQrCodeDecoderAndroidHostTest {
 
     @Test
     fun crcValidatorKnownVectorOnAndroidHost() {
-        assertTrue(CRCValidator.validate("123456789" + "29B1"))
+        assertTrue(EmvQr.isCrcValid("123456789" + "29B1"))
     }
 }

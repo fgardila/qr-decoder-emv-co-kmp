@@ -24,37 +24,20 @@ import dev.code93.kmp.qrd.data.TransactionDetailData
 import dev.code93.kmp.qrd.data.TransactionIdType
 
 /**
- * Decoder for EMVCo Merchant-Presented QR codes following the Colombian
- * industry standard **EASPBV v1.4-2025** (Redeban, Credibanco, Bre-B).
- *
- * Parses the raw QR payload as TLV — 2-character tag, 2-digit length, value —
- * including the nested templates defined by the standard (tags `26`, `49`–`51`,
- * `62`, `64`, `80`–`86`, `90`, `91`, `99`).
- *
- * The decoder is **lenient by design**: malformed input never throws. Parsing
- * extracts every well-formed element and stops silently at the first invalid
- * one; absent fields decode as `null` (or `""` for the few fields the contract
- * defines as non-null). Standard compliance is the authorizing backend's
- * responsibility, not this client library's.
- *
- * This decoder does **not** verify integrity — validate the payload first with
- * [CRCValidator.validate] if you need the CRC check.
- *
- * ```kotlin
- * if (CRCValidator.validate(rawText)) {
- *     val data = EmvQrCodeDecoder(rawText).decode()
- * }
- * ```
- *
- * @param qrCode the raw text scanned from the QR code.
+ * Internal TLV decoder behind [EmvQr] — parses the raw QR payload as TLV
+ * (2-character tag, 2-digit length, value), including the nested templates
+ * defined by the EASPBV standard (tags `26`, `49`–`51`, `62`, `64`, `80`–`86`,
+ * `90`, `91`, `99`). Lenient: stops silently at the first malformed element
+ * and records what happened for [diagnostics].
  */
-class EmvQrCodeDecoder(qrCode: String) {
+internal class EmvQrCodeDecoder(private val qrCode: String) {
     private val dataElements: MutableMap<String, String> = mutableMapOf()
+    private var parsedTagCount = 0
+    private var consumedChars = 0
 
     init {
         parseQrCode(qrCode)
     }
-
 
     private fun parseQrCode(qrCode: String) {
         var index = 0
@@ -69,8 +52,16 @@ class EmvQrCodeDecoder(qrCode: String) {
             index += length
 
             dataElements[id] = value
+            parsedTagCount++
+            consumedChars = index
         }
     }
+
+    fun diagnostics(): ParseDiagnostics = ParseDiagnostics(
+        parsedTagCount = parsedTagCount,
+        consumedChars = consumedChars,
+        totalChars = qrCode.length
+    )
 
     private inline fun <reified T> extractSubFields(tag: String): Map<T, String?> where T : Enum<T>, T : SubFieldType {
         val fieldValue = dataElements[tag] ?: return emptyMap()
@@ -205,7 +196,6 @@ class EmvQrCodeDecoder(qrCode: String) {
             taxIvaBase = taxIvaBase,
             taxIncCondition = taxIncCondition,
             taxIncValue = taxIncValue,
-            taxes = null,
             transactionId = transactionId
         )
     }
@@ -248,7 +238,7 @@ class EmvQrCodeDecoder(qrCode: String) {
  * template (e.g. [dev.code93.kmp.qrd.data.ImmediatePaymentKeyType.PHONE_NUMBER]
  * is sub-tag `02` of template `26`).
  */
-interface SubFieldType {
+public interface SubFieldType {
     /** Two-character sub-tag identifier inside the parent template. */
-    val subTag: String
+    public val subTag: String
 }

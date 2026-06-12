@@ -18,21 +18,22 @@ import dev.code93.kmp.qrd.SubFieldType
  * @property discountApplication Discount application template (tag `99`), keyed by
  *   [DiscountApplicationType]; absent sub-tags map to `null`.
  */
-data class OtherTransactionsFieldsData(
-    val serviceCode: String?,
-    val paymentReference: String?,
-    val productType: String?,
-    val sourceAccount: String?,
-    val destinationAccount: String?,
-    val destinationAccountReference: String?,
-    val transferProductType: String?,
-    val discountApplication: Map<DiscountApplicationType, String?>?
+@ConsistentCopyVisibility
+public data class OtherTransactionsFieldsData internal constructor(
+    public val serviceCode: String?,
+    public val paymentReference: String?,
+    public val productType: String?,
+    public val sourceAccount: String?,
+    public val destinationAccount: String?,
+    public val destinationAccountReference: String?,
+    public val transferProductType: String?,
+    public val discountApplication: Map<DiscountApplicationType, String?>?
 )
 
 /**
  * Sub-fields of the discount application template (tag `99`).
  */
-enum class DiscountApplicationType(override val subTag: String) : SubFieldType {
+public enum class DiscountApplicationType(override val subTag: String) : SubFieldType {
     /** Globally Unique Identifier (`CO.COM.RBM.DESC` / `CO.COM.CRB.DESC`). */
     GUID("00"),
 

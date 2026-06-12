@@ -24,12 +24,13 @@ import dev.code93.kmp.qrd.data.TransactionDetailData
  * @property merchantAdditionalFieldsData Section VI — additional data field template (tag 62).
  * @property transactionDetailData Section VII — currency, amount and tip fields (tags 53–57).
  */
-data class QRCodeEmvCoColombiaData(
-    val conventionsQrCodeEmvCoData: ConventionsQrCodeEmvCoData?,
-    val merchantInformationData: MerchantInformationData?,
-    val additionalMerchantInformationData: AdditionalMerchantInformationData?,
-    val otherTransactionsFieldsData: OtherTransactionsFieldsData?,
-    val merchantInformationLanguageData: MerchantInformationLanguageData?,
-    val merchantAdditionalFieldsData: MerchantAdditionalFieldsData?,
-    val transactionDetailData: TransactionDetailData?
+@ConsistentCopyVisibility
+public data class QRCodeEmvCoColombiaData internal constructor(
+    public val conventionsQrCodeEmvCoData: ConventionsQrCodeEmvCoData?,
+    public val merchantInformationData: MerchantInformationData?,
+    public val additionalMerchantInformationData: AdditionalMerchantInformationData?,
+    public val otherTransactionsFieldsData: OtherTransactionsFieldsData?,
+    public val merchantInformationLanguageData: MerchantInformationLanguageData?,
+    public val merchantAdditionalFieldsData: MerchantAdditionalFieldsData?,
+    public val transactionDetailData: TransactionDetailData?
 )

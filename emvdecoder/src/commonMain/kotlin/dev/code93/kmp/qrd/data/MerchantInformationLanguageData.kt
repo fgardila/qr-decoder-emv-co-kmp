@@ -10,16 +10,17 @@ import dev.code93.kmp.qrd.SubFieldType
  * @property alternateMerchantName Merchant name in the preferred language (sub-tag `01`).
  * @property alternateMerchantCity Merchant city in the preferred language (sub-tag `02`).
  */
-data class MerchantInformationLanguageData(
-    val languagePreference: String?,
-    val alternateMerchantName: String?,
-    val alternateMerchantCity: String?
+@ConsistentCopyVisibility
+public data class MerchantInformationLanguageData internal constructor(
+    public val languagePreference: String?,
+    public val alternateMerchantName: String?,
+    public val alternateMerchantCity: String?
 )
 
 /**
  * Sub-fields of the Merchant Information Language Template (tag `64`).
  */
-enum class MerchantInformationLanguageDataType(override val subTag: String) : SubFieldType {
+public enum class MerchantInformationLanguageDataType(override val subTag: String) : SubFieldType {
     /** Language preference (ISO 639). */
     LANGUAGE_PREFERENCE("00"),
 

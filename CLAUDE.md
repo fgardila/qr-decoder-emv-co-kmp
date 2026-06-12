@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Kotlin Multiplatform (KMP) library and demo apps for decoding EMV QR codes (Colombian EMVCo spec), using the recommended KMP structure: separate entry-point modules per platform plus a shared library. Toolchain: **Gradle 9.5.1, AGP 9.2.1, Kotlin 2.3.21, JDK 17+**.
 
-- `emvdecoder/` — the KMP library with all decoding logic. Uses the Android-KMP library plugin (`com.android.kotlin.multiplatform.library`); the Android config lives inside `kotlin { android { ... } }` (note: the `androidLibrary {}` block name from the JetBrains migration guide is deprecated in AGP 9.2 — use `android {}`). iOS targets: `iosArm64`, `iosSimulatorArm64` (static framework named `emvdecoder`).
+- `emvdecoder/` — the KMP library with all decoding logic. Uses the Android-KMP library plugin (`com.android.kotlin.multiplatform.library`); the Android config lives inside `kotlin { android { ... } }` (note: the `androidLibrary {}` block name from the JetBrains migration guide is deprecated in AGP 9.2 — use `android {}`). Targets: Android, `jvm`, `iosArm64`, `iosSimulatorArm64` (static framework named `emvdecoder`). Compiled with `explicitApi()`; the only public entry point is `object EmvQr` (`decode`, `decodeWithDiagnostics`, `isCrcValid`) — `EmvQrCodeDecoder` and `CRCValidator` are internal, and result data classes have internal constructors (`@ConsistentCopyVisibility`).
 - `androidApp/` — Compose demo app (CameraX + ML Kit scanning). AGP 9 built-in Kotlin: no `org.jetbrains.kotlin.android` plugin; `jvmTarget` is set via a top-level `kotlin { compilerOptions {} }` block. Sources in `src/main/kotlin`.
 - `iosApp/` — SwiftUI demo app (Xcode project, not a Gradle module; its build phase runs the `embedAndSignAppleFrameworkForXcode` Gradle task to link the framework).
 
@@ -35,9 +35,9 @@ The library publishes to Maven Central as `dev.code93:emvdecoder` via the vannik
 
 Decoding lives entirely in `emvdecoder/src/commonMain/kotlin/dev/code93/kmp/qrd/`:
 
-- `EmvQrCodeDecoder` parses the QR payload as TLV (2-char tag, 2-char length, value) into a tag→value map, then maps tags into typed data classes, returning `QRCodeEmvCoColombiaData` from `decode()`. Malformed input never throws — parsing stops at the first invalid element.
+- `EmvQr.decode` (backed by the internal `EmvQrCodeDecoder`) parses the QR payload as TLV (2-char tag, 2-char length, value) into a tag→value map, then maps tags into typed data classes, returning `QRCodeEmvCoColombiaData`. Malformed input never throws — parsing stops at the first invalid element; `EmvQr.decodeWithDiagnostics` additionally reports tags parsed / chars consumed.
 - Composite tags (e.g. `26`, `62`, `64`, `80`–`86`, `90`, `91`, `99`) contain nested TLV. Per the EASPBV v1.4 spec (PDF in repo root), the transaction ID lives in tag `90` (`TRXID`); the decoder falls back to tag `86` for QRs from older spec versions (`86`–`89` are now reserved for future taxes). Sub-fields are modeled as enums implementing `SubFieldType` (each enum constant carries its `subTag`); `extractSubFields<T>()` reflects over the enum to pull every sub-value. To add a new field: define/extend an enum in `data/` and wire it into the corresponding `get...Data()` method in `EmvQrCodeDecoder`.
-- `CRCValidator.validate()` checks the trailing 4-char CRC-16/CCITT-FALSE. Callers (both apps' `MainViewModel`s) validate CRC and then decode — the decoder itself does not validate.
+- `EmvQr.isCrcValid()` checks the trailing 4-char CRC-16/CCITT-FALSE. Callers (both apps' `MainViewModel`s) validate CRC and then decode — the decoder itself does not validate.
 - Data classes live in `data/` (one file per QR section: merchant info, transaction detail, taxes, etc.).
 
 Both demo apps mirror each other: `MainViewModel` validates + decodes, then flattens the result into a list of expandable title/key-value sections for display.
@@ -50,5 +50,5 @@ Both demo apps mirror each other: `MainViewModel` validates + decodes, then flat
 
 - The library has a single build variant: `debugImplementation`-style configurations don't exist in `emvdecoder` (they do still work in `androidApp`).
 - `material-icons-core` is pinned at 1.7.8 because the icons artifacts were frozen and dropped from recent Compose BOMs.
-- Package naming is inconsistent in `androidApp`: files under `src/main/kotlin/dev/code93/kmp/qrd/android/` mostly declare `dev.code93.kmp.qrd.android`, but `MainViewModel.kt` declares `dev.code93.android.emvreaderqr`. The library's Android namespace is `dev.code93.android.qrd` while its Kotlin code uses `dev.code93.kmp.qrd`.
+- The library's Android namespace is `dev.code93.android.qrd` while its Kotlin code uses `dev.code93.kmp.qrd`.
 - Code comments and user-facing strings are partly in Spanish; keep that convention where it exists.
