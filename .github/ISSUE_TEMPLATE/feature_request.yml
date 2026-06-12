@@ -1,0 +1,25 @@
+name: Feature request
+description: Suggest a new capability or spec field support
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea! You can write in English or Spanish.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: >
+        If it's about a spec field, reference the EASPBV tag/sub-tag and
+        spec version (the v1.4-2025 PDF is in the repo root).
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered

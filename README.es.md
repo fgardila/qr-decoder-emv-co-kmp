@@ -101,6 +101,10 @@ iosApp/       App demo — SwiftUI (enlaza el framework vía embedAndSignAppleFr
 
 La suite incluye QRs reales de Redeban, QRs sintéticos de cobertura completa construidos con un helper TLV/CRC, casos de entrada malformada y el vector estándar CRC-16/CCITT-FALSE (`"123456789" → 0x29B1`).
 
+## Contribuir
+
+Issues y PRs son bienvenidos (en español o inglés) — mira [CONTRIBUTING.md](CONTRIBUTING.md). Los cambios se registran en el [CHANGELOG](CHANGELOG.md).
+
 ## Licencia
 
 [MIT](LICENSE). La lógica de validación CRC deriva de [emv_qrcode](https://github.com/mohamedayed/emv_qrcode) de Mohamed Ayed (MIT).
