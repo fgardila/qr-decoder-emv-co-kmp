@@ -98,9 +98,15 @@ Follows the [recommended KMP project structure](https://kotlinlang.org/docs/mult
 
 ```
 emvdecoder/   Kotlin Multiplatform library (commonMain: all parsing logic)
-androidApp/   Demo app — Jetpack Compose + CameraX + ML Kit scanning
-iosApp/       Demo app — SwiftUI (links the framework via embedAndSignAppleFrameworkForXcode)
+androidApp/   "QR EMV Colombia" — Clean Architecture + MVVM + Hilt + Compose Navigation;
+              scans (CameraX/ML Kit), generates EASPBV test QRs and consumes the library
+              from Maven Central
+iosApp/       "QR EMV Colombia" — SwiftUI + MVVM with clean layers; AVFoundation camera,
+              Vision gallery detection, CoreImage QR generation (links the framework via
+              embedAndSignAppleFrameworkForXcode)
 ```
+
+Both demo apps share the same product: a 3-tab app (Scan / Generate / Settings) that decodes real Colombian payment QRs and generates spec-valid test QRs (TLV + CRC-16/CCITT-FALSE built in each app's domain layer and round-trip-verified against this library).
 
 ## Testing
 
