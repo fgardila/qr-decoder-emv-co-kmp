@@ -1,20 +1,39 @@
 import SwiftUI
 
-/// Fila etiqueta/valor para los campos decodificados.
+/// Fila etiqueta/valor para los campos decodificados, con copiado al portapapeles.
 struct KeyValueRow: View {
     let label: String
     let value: String
     var monospace: Bool = false
 
+    @State private var justCopied = false
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
-            Text(label)
-                .font(.caption)
-                .foregroundStyle(.secondary)
-            Text(value)
-                .font(monospace ? .body.monospaced() : .body)
+        HStack(alignment: .center, spacing: 8) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(label)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Text(value)
+                    .font(monospace ? .body.monospaced() : .body)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+
+            Button {
+                UIPasteboard.general.string = value
+                withAnimation { justCopied = true }
+                Task {
+                    try? await Task.sleep(nanoseconds: 1_500_000_000)
+                    withAnimation { justCopied = false }
+                }
+            } label: {
+                Image(systemName: justCopied ? "checkmark" : "doc.on.doc")
+                    .font(.footnote)
+                    .foregroundStyle(justCopied ? AnyShapeStyle(.green) : AnyShapeStyle(.tertiary))
+            }
+            .buttonStyle(.borderless)
+            .accessibilityLabel("Copiar valor")
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 

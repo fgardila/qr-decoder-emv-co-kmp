@@ -17,7 +17,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import dev.code93.emvqr.R
 import dev.code93.emvqr.core.designsystem.components.KeyValueRow
@@ -94,12 +96,14 @@ fun DecodedResult(
 
 @Composable
 fun SectionContent(section: EmvSection, modifier: Modifier = Modifier) {
+    val clipboard = LocalClipboardManager.current
     SectionCard(title = section.title, modifier = modifier) {
         section.fields.forEachIndexed { index, field ->
             KeyValueRow(
                 label = field.label,
                 value = field.value,
-                monospace = field.label == "CRC" || field.label.startsWith("GUID")
+                monospace = field.label == "CRC" || field.label.startsWith("GUID"),
+                onCopy = { clipboard.setText(AnnotatedString(field.value)) }
             )
             if (index < section.fields.lastIndex) {
                 HorizontalDivider(color = MaterialTheme.colorScheme.surfaceVariant)
