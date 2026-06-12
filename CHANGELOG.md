@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- KDoc on the entire public API, including the semantic values defined by the
+  EASPBV spec (tax conditions, channels, transaction purposes, tip indicator).
+- API reference generated with Dokka and published to GitHub Pages.
+
 ## [1.0.0] - 2026-06-11
 
 First public release on Maven Central: `dev.code93:emvdecoder:1.0.0`.
