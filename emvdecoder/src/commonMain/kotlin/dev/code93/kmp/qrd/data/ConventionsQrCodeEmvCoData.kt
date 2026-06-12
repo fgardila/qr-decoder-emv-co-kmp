@@ -12,17 +12,18 @@ import dev.code93.kmp.qrd.SubFieldType
  *   Verify it with [dev.code93.kmp.qrd.CRCValidator.validate].
  * @property securityField SHA-256 security hash (tag `91`, sub-tag `01`). Empty when absent.
  */
-data class ConventionsQrCodeEmvCoData(
-    val indicatorEmv: String,
-    val qrType: String,
-    val cyclicRedundancyCheck: String,
-    val securityField: String,
+@ConsistentCopyVisibility
+public data class ConventionsQrCodeEmvCoData internal constructor(
+    public val indicatorEmv: String,
+    public val qrType: String,
+    public val cyclicRedundancyCheck: String,
+    public val securityField: String,
 )
 
 /**
  * Sub-fields of the security template (tag `91`).
  */
-enum class SecurityFieldType(override val subTag: String) : SubFieldType {
+public enum class SecurityFieldType(override val subTag: String) : SubFieldType {
     /** Globally Unique Identifier (`CO.COM.RBM.SEC` / `CO.COM.CRB.SEC`). */
     NETWORK_ID("00"),
 

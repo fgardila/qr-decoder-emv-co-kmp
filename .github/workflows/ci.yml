@@ -32,8 +32,8 @@ jobs:
       - name: Public API compatibility (ABI check)
         run: ./gradlew :emvdecoder:checkKotlinAbi
 
-      - name: Run Android host tests with coverage gate
-        run: ./gradlew :emvdecoder:testAndroidHostTest :emvdecoder:koverVerify :emvdecoder:koverXmlReport
+      - name: Run Android host and JVM tests with coverage gate
+        run: ./gradlew :emvdecoder:testAndroidHostTest :emvdecoder:jvmTest :emvdecoder:koverVerify :emvdecoder:koverXmlReport
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4

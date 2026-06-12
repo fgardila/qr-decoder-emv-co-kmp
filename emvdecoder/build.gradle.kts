@@ -41,7 +41,7 @@ mavenPublishing {
     publishToMavenCentral()
     signAllPublications()
 
-    coordinates("dev.code93", "emvdecoder", "1.0.0")
+    coordinates("dev.code93", "emvdecoder", "2.0.0")
 
     pom {
         name.set("EMV QR Decoder Colombia")
@@ -74,10 +74,14 @@ mavenPublishing {
 }
 
 kotlin {
+    explicitApi()
+
     @OptIn(ExperimentalAbiValidation::class)
     abiValidation {
         enabled.set(true)
     }
+
+    jvm()
 
     android {
         namespace = "dev.code93.android.qrd"

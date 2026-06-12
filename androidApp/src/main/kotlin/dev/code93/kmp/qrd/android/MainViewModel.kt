@@ -1,13 +1,10 @@
-package dev.code93.android.emvreaderqr
+package dev.code93.kmp.qrd.android
 
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import dev.code93.kmp.qrd.CRCValidator
-import dev.code93.kmp.qrd.EmvQrCodeDecoder
+import dev.code93.kmp.qrd.EmvQr
 import dev.code93.kmp.qrd.QRCodeEmvCoColombiaData
-import dev.code93.kmp.qrd.android.ExpandableItem
-import dev.code93.kmp.qrd.android.MainActivity
 import dev.code93.kmp.qrd.data.*
 
 class MainViewModel : ViewModel() {
@@ -16,11 +13,8 @@ class MainViewModel : ViewModel() {
     val alertDialogState = mutableStateOf(Triple(false, "", ""))
 
     fun processQRCode(data: String) {
-        val decoder = EmvQrCodeDecoder(data)
-        val decodedData = decoder.decode()
-
-        if (CRCValidator.validate(data)) {
-            updateExpandableList(decodedData)
+        if (EmvQr.isCrcValid(data)) {
+            updateExpandableList(EmvQr.decode(data))
         } else {
             showError("Error al validar CRC.")
         }
@@ -97,7 +91,6 @@ class MainViewModel : ViewModel() {
         items.add("Tax IVA Base" to it.taxIvaBase)
         items.add("Tax INC Condition" to it.taxIncCondition)
         items.add("Tax INC Value" to it.taxIncValue)
-        items.add("Taxes" to it.taxes)
         items.add("Transaction ID" to it.transactionId)
 
         expandableList.add(

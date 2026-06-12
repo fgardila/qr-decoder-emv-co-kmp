@@ -15,18 +15,19 @@ import dev.code93.kmp.qrd.SubFieldType
  * @property merchantCode Merchant code (tag `50`, sub-tag `01`).
  * @property aggregatorMerchantCode Aggregator merchant identifier (tag `51`, sub-tag `01`).
  */
-data class MerchantInformationData(
-    val immediatePaymentKey: Map<ImmediatePaymentKeyType, String?>?,
-    val acquirerNetworkId: String?,
-    val merchantCode: String?,
-    val aggregatorMerchantCode: String?
+@ConsistentCopyVisibility
+public data class MerchantInformationData internal constructor(
+    public val immediatePaymentKey: Map<ImmediatePaymentKeyType, String?>?,
+    public val acquirerNetworkId: String?,
+    public val merchantCode: String?,
+    public val aggregatorMerchantCode: String?
 )
 
 /**
  * Sub-fields of the immediate-payment key template (tag `26`) — the "Llave"
  * (alias) used for instant transfers/payments such as Bre-B.
  */
-enum class ImmediatePaymentKeyType(override val subTag: String) : SubFieldType {
+public enum class ImmediatePaymentKeyType(override val subTag: String) : SubFieldType {
     /** Globally Unique Identifier (`CO.COM.RBM.LLA` / `CO.COM.CRB.LLA`). */
     NETWORK_ID("00"),
 
@@ -49,7 +50,7 @@ enum class ImmediatePaymentKeyType(override val subTag: String) : SubFieldType {
 /**
  * Sub-fields of the acquirer network template (tag `49`).
  */
-enum class AcquirerNetworkIdType(override val subTag: String) : SubFieldType {
+public enum class AcquirerNetworkIdType(override val subTag: String) : SubFieldType {
     /** Globally Unique Identifier (`CO.COM.<RED>.RED`). */
     GUID("00"),
 
@@ -60,7 +61,7 @@ enum class AcquirerNetworkIdType(override val subTag: String) : SubFieldType {
 /**
  * Sub-fields of the merchant code template (tag `50`).
  */
-enum class MerchantCodeType(override val subTag: String) : SubFieldType {
+public enum class MerchantCodeType(override val subTag: String) : SubFieldType {
     /** Globally Unique Identifier (`CO.COM.RBM.CU` / `CO.COM.CRB.CU`). */
     GUID("00"),
 
@@ -71,7 +72,7 @@ enum class MerchantCodeType(override val subTag: String) : SubFieldType {
 /**
  * Sub-fields of the aggregator merchant template (tag `51`).
  */
-enum class AggregatorMerchantCodeType(override val subTag: String) : SubFieldType {
+public enum class AggregatorMerchantCodeType(override val subTag: String) : SubFieldType {
     /** Globally Unique Identifier (`CO.COM.RBM.CA` / `CO.COM.CRB.CA`). */
     GUID("00"),
 

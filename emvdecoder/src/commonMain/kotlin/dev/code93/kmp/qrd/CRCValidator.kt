@@ -29,41 +29,38 @@ package dev.code93.kmp.qrd
  * what was encoded (corrupted read or tampering) — not merely a deviation from
  * the standard.
  */
-@Suppress("UtilityClassWithPublicConstructor") // API publicada en 1.0.0; pasará a object en 2.0.0
-class CRCValidator {
-    companion object {
-        private const val CRC_LENGTH = 4
+internal object CRCValidator {
+    private const val CRC_LENGTH = 4
 
-        /**
-         * Returns `true` when the last 4 characters of [qrCode] match the
-         * CRC-16/CCITT-FALSE of everything before them (computed over the
-         * UTF-8 bytes, case-insensitive comparison).
-         */
-        fun validate(qrCode: String): Boolean {
-            val crcValueFromCode = qrCode.takeLast(CRC_LENGTH)
-            val dataToValidate = qrCode.dropLast(CRC_LENGTH)
+    /**
+     * Returns `true` when the last 4 characters of [qrCode] match the
+     * CRC-16/CCITT-FALSE of everything before them (computed over the
+     * UTF-8 bytes, case-insensitive comparison).
+     */
+    fun validate(qrCode: String): Boolean {
+        val crcValueFromCode = qrCode.takeLast(CRC_LENGTH)
+        val dataToValidate = qrCode.dropLast(CRC_LENGTH)
 
-            return calculateCrc(dataToValidate).equals(crcValueFromCode, ignoreCase = true)
-        }
+        return calculateCrc(dataToValidate).equals(crcValueFromCode, ignoreCase = true)
+    }
 
-        private fun calculateCrc(data: String): String {
-            var crc = 0xFFFF
-            val polynomial = 0x1021
+    private fun calculateCrc(data: String): String {
+        var crc = 0xFFFF
+        val polynomial = 0x1021
 
-            val byteArray = data.encodeToByteArray()
+        val byteArray = data.encodeToByteArray()
 
-            byteArray.forEach { byte ->
-                var b = byte.toInt()
-                for (i in 0 until 8) {
-                    val bit = ((b shr (7 - i) and 1) == 1)
-                    val c15 = ((crc shr 15 and 1) == 1)
-                    crc = crc shl 1
-                    if (c15 xor bit) crc = crc xor polynomial
-                }
+        byteArray.forEach { byte ->
+            var b = byte.toInt()
+            for (i in 0 until 8) {
+                val bit = ((b shr (7 - i) and 1) == 1)
+                val c15 = ((crc shr 15 and 1) == 1)
+                crc = crc shl 1
+                if (c15 xor bit) crc = crc xor polynomial
             }
-            crc = crc and 0xffff
-
-            return crc.toString(16).uppercase().padStart(CRC_LENGTH, '0')
         }
+        crc = crc and 0xffff
+
+        return crc.toString(16).uppercase().padStart(CRC_LENGTH, '0')
     }
 }

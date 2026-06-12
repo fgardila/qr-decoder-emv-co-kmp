@@ -21,24 +21,25 @@ import dev.code93.kmp.qrd.SubFieldType
  * @property originChannel Origin channel (sub-tag `11`): three digits — medium / location /
  *   merchant presentation, per annex tables 1.1–1.3 of the spec. Coexists with tag `80`.
  */
-data class MerchantAdditionalFieldsData(
-    val billingNumber: String?,
-    val mobileNumber: String?,
-    val storeLabel: String?,
-    val loyaltyNumber: String?,
-    val referenceLabel: String?,
-    val customerLabel: String?,
-    val terminalLabel: String,
-    val transactionPurpose: String,
-    val additionalConsumerData: String?,
-    val merchantTaxId: String?,
-    val originChannel: String?
+@ConsistentCopyVisibility
+public data class MerchantAdditionalFieldsData internal constructor(
+    public val billingNumber: String?,
+    public val mobileNumber: String?,
+    public val storeLabel: String?,
+    public val loyaltyNumber: String?,
+    public val referenceLabel: String?,
+    public val customerLabel: String?,
+    public val terminalLabel: String,
+    public val transactionPurpose: String,
+    public val additionalConsumerData: String?,
+    public val merchantTaxId: String?,
+    public val originChannel: String?
 )
 
 /**
  * Sub-fields of the Additional Data Field Template (tag `62`).
  */
-enum class MerchantAdditionalDataFieldType(override val subTag: String) : SubFieldType {
+public enum class MerchantAdditionalDataFieldType(override val subTag: String) : SubFieldType {
     /** Invoice number. */
     BILLING_NUMBER("01"),
 

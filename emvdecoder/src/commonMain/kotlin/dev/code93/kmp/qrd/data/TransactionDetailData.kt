@@ -11,10 +11,11 @@ package dev.code93.kmp.qrd.data
  * @property tipValue Fixed tip amount (tag `56`); only when [tipIndicator] is `"02"`.
  * @property tipPercentage Tip percentage (tag `57`); only when [tipIndicator] is `"03"`.
  */
-data class TransactionDetailData(
-    val currencyCode: String,
-    val transactionValue: String,
-    val tipIndicator: String?,
-    val tipValue: String?,
-    val tipPercentage: String?
+@ConsistentCopyVisibility
+public data class TransactionDetailData internal constructor(
+    public val currencyCode: String,
+    public val transactionValue: String,
+    public val tipIndicator: String?,
+    public val tipValue: String?,
+    public val tipPercentage: String?
 )

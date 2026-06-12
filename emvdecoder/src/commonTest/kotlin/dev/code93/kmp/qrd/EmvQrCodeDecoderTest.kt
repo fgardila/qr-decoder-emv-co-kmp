@@ -81,7 +81,7 @@ class EmvQrCodeDecoderTest {
     @Test
     fun decodeFullQrConventions() {
         val qr = buildFullQr()
-        val data = EmvQrCodeDecoder(qr).decode()
+        val data = EmvQr.decode(qr)
 
         val conventions = assertNotNull(data.conventionsQrCodeEmvCoData)
         assertEquals("01", conventions.indicatorEmv)
@@ -92,7 +92,7 @@ class EmvQrCodeDecoderTest {
 
     @Test
     fun decodeFullQrMerchantInformation() {
-        val data = EmvQrCodeDecoder(buildFullQr()).decode()
+        val data = EmvQr.decode(buildFullQr())
 
         val merchant = assertNotNull(data.merchantInformationData)
         val paymentKey = assertNotNull(merchant.immediatePaymentKey)
@@ -110,7 +110,7 @@ class EmvQrCodeDecoderTest {
 
     @Test
     fun decodeFullQrAdditionalMerchantInformation() {
-        val data = EmvQrCodeDecoder(buildFullQr()).decode()
+        val data = EmvQr.decode(buildFullQr())
 
         val additional = assertNotNull(data.additionalMerchantInformationData)
         assertEquals("5812", additional.merchantCategoryCode)
@@ -129,7 +129,7 @@ class EmvQrCodeDecoderTest {
 
     @Test
     fun decodeFullQrTransactionDetail() {
-        val data = EmvQrCodeDecoder(buildFullQr()).decode()
+        val data = EmvQr.decode(buildFullQr())
 
         val transaction = assertNotNull(data.transactionDetailData)
         assertEquals("170", transaction.currencyCode)
@@ -141,7 +141,7 @@ class EmvQrCodeDecoderTest {
 
     @Test
     fun decodeFullQrMerchantAdditionalFields() {
-        val data = EmvQrCodeDecoder(buildFullQr()).decode()
+        val data = EmvQr.decode(buildFullQr())
 
         val fields = assertNotNull(data.merchantAdditionalFieldsData)
         assertEquals("F-001", fields.billingNumber)
@@ -159,7 +159,7 @@ class EmvQrCodeDecoderTest {
 
     @Test
     fun decodeFullQrMerchantInformationLanguage() {
-        val data = EmvQrCodeDecoder(buildFullQr()).decode()
+        val data = EmvQr.decode(buildFullQr())
 
         val language = assertNotNull(data.merchantInformationLanguageData)
         assertEquals("es", language.languagePreference)
@@ -169,7 +169,7 @@ class EmvQrCodeDecoderTest {
 
     @Test
     fun decodeFullQrOtherTransactionsFields() {
-        val data = EmvQrCodeDecoder(buildFullQr()).decode()
+        val data = EmvQr.decode(buildFullQr())
 
         val other = assertNotNull(data.otherTransactionsFieldsData)
         assertEquals("01", other.serviceCode)
@@ -192,13 +192,13 @@ class EmvQrCodeDecoderTest {
 
     @Test
     fun decodeFullQrPassesCrcValidation() {
-        assertTrue(CRCValidator.validate(buildFullQr()))
+        assertTrue(EmvQr.isCrcValid(buildFullQr()))
     }
 
     @Test
     fun decodeMinimalQrUsesDefaultsForMissingTags() {
         val qr = withCrc(tlv("00", "01") + tlv("53", "170") + tlv("54", "5000"))
-        val data = EmvQrCodeDecoder(qr).decode()
+        val data = EmvQr.decode(qr)
 
         assertEquals("01", data.conventionsQrCodeEmvCoData?.indicatorEmv)
         assertEquals("", data.conventionsQrCodeEmvCoData?.qrType)
@@ -227,7 +227,7 @@ class EmvQrCodeDecoderTest {
 
     @Test
     fun decodeEmptyStringReturnsDefaults() {
-        val data = EmvQrCodeDecoder("").decode()
+        val data = EmvQr.decode("")
 
         assertEquals("", data.conventionsQrCodeEmvCoData?.indicatorEmv)
         assertEquals("", data.transactionDetailData?.currencyCode)
@@ -238,21 +238,21 @@ class EmvQrCodeDecoderTest {
     @Test
     fun decodeStopsAtTruncatedTag() {
         // El tag "5" quedó cortado: lo anterior debe conservarse
-        val data = EmvQrCodeDecoder(tlv("00", "01") + "5").decode()
+        val data = EmvQr.decode(tlv("00", "01") + "5")
         assertEquals("01", data.conventionsQrCodeEmvCoData?.indicatorEmv)
         assertEquals("", data.transactionDetailData?.currencyCode)
     }
 
     @Test
     fun decodeStopsAtTruncatedLength() {
-        val data = EmvQrCodeDecoder(tlv("00", "01") + "530").decode()
+        val data = EmvQr.decode(tlv("00", "01") + "530")
         assertEquals("01", data.conventionsQrCodeEmvCoData?.indicatorEmv)
         assertEquals("", data.transactionDetailData?.currencyCode)
     }
 
     @Test
     fun decodeStopsAtNonNumericLength() {
-        val data = EmvQrCodeDecoder(tlv("00", "01") + "53XX170").decode()
+        val data = EmvQr.decode(tlv("00", "01") + "53XX170")
         assertEquals("01", data.conventionsQrCodeEmvCoData?.indicatorEmv)
         assertEquals("", data.transactionDetailData?.currencyCode)
     }
@@ -260,14 +260,14 @@ class EmvQrCodeDecoderTest {
     @Test
     fun decodeStopsWhenDeclaredLengthExceedsRemainder() {
         // El tag 59 declara 13 caracteres pero solo quedan 3
-        val data = EmvQrCodeDecoder(tlv("00", "01") + "5913ABC").decode()
+        val data = EmvQr.decode(tlv("00", "01") + "5913ABC")
         assertEquals("01", data.conventionsQrCodeEmvCoData?.indicatorEmv)
         assertEquals("", data.additionalMerchantInformationData?.merchantName)
     }
 
     @Test
     fun decodeValueWithExactRemainingLengthIsAccepted() {
-        val data = EmvQrCodeDecoder(tlv("00", "01") + "5803COL").decode()
+        val data = EmvQr.decode(tlv("00", "01") + "5803COL")
         assertEquals("COL", data.additionalMerchantInformationData?.countryCode)
     }
 
@@ -275,7 +275,7 @@ class EmvQrCodeDecoderTest {
     fun decodeMalformedSubFieldsReturnsNullValues() {
         // Subcampo con longitud no numérica dentro del tag 26
         val qr = withCrc(tlv("00", "01") + tlv("26", "00XXCO.COM.RBM"))
-        val data = EmvQrCodeDecoder(qr).decode()
+        val data = EmvQr.decode(qr)
 
         val paymentKey = assertNotNull(data.merchantInformationData?.immediatePaymentKey)
         assertTrue(paymentKey.values.all { it == null })
@@ -285,7 +285,7 @@ class EmvQrCodeDecoderTest {
     fun decodeSubFieldNotInFirstPositionIsFound() {
         // El subcampo 05 (merchant id) va después de otros subcampos
         val qr = withCrc(tlv("00", "01") + tlv("26", tlv("00", "CO.COM.RBM") + tlv("05", "M999")))
-        val data = EmvQrCodeDecoder(qr).decode()
+        val data = EmvQr.decode(qr)
 
         val paymentKey = assertNotNull(data.merchantInformationData?.immediatePaymentKey)
         assertEquals("M999", paymentKey[ImmediatePaymentKeyType.MERCHANT_ID])
@@ -295,7 +295,7 @@ class EmvQrCodeDecoderTest {
     @Test
     fun decodeTransactionIdFromTag90() {
         val qr = withCrc(tlv("00", "01") + tlv("90", tlv("00", "CO.COM.RED.TRXID") + tlv("01", "177742sRKijVmYXHacX")))
-        val data = EmvQrCodeDecoder(qr).decode()
+        val data = EmvQr.decode(qr)
         assertEquals("177742sRKijVmYXHacX", data.additionalMerchantInformationData?.transactionId)
     }
 
@@ -303,7 +303,7 @@ class EmvQrCodeDecoderTest {
     fun decodeTransactionIdFallsBackToLegacyTag86() {
         // Compatibilidad con QRs emitidos bajo versiones previas del estándar
         val qr = withCrc(tlv("00", "01") + tlv("86", tlv("00", "CO.COM.RBM") + tlv("01", "LEGACY86")))
-        val data = EmvQrCodeDecoder(qr).decode()
+        val data = EmvQr.decode(qr)
         assertEquals("LEGACY86", data.additionalMerchantInformationData?.transactionId)
     }
 
@@ -314,21 +314,21 @@ class EmvQrCodeDecoderTest {
                 tlv("86", tlv("01", "LEGACY86")) +
                 tlv("90", tlv("00", "CO.COM.RED.TRXID") + tlv("01", "TRX90"))
         )
-        val data = EmvQrCodeDecoder(qr).decode()
+        val data = EmvQr.decode(qr)
         assertEquals("TRX90", data.additionalMerchantInformationData?.transactionId)
     }
 
     @Test
     fun decodeRepeatedTagKeepsLastValue() {
         val qr = withCrc(tlv("00", "01") + tlv("59", "Primero") + tlv("59", "Segundo"))
-        val data = EmvQrCodeDecoder(qr).decode()
+        val data = EmvQr.decode(qr)
         assertEquals("Segundo", data.additionalMerchantInformationData?.merchantName)
     }
 
     @Test
     fun decodeValueWithMultibyteCharacters() {
         val qr = withCrc(tlv("00", "01") + tlv("59", "Café Bogotá"))
-        val data = EmvQrCodeDecoder(qr).decode()
+        val data = EmvQr.decode(qr)
         // La longitud TLV cuenta caracteres, no bytes
         assertEquals("Café Bogotá", data.additionalMerchantInformationData?.merchantName)
     }

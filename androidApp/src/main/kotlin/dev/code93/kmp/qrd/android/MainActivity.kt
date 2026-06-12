@@ -42,7 +42,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import dev.code93.android.emvreaderqr.MainViewModel
 import dev.code93.kmp.qrd.android.Constants.BUTTON_TEXT_CAMERA_READER
 import dev.code93.kmp.qrd.android.Constants.DATA_QR_DUMMY
 import dev.code93.kmp.qrd.android.Constants.DIALOG_CANCEL_MESSAGE

@@ -10,14 +10,15 @@
 
 A Kotlin Multiplatform library that parses **EMVCo Merchant-Presented QR codes** following the **Colombian industry standard (EASPBV v1.4-2025)** — the spec behind QR payments on networks like Redeban, Credibanco and the Bre-B instant payment system.
 
-It ships as an **Android AAR** and an **iOS Framework** from a single Kotlin codebase, with native demo apps (Jetpack Compose and SwiftUI) that scan and decode real payment QRs.
+It ships as an **Android AAR**, an **iOS Framework** and a **plain JVM jar** (for Ktor/Spring backends) from a single Kotlin codebase, with native demo apps (Jetpack Compose and SwiftUI) that scan and decode real payment QRs.
 
 ## Features
 
 - **TLV parsing** of the full EMVCo payload (tag / 2-digit length / value), including nested templates.
 - **Complete EASPBV v1.4 coverage**: immediate-payment keys (Llaves / Bre-B), acquirer network, merchant codes, IVA/INC taxes, channel, transaction ID (tag `90`, with legacy tag `86` fallback), discounts, transfers/collections fields, and alternate-language merchant info.
-- **CRC-16/CCITT-FALSE validation** (`CRCValidator`) as a separate, opt-in step.
-- **Lenient by design**: malformed input never throws — the parser extracts everything it can and stops at the first invalid element. Standard compliance is the authorizing backend's job, not the client's.
+- **Single entry point** (`EmvQr`): decode, CRC validation and parse diagnostics behind one small API surface (`explicitApi` + locked ABI). Result objects are readable but not constructible or copyable by consumers.
+- **CRC-16/CCITT-FALSE validation** (`EmvQr.isCrcValid`) as a separate, opt-in step.
+- **Lenient by design, observable on demand**: malformed input never throws — the parser extracts everything it can and stops at the first invalid element. `decodeWithDiagnostics` reports how much of the payload was consumed, for logging and field support. Standard compliance is the authorizing backend's job, not the client's.
 - **No dependencies** in the shared module. Pure Kotlin `commonMain`.
 
 ## Usage
@@ -27,13 +28,20 @@ It ships as an **Android AAR** and an **iOS Framework** from a single Kotlin cod
 ```kotlin
 val rawText = "00020101021126310014CO.COM.RBM.LLA0409@ocfrf115..." // from your QR scanner
 
-if (CRCValidator.validate(rawText)) {
-    val data = EmvQrCodeDecoder(rawText).decode()
+if (EmvQr.isCrcValid(rawText)) {
+    val data = EmvQr.decode(rawText)
 
     data.transactionDetailData?.transactionValue   // "15000.00"
     data.additionalMerchantInformationData?.transactionId
     data.merchantInformationData?.immediatePaymentKey
         ?.get(ImmediatePaymentKeyType.ALPHANUMERIC_DATA) // "@ocfrf115"
+}
+
+// Observability of the lenient parse (logging / field support):
+val result = EmvQr.decodeWithDiagnostics(rawText)
+if (!result.diagnostics.isFullyParsed) {
+    log("QR parsed partially: ${result.diagnostics.parsedTagCount} tags, " +
+        "stopped at ${result.diagnostics.consumedChars}/${result.diagnostics.totalChars}")
 }
 ```
 
@@ -44,8 +52,8 @@ import emvdecoder
 
 let rawText = "00020101021126310014CO.COM.RBM.LLA0409@ocfrf115..." // from your QR scanner
 
-if CRCValidator.Companion().validate(qrCode: rawText) {
-    let data = EmvQrCodeDecoder(qrCode: rawText).decode()
+if EmvQr.shared.isCrcValid(rawText: rawText) {
+    let data = EmvQr.shared.decode(rawText: rawText)
     let amount = data.transactionDetailData?.transactionValue
 }
 ```
@@ -73,7 +81,7 @@ The library is published to **Maven Central**:
 ```kotlin
 // Android / JVM (or commonMain of your own KMP project)
 dependencies {
-    implementation("dev.code93:emvdecoder:1.0.0")
+    implementation("dev.code93:emvdecoder:2.0.0")
 }
 ```
 

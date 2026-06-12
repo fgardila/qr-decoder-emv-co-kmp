@@ -8,11 +8,8 @@ class MainViewModel: ObservableObject {
     @Published var expandableList: [ExpandableItem] = []
     
     func processQRCode(data: String) {
-        let validator = CRCValidator.Companion().validate(qrCode: data)
-        
-        if validator {
-            let decoder = EmvQrCodeDecoder(qrCode: data)
-            let decodedData = decoder.decode()
+        if EmvQr.shared.isCrcValid(rawText: data) {
+            let decodedData = EmvQr.shared.decode(rawText: data)
             updateExpandableList(data: decodedData)
         } else {
             showError("Error en la validación del código QR.")
@@ -89,7 +86,6 @@ class MainViewModel: ObservableObject {
             ("Tax IVA Base", data.taxIvaBase),
             ("Tax INC Condition", data.taxIncCondition),
             ("Tax INC Value", data.taxIncValue),
-            ("Taxes", data.taxes),
             ("Transaction ID", data.transactionId)
         ]
         

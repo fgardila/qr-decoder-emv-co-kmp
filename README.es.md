@@ -10,14 +10,15 @@
 
 Librería Kotlin Multiplatform que parsea **códigos QR EMVCo Merchant-Presented** según el **estándar de la industria colombiana (EASPBV v1.4-2025)** — la especificación detrás de los pagos QR en redes como Redeban, Credibanco y el sistema de pagos inmediatos Bre-B.
 
-Se distribuye como **AAR para Android** y **Framework para iOS** desde una única base de código Kotlin, con apps demo nativas (Jetpack Compose y SwiftUI) que escanean y decodifican QRs de pago reales.
+Se distribuye como **AAR para Android**, **Framework para iOS** y **jar JVM** (para backends Ktor/Spring) desde una única base de código Kotlin, con apps demo nativas (Jetpack Compose y SwiftUI) que escanean y decodifican QRs de pago reales.
 
 ## Características
 
 - **Parsing TLV** del payload EMVCo completo (tag / longitud de 2 dígitos / valor), incluyendo templates anidados.
 - **Cobertura completa de EASPBV v1.4**: llaves de pagos inmediatos (Bre-B), red adquirente, códigos de comercio, impuestos IVA/INC, canal, ID de transacción (tag `90`, con fallback legacy al tag `86`), descuentos, campos de transferencias/recaudos e información del comercio en idioma alternativo.
-- **Validación CRC-16/CCITT-FALSE** (`CRCValidator`) como paso separado y opcional.
-- **Laxa por diseño**: una entrada malformada nunca lanza excepción — el parser extrae todo lo que puede y se detiene en el primer elemento inválido. Verificar el cumplimiento del estándar es responsabilidad del backend autorizador, no del cliente.
+- **Punto de entrada único** (`EmvQr`): decodificación, validación CRC y diagnósticos de parsing tras una superficie de API mínima (`explicitApi` + ABI bloqueada). Los objetos de resultado son legibles pero el consumidor no puede construirlos ni copiarlos.
+- **Validación CRC-16/CCITT-FALSE** (`EmvQr.isCrcValid`) como paso separado y opcional.
+- **Laxa por diseño, observable a demanda**: una entrada malformada nunca lanza excepción — el parser extrae todo lo que puede y se detiene en el primer elemento inválido. `decodeWithDiagnostics` reporta cuánto del payload se consumió, para logging y soporte en campo. Verificar el cumplimiento del estándar es responsabilidad del backend autorizador, no del cliente.
 - **Sin dependencias** en el módulo compartido. Kotlin puro en `commonMain`.
 
 ## Uso
@@ -27,13 +28,20 @@ Se distribuye como **AAR para Android** y **Framework para iOS** desde una únic
 ```kotlin
 val rawText = "00020101021126310014CO.COM.RBM.LLA0409@ocfrf115..." // desde tu lector de QR
 
-if (CRCValidator.validate(rawText)) {
-    val data = EmvQrCodeDecoder(rawText).decode()
+if (EmvQr.isCrcValid(rawText)) {
+    val data = EmvQr.decode(rawText)
 
     data.transactionDetailData?.transactionValue   // "15000.00"
     data.additionalMerchantInformationData?.transactionId
     data.merchantInformationData?.immediatePaymentKey
         ?.get(ImmediatePaymentKeyType.ALPHANUMERIC_DATA) // "@ocfrf115"
+}
+
+// Observabilidad del parsing laxo (logging / soporte en campo):
+val result = EmvQr.decodeWithDiagnostics(rawText)
+if (!result.diagnostics.isFullyParsed) {
+    log("QR parseado parcialmente: ${result.diagnostics.parsedTagCount} tags, " +
+        "detenido en ${result.diagnostics.consumedChars}/${result.diagnostics.totalChars}")
 }
 ```
 
@@ -44,8 +52,8 @@ import emvdecoder
 
 let rawText = "00020101021126310014CO.COM.RBM.LLA0409@ocfrf115..." // desde tu lector de QR
 
-if CRCValidator.Companion().validate(qrCode: rawText) {
-    let data = EmvQrCodeDecoder(qrCode: rawText).decode()
+if EmvQr.shared.isCrcValid(rawText: rawText) {
+    let data = EmvQr.shared.decode(rawText: rawText)
     let amount = data.transactionDetailData?.transactionValue
 }
 ```
@@ -73,7 +81,7 @@ La librería está publicada en **Maven Central**:
 ```kotlin
 // Android / JVM (o el commonMain de tu propio proyecto KMP)
 dependencies {
-    implementation("dev.code93:emvdecoder:1.0.0")
+    implementation("dev.code93:emvdecoder:2.0.0")
 }
 ```
 
