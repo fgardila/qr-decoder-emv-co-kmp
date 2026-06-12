@@ -144,7 +144,8 @@ class EmvQrCodeDecoder(qrCode: String) {
                 ?: "",
             transactionPurpose = merchantAdditionalFieldsData[MerchantAdditionalDataFieldType.PURPOSE_OF_TRANSACTION]
                 ?: "",
-            additionalConsumerData = merchantAdditionalFieldsData[MerchantAdditionalDataFieldType.ADDITIONAL_CONSUMER_DATA],
+            additionalConsumerData =
+                merchantAdditionalFieldsData[MerchantAdditionalDataFieldType.ADDITIONAL_CONSUMER_DATA],
             merchantTaxId = merchantAdditionalFieldsData[MerchantAdditionalDataFieldType.MERCHANT_TAX_ID],
             originChannel = merchantAdditionalFieldsData[MerchantAdditionalDataFieldType.ORIGIN_CHANNEL]
         )

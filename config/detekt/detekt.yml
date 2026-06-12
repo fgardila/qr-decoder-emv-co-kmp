@@ -1,0 +1,18 @@
+# Ajustes sobre la configuración por defecto de detekt (buildUponDefaultConfig).
+complexity:
+  TooManyFunctions:
+    # EmvQrCodeDecoder tiene un mapper privado por sección de la spec (cohesivo a propósito).
+    thresholdInClasses: 15
+  LongMethod:
+    # Los builders de QRs sintéticos en tests son largos por naturaleza (un append por tag).
+    excludes: ['**/commonTest/**', '**/androidHostTest/**', '**/iosTest/**']
+
+style:
+  MagicNumber:
+    # El algoritmo CRC-16/CCITT y el parsing TLV usan constantes definidas por el estándar
+    # (0x1021, 0xFFFF, anchos de tag/longitud); nombrarlas una a una solo agrega ruido.
+    active: false
+  LoopWithTooManyJumpStatements:
+    # El parser laxo corta con break ante cada forma de TLV malformado (tag/longitud/
+    # longitud no numérica/valor truncado): es el diseño, no un descuido.
+    maxJumpCount: 4

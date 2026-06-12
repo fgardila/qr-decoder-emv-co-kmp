@@ -31,6 +31,13 @@ are welcome, in English or Spanish.
 - **Public API changes** need a matching entry in `CHANGELOG.md` under
   *Unreleased*, and follow semantic versioning (breaking changes target the
   next major release).
+- **Quality gates** run in CI and locally:
+  - `./gradlew :emvdecoder:detekt` — static analysis (config in `config/detekt/detekt.yml`).
+  - `./gradlew :emvdecoder:koverVerify` — line coverage must stay ≥ 80%.
+  - `./gradlew :emvdecoder:checkKotlinAbi` — the public API surface is locked
+    in `emvdecoder/api/`. If your change intentionally alters the public API,
+    run `./gradlew :emvdecoder:updateKotlinAbi` and commit the updated dump
+    (and remember semver: breaking changes target the next major).
 - CI must be green (Android + iOS jobs) before review.
 
 ## Releasing (maintainers)

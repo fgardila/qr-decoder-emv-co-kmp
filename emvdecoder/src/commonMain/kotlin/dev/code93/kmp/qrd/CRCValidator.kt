@@ -29,6 +29,7 @@ package dev.code93.kmp.qrd
  * what was encoded (corrupted read or tampering) — not merely a deviation from
  * the standard.
  */
+@Suppress("UtilityClassWithPublicConstructor") // API publicada en 1.0.0; pasará a object en 2.0.0
 class CRCValidator {
     companion object {
         private const val CRC_LENGTH = 4

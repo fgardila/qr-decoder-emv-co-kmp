@@ -26,8 +26,20 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Run Android host tests
-        run: ./gradlew :emvdecoder:testAndroidHostTest
+      - name: Static analysis (detekt)
+        run: ./gradlew :emvdecoder:detekt
+
+      - name: Public API compatibility (ABI check)
+        run: ./gradlew :emvdecoder:checkKotlinAbi
+
+      - name: Run Android host tests with coverage gate
+        run: ./gradlew :emvdecoder:testAndroidHostTest :emvdecoder:koverVerify :emvdecoder:koverXmlReport
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: kover-report
+          path: emvdecoder/build/reports/kover/report.xml
 
       - name: Build library AAR
         run: ./gradlew :emvdecoder:assemble

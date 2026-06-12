@@ -1,10 +1,29 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidKmpLibrary)
     alias(libs.plugins.mavenPublish)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.kover)
+    alias(libs.plugins.detekt)
+}
+
+detekt {
+    source.setFrom("src/commonMain/kotlin", "src/commonTest/kotlin", "src/androidHostTest/kotlin")
+    buildUponDefaultConfig = true
+    config.setFrom(rootProject.file("config/detekt/detekt.yml"))
+}
+
+kover {
+    reports {
+        verify {
+            rule {
+                minBound(80)
+            }
+        }
+    }
 }
 
 dokka {
@@ -55,6 +74,11 @@ mavenPublishing {
 }
 
 kotlin {
+    @OptIn(ExperimentalAbiValidation::class)
+    abiValidation {
+        enabled.set(true)
+    }
+
     android {
         namespace = "dev.code93.android.qrd"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
