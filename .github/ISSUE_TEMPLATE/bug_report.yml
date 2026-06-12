@@ -1,0 +1,46 @@
+name: Bug report
+description: A QR decodes incorrectly or the library misbehaves
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report! You can write in English or Spanish.
+  - type: input
+    id: version
+    attributes:
+      label: Library version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      multiple: true
+      options:
+        - Android
+        - iOS
+    validations:
+      required: true
+  - type: textarea
+    id: qr
+    attributes:
+      label: QR rawText (redacted)
+      description: >
+        The raw QR string that misbehaves. PLEASE REDACT personal data
+        (phone numbers, emails, account numbers in the key fields) —
+        keep the TLV structure intact so we can reproduce.
+      render: text
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual behavior
+      description: Which field/tag decodes wrong? Reference the EASPBV tag if you know it.
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional context
+      description: Acquirer network (Redeban/Credibanco/...), QR type (static/dynamic), stack traces, etc.

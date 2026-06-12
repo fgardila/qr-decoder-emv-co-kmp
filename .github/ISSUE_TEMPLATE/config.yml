@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Question / discussion
+    url: https://github.com/fgardila/qr-decoder-emv-co-kmp/discussions
+    about: For usage questions, prefer Discussions over issues.
