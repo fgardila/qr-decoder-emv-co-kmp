@@ -19,10 +19,25 @@ package dev.code93.kmp.qrd
  * para calcular y validar el valor de CRC del contenido del código QR. Está diseñada para ser utilizada
  * junto con el EmvQrCodeDecoder para verificar la integridad de los datos antes de la decodificación.
  */
+/**
+ * Integrity check for EMVCo QR payloads using **CRC-16/CCITT-FALSE**
+ * (polynomial `0x1021`, initial value `0xFFFF`), as mandated by the EMV QRCPS
+ * specification (ISO/IEC 13239) for tag `63`.
+ *
+ * Validation is intentionally separate from [EmvQrCodeDecoder]: the caller
+ * decides whether to enforce it. A CRC mismatch means the scanned text is not
+ * what was encoded (corrupted read or tampering) — not merely a deviation from
+ * the standard.
+ */
 class CRCValidator {
     companion object {
         private const val CRC_LENGTH = 4
 
+        /**
+         * Returns `true` when the last 4 characters of [qrCode] match the
+         * CRC-16/CCITT-FALSE of everything before them (computed over the
+         * UTF-8 bytes, case-insensitive comparison).
+         */
         fun validate(qrCode: String): Boolean {
             val crcValueFromCode = qrCode.takeLast(CRC_LENGTH)
             val dataToValidate = qrCode.dropLast(CRC_LENGTH)

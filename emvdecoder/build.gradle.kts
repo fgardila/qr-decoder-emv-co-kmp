@@ -4,6 +4,18 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidKmpLibrary)
     alias(libs.plugins.mavenPublish)
+    alias(libs.plugins.dokka)
+}
+
+dokka {
+    moduleName.set("emvdecoder")
+    dokkaSourceSets.configureEach {
+        sourceLink {
+            localDirectory.set(file("src"))
+            remoteUrl("https://github.com/fgardila/qr-decoder-emv-co-kmp/tree/main/emvdecoder/src")
+            remoteLineSuffix.set("#L")
+        }
+    }
 }
 
 mavenPublishing {

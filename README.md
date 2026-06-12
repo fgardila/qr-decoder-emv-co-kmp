@@ -4,6 +4,7 @@
 [![Maven Central](https://img.shields.io/maven-central/v/dev.code93/emvdecoder)](https://central.sonatype.com/artifact/dev.code93/emvdecoder)
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.3.21-7F52FF?logo=kotlin&logoColor=white)](https://kotlinlang.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![API Docs](https://img.shields.io/badge/API%20Docs-Dokka-blue)](https://fgardila.github.io/qr-decoder-emv-co-kmp/)
 
 > 🇪🇸 [Versión en español](README.es.md)
 
@@ -62,6 +63,8 @@ if CRCValidator.Companion().validate(qrCode: rawText) {
 | VII. Transaction detail | `53`–`57` | `TransactionDetailData` |
 
 The full specification PDF (`EASPBV-Campos-QRCode-EMVCo-Industria-v1.4-2025.pdf`) is included in the repository.
+
+📖 **[API documentation (Dokka)](https://fgardila.github.io/qr-decoder-emv-co-kmp/)** — every field documents its tag, sub-tag and the semantic values defined by the spec.
 
 ## Installation
 

@@ -23,6 +23,31 @@ import dev.code93.kmp.qrd.data.TaxIvaValueType
 import dev.code93.kmp.qrd.data.TransactionDetailData
 import dev.code93.kmp.qrd.data.TransactionIdType
 
+/**
+ * Decoder for EMVCo Merchant-Presented QR codes following the Colombian
+ * industry standard **EASPBV v1.4-2025** (Redeban, Credibanco, Bre-B).
+ *
+ * Parses the raw QR payload as TLV — 2-character tag, 2-digit length, value —
+ * including the nested templates defined by the standard (tags `26`, `49`–`51`,
+ * `62`, `64`, `80`–`86`, `90`, `91`, `99`).
+ *
+ * The decoder is **lenient by design**: malformed input never throws. Parsing
+ * extracts every well-formed element and stops silently at the first invalid
+ * one; absent fields decode as `null` (or `""` for the few fields the contract
+ * defines as non-null). Standard compliance is the authorizing backend's
+ * responsibility, not this client library's.
+ *
+ * This decoder does **not** verify integrity — validate the payload first with
+ * [CRCValidator.validate] if you need the CRC check.
+ *
+ * ```kotlin
+ * if (CRCValidator.validate(rawText)) {
+ *     val data = EmvQrCodeDecoder(rawText).decode()
+ * }
+ * ```
+ *
+ * @param qrCode the raw text scanned from the QR code.
+ */
 class EmvQrCodeDecoder(qrCode: String) {
     private val dataElements: MutableMap<String, String> = mutableMapOf()
 
@@ -72,6 +97,10 @@ class EmvQrCodeDecoder(qrCode: String) {
         return null
     }
 
+    /**
+     * Maps the parsed TLV elements into the typed sections of
+     * [QRCodeEmvCoColombiaData]. Safe to call multiple times.
+     */
     fun decode(): QRCodeEmvCoColombiaData {
         val conventionsQrCodeEmvCoData = getConventionsQrCodeEmvCoData()
         val merchantInformationData = getMerchantInformationData()
@@ -211,6 +240,14 @@ class EmvQrCodeDecoder(qrCode: String) {
         ) else null
 }
 
+/**
+ * Contract for enums that model the sub-fields of a TLV template tag.
+ *
+ * Each enum constant carries the [subTag] it occupies inside the parent
+ * template (e.g. [dev.code93.kmp.qrd.data.ImmediatePaymentKeyType.PHONE_NUMBER]
+ * is sub-tag `02` of template `26`).
+ */
 interface SubFieldType {
+    /** Two-character sub-tag identifier inside the parent template. */
     val subTag: String
 }
