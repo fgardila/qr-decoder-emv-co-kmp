@@ -60,7 +60,10 @@ enum class MerchantAdditionalDataFieldType(override val subTag: String) : SubFie
     /** Terminal label. */
     TERMINAL_LABEL("07"),
 
-    /** Purpose: `00` purchase, `02` void, `03` transfer, `04` withdrawal, `05` collection, `06` top-up, `07` deposit. */
+    /**
+     * Purpose: `00` purchase, `02` void, `03` transfer, `04` withdrawal,
+     * `05` collection, `06` top-up, `07` deposit.
+     */
     PURPOSE_OF_TRANSACTION("08"),
 
     /** Consumer data request: `A` address, `M` mobile, `E` email. */

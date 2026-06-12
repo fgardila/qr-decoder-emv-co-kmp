@@ -1,0 +1,498 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <qrd:emvdecoder>
+final enum class dev.code93.kmp.qrd.data/AcquirerNetworkIdType : dev.code93.kmp.qrd/SubFieldType, kotlin/Enum<dev.code93.kmp.qrd.data/AcquirerNetworkIdType> { // dev.code93.kmp.qrd.data/AcquirerNetworkIdType|null[0]
+    enum entry GUID // dev.code93.kmp.qrd.data/AcquirerNetworkIdType.GUID|null[0]
+    enum entry NETWORK_IDENTIFIER // dev.code93.kmp.qrd.data/AcquirerNetworkIdType.NETWORK_IDENTIFIER|null[0]
+
+    final val entries // dev.code93.kmp.qrd.data/AcquirerNetworkIdType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.code93.kmp.qrd.data/AcquirerNetworkIdType> // dev.code93.kmp.qrd.data/AcquirerNetworkIdType.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val subTag // dev.code93.kmp.qrd.data/AcquirerNetworkIdType.subTag|{}subTag[0]
+        final fun <get-subTag>(): kotlin/String // dev.code93.kmp.qrd.data/AcquirerNetworkIdType.subTag.<get-subTag>|<get-subTag>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.code93.kmp.qrd.data/AcquirerNetworkIdType // dev.code93.kmp.qrd.data/AcquirerNetworkIdType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.code93.kmp.qrd.data/AcquirerNetworkIdType> // dev.code93.kmp.qrd.data/AcquirerNetworkIdType.values|values#static(){}[0]
+}
+
+final enum class dev.code93.kmp.qrd.data/AggregatorMerchantCodeType : dev.code93.kmp.qrd/SubFieldType, kotlin/Enum<dev.code93.kmp.qrd.data/AggregatorMerchantCodeType> { // dev.code93.kmp.qrd.data/AggregatorMerchantCodeType|null[0]
+    enum entry GUID // dev.code93.kmp.qrd.data/AggregatorMerchantCodeType.GUID|null[0]
+    enum entry IDENTIFIER // dev.code93.kmp.qrd.data/AggregatorMerchantCodeType.IDENTIFIER|null[0]
+
+    final val entries // dev.code93.kmp.qrd.data/AggregatorMerchantCodeType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.code93.kmp.qrd.data/AggregatorMerchantCodeType> // dev.code93.kmp.qrd.data/AggregatorMerchantCodeType.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val subTag // dev.code93.kmp.qrd.data/AggregatorMerchantCodeType.subTag|{}subTag[0]
+        final fun <get-subTag>(): kotlin/String // dev.code93.kmp.qrd.data/AggregatorMerchantCodeType.subTag.<get-subTag>|<get-subTag>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.code93.kmp.qrd.data/AggregatorMerchantCodeType // dev.code93.kmp.qrd.data/AggregatorMerchantCodeType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.code93.kmp.qrd.data/AggregatorMerchantCodeType> // dev.code93.kmp.qrd.data/AggregatorMerchantCodeType.values|values#static(){}[0]
+}
+
+final enum class dev.code93.kmp.qrd.data/ChannelType : dev.code93.kmp.qrd/SubFieldType, kotlin/Enum<dev.code93.kmp.qrd.data/ChannelType> { // dev.code93.kmp.qrd.data/ChannelType|null[0]
+    enum entry CHANNEL_VALUE // dev.code93.kmp.qrd.data/ChannelType.CHANNEL_VALUE|null[0]
+    enum entry GUID // dev.code93.kmp.qrd.data/ChannelType.GUID|null[0]
+
+    final val entries // dev.code93.kmp.qrd.data/ChannelType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.code93.kmp.qrd.data/ChannelType> // dev.code93.kmp.qrd.data/ChannelType.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val subTag // dev.code93.kmp.qrd.data/ChannelType.subTag|{}subTag[0]
+        final fun <get-subTag>(): kotlin/String // dev.code93.kmp.qrd.data/ChannelType.subTag.<get-subTag>|<get-subTag>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.code93.kmp.qrd.data/ChannelType // dev.code93.kmp.qrd.data/ChannelType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.code93.kmp.qrd.data/ChannelType> // dev.code93.kmp.qrd.data/ChannelType.values|values#static(){}[0]
+}
+
+final enum class dev.code93.kmp.qrd.data/DiscountApplicationType : dev.code93.kmp.qrd/SubFieldType, kotlin/Enum<dev.code93.kmp.qrd.data/DiscountApplicationType> { // dev.code93.kmp.qrd.data/DiscountApplicationType|null[0]
+    enum entry DISCOUNT_AMOUNT // dev.code93.kmp.qrd.data/DiscountApplicationType.DISCOUNT_AMOUNT|null[0]
+    enum entry DISCOUNT_INDICATOR // dev.code93.kmp.qrd.data/DiscountApplicationType.DISCOUNT_INDICATOR|null[0]
+    enum entry DISCOUNT_PERCENTAGE // dev.code93.kmp.qrd.data/DiscountApplicationType.DISCOUNT_PERCENTAGE|null[0]
+    enum entry DISCOUNT_QUERY // dev.code93.kmp.qrd.data/DiscountApplicationType.DISCOUNT_QUERY|null[0]
+    enum entry DISCOUNT_VALUE // dev.code93.kmp.qrd.data/DiscountApplicationType.DISCOUNT_VALUE|null[0]
+    enum entry GUID // dev.code93.kmp.qrd.data/DiscountApplicationType.GUID|null[0]
+    enum entry IVA_DISCOUNT_AMOUNT // dev.code93.kmp.qrd.data/DiscountApplicationType.IVA_DISCOUNT_AMOUNT|null[0]
+
+    final val entries // dev.code93.kmp.qrd.data/DiscountApplicationType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.code93.kmp.qrd.data/DiscountApplicationType> // dev.code93.kmp.qrd.data/DiscountApplicationType.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val subTag // dev.code93.kmp.qrd.data/DiscountApplicationType.subTag|{}subTag[0]
+        final fun <get-subTag>(): kotlin/String // dev.code93.kmp.qrd.data/DiscountApplicationType.subTag.<get-subTag>|<get-subTag>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.code93.kmp.qrd.data/DiscountApplicationType // dev.code93.kmp.qrd.data/DiscountApplicationType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.code93.kmp.qrd.data/DiscountApplicationType> // dev.code93.kmp.qrd.data/DiscountApplicationType.values|values#static(){}[0]
+}
+
+final enum class dev.code93.kmp.qrd.data/ImmediatePaymentKeyType : dev.code93.kmp.qrd/SubFieldType, kotlin/Enum<dev.code93.kmp.qrd.data/ImmediatePaymentKeyType> { // dev.code93.kmp.qrd.data/ImmediatePaymentKeyType|null[0]
+    enum entry ALPHANUMERIC_DATA // dev.code93.kmp.qrd.data/ImmediatePaymentKeyType.ALPHANUMERIC_DATA|null[0]
+    enum entry EMAIL_ADDRESS // dev.code93.kmp.qrd.data/ImmediatePaymentKeyType.EMAIL_ADDRESS|null[0]
+    enum entry IDENTIFICATION_TYPE // dev.code93.kmp.qrd.data/ImmediatePaymentKeyType.IDENTIFICATION_TYPE|null[0]
+    enum entry MERCHANT_ID // dev.code93.kmp.qrd.data/ImmediatePaymentKeyType.MERCHANT_ID|null[0]
+    enum entry NETWORK_ID // dev.code93.kmp.qrd.data/ImmediatePaymentKeyType.NETWORK_ID|null[0]
+    enum entry PHONE_NUMBER // dev.code93.kmp.qrd.data/ImmediatePaymentKeyType.PHONE_NUMBER|null[0]
+
+    final val entries // dev.code93.kmp.qrd.data/ImmediatePaymentKeyType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.code93.kmp.qrd.data/ImmediatePaymentKeyType> // dev.code93.kmp.qrd.data/ImmediatePaymentKeyType.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val subTag // dev.code93.kmp.qrd.data/ImmediatePaymentKeyType.subTag|{}subTag[0]
+        final fun <get-subTag>(): kotlin/String // dev.code93.kmp.qrd.data/ImmediatePaymentKeyType.subTag.<get-subTag>|<get-subTag>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.code93.kmp.qrd.data/ImmediatePaymentKeyType // dev.code93.kmp.qrd.data/ImmediatePaymentKeyType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.code93.kmp.qrd.data/ImmediatePaymentKeyType> // dev.code93.kmp.qrd.data/ImmediatePaymentKeyType.values|values#static(){}[0]
+}
+
+final enum class dev.code93.kmp.qrd.data/IncConditionType : dev.code93.kmp.qrd/SubFieldType, kotlin/Enum<dev.code93.kmp.qrd.data/IncConditionType> { // dev.code93.kmp.qrd.data/IncConditionType|null[0]
+    enum entry GUID // dev.code93.kmp.qrd.data/IncConditionType.GUID|null[0]
+    enum entry VALUE // dev.code93.kmp.qrd.data/IncConditionType.VALUE|null[0]
+
+    final val entries // dev.code93.kmp.qrd.data/IncConditionType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.code93.kmp.qrd.data/IncConditionType> // dev.code93.kmp.qrd.data/IncConditionType.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val subTag // dev.code93.kmp.qrd.data/IncConditionType.subTag|{}subTag[0]
+        final fun <get-subTag>(): kotlin/String // dev.code93.kmp.qrd.data/IncConditionType.subTag.<get-subTag>|<get-subTag>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.code93.kmp.qrd.data/IncConditionType // dev.code93.kmp.qrd.data/IncConditionType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.code93.kmp.qrd.data/IncConditionType> // dev.code93.kmp.qrd.data/IncConditionType.values|values#static(){}[0]
+}
+
+final enum class dev.code93.kmp.qrd.data/IncValueType : dev.code93.kmp.qrd/SubFieldType, kotlin/Enum<dev.code93.kmp.qrd.data/IncValueType> { // dev.code93.kmp.qrd.data/IncValueType|null[0]
+    enum entry GUID // dev.code93.kmp.qrd.data/IncValueType.GUID|null[0]
+    enum entry VALUE // dev.code93.kmp.qrd.data/IncValueType.VALUE|null[0]
+
+    final val entries // dev.code93.kmp.qrd.data/IncValueType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.code93.kmp.qrd.data/IncValueType> // dev.code93.kmp.qrd.data/IncValueType.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val subTag // dev.code93.kmp.qrd.data/IncValueType.subTag|{}subTag[0]
+        final fun <get-subTag>(): kotlin/String // dev.code93.kmp.qrd.data/IncValueType.subTag.<get-subTag>|<get-subTag>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.code93.kmp.qrd.data/IncValueType // dev.code93.kmp.qrd.data/IncValueType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.code93.kmp.qrd.data/IncValueType> // dev.code93.kmp.qrd.data/IncValueType.values|values#static(){}[0]
+}
+
+final enum class dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType : dev.code93.kmp.qrd/SubFieldType, kotlin/Enum<dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType> { // dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType|null[0]
+    enum entry ADDITIONAL_CONSUMER_DATA // dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType.ADDITIONAL_CONSUMER_DATA|null[0]
+    enum entry BILLING_NUMBER // dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType.BILLING_NUMBER|null[0]
+    enum entry CUSTOMER_LABEL // dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType.CUSTOMER_LABEL|null[0]
+    enum entry LOYALTY_NUMBER // dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType.LOYALTY_NUMBER|null[0]
+    enum entry MERCHANT_TAX_ID // dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType.MERCHANT_TAX_ID|null[0]
+    enum entry MOBILE_NUMBER // dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType.MOBILE_NUMBER|null[0]
+    enum entry ORIGIN_CHANNEL // dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType.ORIGIN_CHANNEL|null[0]
+    enum entry PURPOSE_OF_TRANSACTION // dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType.PURPOSE_OF_TRANSACTION|null[0]
+    enum entry REFERENCE_LABEL // dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType.REFERENCE_LABEL|null[0]
+    enum entry STORE_LABEL // dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType.STORE_LABEL|null[0]
+    enum entry TERMINAL_LABEL // dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType.TERMINAL_LABEL|null[0]
+
+    final val entries // dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType> // dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val subTag // dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType.subTag|{}subTag[0]
+        final fun <get-subTag>(): kotlin/String // dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType.subTag.<get-subTag>|<get-subTag>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType // dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType> // dev.code93.kmp.qrd.data/MerchantAdditionalDataFieldType.values|values#static(){}[0]
+}
+
+final enum class dev.code93.kmp.qrd.data/MerchantCodeType : dev.code93.kmp.qrd/SubFieldType, kotlin/Enum<dev.code93.kmp.qrd.data/MerchantCodeType> { // dev.code93.kmp.qrd.data/MerchantCodeType|null[0]
+    enum entry CODE // dev.code93.kmp.qrd.data/MerchantCodeType.CODE|null[0]
+    enum entry GUID // dev.code93.kmp.qrd.data/MerchantCodeType.GUID|null[0]
+
+    final val entries // dev.code93.kmp.qrd.data/MerchantCodeType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.code93.kmp.qrd.data/MerchantCodeType> // dev.code93.kmp.qrd.data/MerchantCodeType.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val subTag // dev.code93.kmp.qrd.data/MerchantCodeType.subTag|{}subTag[0]
+        final fun <get-subTag>(): kotlin/String // dev.code93.kmp.qrd.data/MerchantCodeType.subTag.<get-subTag>|<get-subTag>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.code93.kmp.qrd.data/MerchantCodeType // dev.code93.kmp.qrd.data/MerchantCodeType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.code93.kmp.qrd.data/MerchantCodeType> // dev.code93.kmp.qrd.data/MerchantCodeType.values|values#static(){}[0]
+}
+
+final enum class dev.code93.kmp.qrd.data/MerchantInformationLanguageDataType : dev.code93.kmp.qrd/SubFieldType, kotlin/Enum<dev.code93.kmp.qrd.data/MerchantInformationLanguageDataType> { // dev.code93.kmp.qrd.data/MerchantInformationLanguageDataType|null[0]
+    enum entry ALTERNATE_MERCHANT_CITY // dev.code93.kmp.qrd.data/MerchantInformationLanguageDataType.ALTERNATE_MERCHANT_CITY|null[0]
+    enum entry ALTERNATE_MERCHANT_NAME // dev.code93.kmp.qrd.data/MerchantInformationLanguageDataType.ALTERNATE_MERCHANT_NAME|null[0]
+    enum entry LANGUAGE_PREFERENCE // dev.code93.kmp.qrd.data/MerchantInformationLanguageDataType.LANGUAGE_PREFERENCE|null[0]
+
+    final val entries // dev.code93.kmp.qrd.data/MerchantInformationLanguageDataType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.code93.kmp.qrd.data/MerchantInformationLanguageDataType> // dev.code93.kmp.qrd.data/MerchantInformationLanguageDataType.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val subTag // dev.code93.kmp.qrd.data/MerchantInformationLanguageDataType.subTag|{}subTag[0]
+        final fun <get-subTag>(): kotlin/String // dev.code93.kmp.qrd.data/MerchantInformationLanguageDataType.subTag.<get-subTag>|<get-subTag>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.code93.kmp.qrd.data/MerchantInformationLanguageDataType // dev.code93.kmp.qrd.data/MerchantInformationLanguageDataType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.code93.kmp.qrd.data/MerchantInformationLanguageDataType> // dev.code93.kmp.qrd.data/MerchantInformationLanguageDataType.values|values#static(){}[0]
+}
+
+final enum class dev.code93.kmp.qrd.data/SecurityFieldType : dev.code93.kmp.qrd/SubFieldType, kotlin/Enum<dev.code93.kmp.qrd.data/SecurityFieldType> { // dev.code93.kmp.qrd.data/SecurityFieldType|null[0]
+    enum entry HASH_VALUE // dev.code93.kmp.qrd.data/SecurityFieldType.HASH_VALUE|null[0]
+    enum entry NETWORK_ID // dev.code93.kmp.qrd.data/SecurityFieldType.NETWORK_ID|null[0]
+
+    final val entries // dev.code93.kmp.qrd.data/SecurityFieldType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.code93.kmp.qrd.data/SecurityFieldType> // dev.code93.kmp.qrd.data/SecurityFieldType.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val subTag // dev.code93.kmp.qrd.data/SecurityFieldType.subTag|{}subTag[0]
+        final fun <get-subTag>(): kotlin/String // dev.code93.kmp.qrd.data/SecurityFieldType.subTag.<get-subTag>|<get-subTag>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.code93.kmp.qrd.data/SecurityFieldType // dev.code93.kmp.qrd.data/SecurityFieldType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.code93.kmp.qrd.data/SecurityFieldType> // dev.code93.kmp.qrd.data/SecurityFieldType.values|values#static(){}[0]
+}
+
+final enum class dev.code93.kmp.qrd.data/TaxIvaBaseType : dev.code93.kmp.qrd/SubFieldType, kotlin/Enum<dev.code93.kmp.qrd.data/TaxIvaBaseType> { // dev.code93.kmp.qrd.data/TaxIvaBaseType|null[0]
+    enum entry BASE_VALUE // dev.code93.kmp.qrd.data/TaxIvaBaseType.BASE_VALUE|null[0]
+    enum entry GUID // dev.code93.kmp.qrd.data/TaxIvaBaseType.GUID|null[0]
+
+    final val entries // dev.code93.kmp.qrd.data/TaxIvaBaseType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.code93.kmp.qrd.data/TaxIvaBaseType> // dev.code93.kmp.qrd.data/TaxIvaBaseType.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val subTag // dev.code93.kmp.qrd.data/TaxIvaBaseType.subTag|{}subTag[0]
+        final fun <get-subTag>(): kotlin/String // dev.code93.kmp.qrd.data/TaxIvaBaseType.subTag.<get-subTag>|<get-subTag>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.code93.kmp.qrd.data/TaxIvaBaseType // dev.code93.kmp.qrd.data/TaxIvaBaseType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.code93.kmp.qrd.data/TaxIvaBaseType> // dev.code93.kmp.qrd.data/TaxIvaBaseType.values|values#static(){}[0]
+}
+
+final enum class dev.code93.kmp.qrd.data/TaxIvaConditionType : dev.code93.kmp.qrd/SubFieldType, kotlin/Enum<dev.code93.kmp.qrd.data/TaxIvaConditionType> { // dev.code93.kmp.qrd.data/TaxIvaConditionType|null[0]
+    enum entry GUID // dev.code93.kmp.qrd.data/TaxIvaConditionType.GUID|null[0]
+    enum entry VALUE // dev.code93.kmp.qrd.data/TaxIvaConditionType.VALUE|null[0]
+
+    final val entries // dev.code93.kmp.qrd.data/TaxIvaConditionType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.code93.kmp.qrd.data/TaxIvaConditionType> // dev.code93.kmp.qrd.data/TaxIvaConditionType.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val subTag // dev.code93.kmp.qrd.data/TaxIvaConditionType.subTag|{}subTag[0]
+        final fun <get-subTag>(): kotlin/String // dev.code93.kmp.qrd.data/TaxIvaConditionType.subTag.<get-subTag>|<get-subTag>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.code93.kmp.qrd.data/TaxIvaConditionType // dev.code93.kmp.qrd.data/TaxIvaConditionType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.code93.kmp.qrd.data/TaxIvaConditionType> // dev.code93.kmp.qrd.data/TaxIvaConditionType.values|values#static(){}[0]
+}
+
+final enum class dev.code93.kmp.qrd.data/TaxIvaValueType : dev.code93.kmp.qrd/SubFieldType, kotlin/Enum<dev.code93.kmp.qrd.data/TaxIvaValueType> { // dev.code93.kmp.qrd.data/TaxIvaValueType|null[0]
+    enum entry GUID // dev.code93.kmp.qrd.data/TaxIvaValueType.GUID|null[0]
+    enum entry VALUE // dev.code93.kmp.qrd.data/TaxIvaValueType.VALUE|null[0]
+
+    final val entries // dev.code93.kmp.qrd.data/TaxIvaValueType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.code93.kmp.qrd.data/TaxIvaValueType> // dev.code93.kmp.qrd.data/TaxIvaValueType.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val subTag // dev.code93.kmp.qrd.data/TaxIvaValueType.subTag|{}subTag[0]
+        final fun <get-subTag>(): kotlin/String // dev.code93.kmp.qrd.data/TaxIvaValueType.subTag.<get-subTag>|<get-subTag>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.code93.kmp.qrd.data/TaxIvaValueType // dev.code93.kmp.qrd.data/TaxIvaValueType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.code93.kmp.qrd.data/TaxIvaValueType> // dev.code93.kmp.qrd.data/TaxIvaValueType.values|values#static(){}[0]
+}
+
+final enum class dev.code93.kmp.qrd.data/TaxesType : dev.code93.kmp.qrd/SubFieldType, kotlin/Enum<dev.code93.kmp.qrd.data/TaxesType> { // dev.code93.kmp.qrd.data/TaxesType|null[0]
+    enum entry GUID // dev.code93.kmp.qrd.data/TaxesType.GUID|null[0]
+    enum entry VALUE // dev.code93.kmp.qrd.data/TaxesType.VALUE|null[0]
+
+    final val entries // dev.code93.kmp.qrd.data/TaxesType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.code93.kmp.qrd.data/TaxesType> // dev.code93.kmp.qrd.data/TaxesType.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val subTag // dev.code93.kmp.qrd.data/TaxesType.subTag|{}subTag[0]
+        final fun <get-subTag>(): kotlin/String // dev.code93.kmp.qrd.data/TaxesType.subTag.<get-subTag>|<get-subTag>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.code93.kmp.qrd.data/TaxesType // dev.code93.kmp.qrd.data/TaxesType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.code93.kmp.qrd.data/TaxesType> // dev.code93.kmp.qrd.data/TaxesType.values|values#static(){}[0]
+}
+
+final enum class dev.code93.kmp.qrd.data/TransactionIdType : dev.code93.kmp.qrd/SubFieldType, kotlin/Enum<dev.code93.kmp.qrd.data/TransactionIdType> { // dev.code93.kmp.qrd.data/TransactionIdType|null[0]
+    enum entry GUID // dev.code93.kmp.qrd.data/TransactionIdType.GUID|null[0]
+    enum entry TRANSACTION_ID // dev.code93.kmp.qrd.data/TransactionIdType.TRANSACTION_ID|null[0]
+
+    final val entries // dev.code93.kmp.qrd.data/TransactionIdType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.code93.kmp.qrd.data/TransactionIdType> // dev.code93.kmp.qrd.data/TransactionIdType.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val subTag // dev.code93.kmp.qrd.data/TransactionIdType.subTag|{}subTag[0]
+        final fun <get-subTag>(): kotlin/String // dev.code93.kmp.qrd.data/TransactionIdType.subTag.<get-subTag>|<get-subTag>(){}[0]
+
+    final fun valueOf(kotlin/String): dev.code93.kmp.qrd.data/TransactionIdType // dev.code93.kmp.qrd.data/TransactionIdType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.code93.kmp.qrd.data/TransactionIdType> // dev.code93.kmp.qrd.data/TransactionIdType.values|values#static(){}[0]
+}
+
+abstract interface dev.code93.kmp.qrd/SubFieldType { // dev.code93.kmp.qrd/SubFieldType|null[0]
+    abstract val subTag // dev.code93.kmp.qrd/SubFieldType.subTag|{}subTag[0]
+        abstract fun <get-subTag>(): kotlin/String // dev.code93.kmp.qrd/SubFieldType.subTag.<get-subTag>|<get-subTag>(){}[0]
+}
+
+final class dev.code93.kmp.qrd.data/AdditionalMerchantInformationData { // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData|null[0]
+    constructor <init>(kotlin/String, kotlin/String, kotlin/String, kotlin/String, kotlin/String?, kotlin/String?, kotlin/String?, kotlin/String?, kotlin/String?, kotlin/String?, kotlin/String?, kotlin/String?, kotlin/String?) // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.<init>|<init>(kotlin.String;kotlin.String;kotlin.String;kotlin.String;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?){}[0]
+
+    final val channel // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.channel|{}channel[0]
+        final fun <get-channel>(): kotlin/String? // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.channel.<get-channel>|<get-channel>(){}[0]
+    final val countryCode // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.countryCode|{}countryCode[0]
+        final fun <get-countryCode>(): kotlin/String // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.countryCode.<get-countryCode>|<get-countryCode>(){}[0]
+    final val merchantCategoryCode // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.merchantCategoryCode|{}merchantCategoryCode[0]
+        final fun <get-merchantCategoryCode>(): kotlin/String // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.merchantCategoryCode.<get-merchantCategoryCode>|<get-merchantCategoryCode>(){}[0]
+    final val merchantCity // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.merchantCity|{}merchantCity[0]
+        final fun <get-merchantCity>(): kotlin/String // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.merchantCity.<get-merchantCity>|<get-merchantCity>(){}[0]
+    final val merchantName // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.merchantName|{}merchantName[0]
+        final fun <get-merchantName>(): kotlin/String // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.merchantName.<get-merchantName>|<get-merchantName>(){}[0]
+    final val postalCode // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.postalCode|{}postalCode[0]
+        final fun <get-postalCode>(): kotlin/String? // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.postalCode.<get-postalCode>|<get-postalCode>(){}[0]
+    final val taxIncCondition // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.taxIncCondition|{}taxIncCondition[0]
+        final fun <get-taxIncCondition>(): kotlin/String? // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.taxIncCondition.<get-taxIncCondition>|<get-taxIncCondition>(){}[0]
+    final val taxIncValue // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.taxIncValue|{}taxIncValue[0]
+        final fun <get-taxIncValue>(): kotlin/String? // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.taxIncValue.<get-taxIncValue>|<get-taxIncValue>(){}[0]
+    final val taxIvaBase // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.taxIvaBase|{}taxIvaBase[0]
+        final fun <get-taxIvaBase>(): kotlin/String? // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.taxIvaBase.<get-taxIvaBase>|<get-taxIvaBase>(){}[0]
+    final val taxIvaCondition // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.taxIvaCondition|{}taxIvaCondition[0]
+        final fun <get-taxIvaCondition>(): kotlin/String? // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.taxIvaCondition.<get-taxIvaCondition>|<get-taxIvaCondition>(){}[0]
+    final val taxIvaValue // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.taxIvaValue|{}taxIvaValue[0]
+        final fun <get-taxIvaValue>(): kotlin/String? // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.taxIvaValue.<get-taxIvaValue>|<get-taxIvaValue>(){}[0]
+    final val taxes // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.taxes|{}taxes[0]
+        final fun <get-taxes>(): kotlin/String? // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.taxes.<get-taxes>|<get-taxes>(){}[0]
+    final val transactionId // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.transactionId|{}transactionId[0]
+        final fun <get-transactionId>(): kotlin/String? // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.transactionId.<get-transactionId>|<get-transactionId>(){}[0]
+
+    final fun component1(): kotlin/String // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.component1|component1(){}[0]
+    final fun component10(): kotlin/String? // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.component10|component10(){}[0]
+    final fun component11(): kotlin/String? // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.component11|component11(){}[0]
+    final fun component12(): kotlin/String? // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.component12|component12(){}[0]
+    final fun component13(): kotlin/String? // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.component13|component13(){}[0]
+    final fun component2(): kotlin/String // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.component2|component2(){}[0]
+    final fun component3(): kotlin/String // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.component3|component3(){}[0]
+    final fun component4(): kotlin/String // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.component4|component4(){}[0]
+    final fun component5(): kotlin/String? // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.component5|component5(){}[0]
+    final fun component6(): kotlin/String? // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.component6|component6(){}[0]
+    final fun component7(): kotlin/String? // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.component7|component7(){}[0]
+    final fun component8(): kotlin/String? // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.component8|component8(){}[0]
+    final fun component9(): kotlin/String? // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.component9|component9(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/String = ..., kotlin/String = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ...): dev.code93.kmp.qrd.data/AdditionalMerchantInformationData // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.copy|copy(kotlin.String;kotlin.String;kotlin.String;kotlin.String;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.code93.kmp.qrd.data/AdditionalMerchantInformationData.toString|toString(){}[0]
+}
+
+final class dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData { // dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData|null[0]
+    constructor <init>(kotlin/String, kotlin/String, kotlin/String, kotlin/String) // dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData.<init>|<init>(kotlin.String;kotlin.String;kotlin.String;kotlin.String){}[0]
+
+    final val cyclicRedundancyCheck // dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData.cyclicRedundancyCheck|{}cyclicRedundancyCheck[0]
+        final fun <get-cyclicRedundancyCheck>(): kotlin/String // dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData.cyclicRedundancyCheck.<get-cyclicRedundancyCheck>|<get-cyclicRedundancyCheck>(){}[0]
+    final val indicatorEmv // dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData.indicatorEmv|{}indicatorEmv[0]
+        final fun <get-indicatorEmv>(): kotlin/String // dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData.indicatorEmv.<get-indicatorEmv>|<get-indicatorEmv>(){}[0]
+    final val qrType // dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData.qrType|{}qrType[0]
+        final fun <get-qrType>(): kotlin/String // dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData.qrType.<get-qrType>|<get-qrType>(){}[0]
+    final val securityField // dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData.securityField|{}securityField[0]
+        final fun <get-securityField>(): kotlin/String // dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData.securityField.<get-securityField>|<get-securityField>(){}[0]
+
+    final fun component1(): kotlin/String // dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData.component1|component1(){}[0]
+    final fun component2(): kotlin/String // dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData.component2|component2(){}[0]
+    final fun component3(): kotlin/String // dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData.component3|component3(){}[0]
+    final fun component4(): kotlin/String // dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData.component4|component4(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/String = ..., kotlin/String = ...): dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData // dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData.copy|copy(kotlin.String;kotlin.String;kotlin.String;kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData.toString|toString(){}[0]
+}
+
+final class dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData { // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData|null[0]
+    constructor <init>(kotlin/String?, kotlin/String?, kotlin/String?, kotlin/String?, kotlin/String?, kotlin/String?, kotlin/String, kotlin/String, kotlin/String?, kotlin/String?, kotlin/String?) // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.<init>|<init>(kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String;kotlin.String;kotlin.String?;kotlin.String?;kotlin.String?){}[0]
+
+    final val additionalConsumerData // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.additionalConsumerData|{}additionalConsumerData[0]
+        final fun <get-additionalConsumerData>(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.additionalConsumerData.<get-additionalConsumerData>|<get-additionalConsumerData>(){}[0]
+    final val billingNumber // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.billingNumber|{}billingNumber[0]
+        final fun <get-billingNumber>(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.billingNumber.<get-billingNumber>|<get-billingNumber>(){}[0]
+    final val customerLabel // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.customerLabel|{}customerLabel[0]
+        final fun <get-customerLabel>(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.customerLabel.<get-customerLabel>|<get-customerLabel>(){}[0]
+    final val loyaltyNumber // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.loyaltyNumber|{}loyaltyNumber[0]
+        final fun <get-loyaltyNumber>(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.loyaltyNumber.<get-loyaltyNumber>|<get-loyaltyNumber>(){}[0]
+    final val merchantTaxId // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.merchantTaxId|{}merchantTaxId[0]
+        final fun <get-merchantTaxId>(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.merchantTaxId.<get-merchantTaxId>|<get-merchantTaxId>(){}[0]
+    final val mobileNumber // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.mobileNumber|{}mobileNumber[0]
+        final fun <get-mobileNumber>(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.mobileNumber.<get-mobileNumber>|<get-mobileNumber>(){}[0]
+    final val originChannel // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.originChannel|{}originChannel[0]
+        final fun <get-originChannel>(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.originChannel.<get-originChannel>|<get-originChannel>(){}[0]
+    final val referenceLabel // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.referenceLabel|{}referenceLabel[0]
+        final fun <get-referenceLabel>(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.referenceLabel.<get-referenceLabel>|<get-referenceLabel>(){}[0]
+    final val storeLabel // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.storeLabel|{}storeLabel[0]
+        final fun <get-storeLabel>(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.storeLabel.<get-storeLabel>|<get-storeLabel>(){}[0]
+    final val terminalLabel // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.terminalLabel|{}terminalLabel[0]
+        final fun <get-terminalLabel>(): kotlin/String // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.terminalLabel.<get-terminalLabel>|<get-terminalLabel>(){}[0]
+    final val transactionPurpose // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.transactionPurpose|{}transactionPurpose[0]
+        final fun <get-transactionPurpose>(): kotlin/String // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.transactionPurpose.<get-transactionPurpose>|<get-transactionPurpose>(){}[0]
+
+    final fun component1(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.component1|component1(){}[0]
+    final fun component10(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.component10|component10(){}[0]
+    final fun component11(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.component11|component11(){}[0]
+    final fun component2(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.component2|component2(){}[0]
+    final fun component3(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.component3|component3(){}[0]
+    final fun component4(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.component4|component4(){}[0]
+    final fun component5(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.component5|component5(){}[0]
+    final fun component6(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.component6|component6(){}[0]
+    final fun component7(): kotlin/String // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.component7|component7(){}[0]
+    final fun component8(): kotlin/String // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.component8|component8(){}[0]
+    final fun component9(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.component9|component9(){}[0]
+    final fun copy(kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String = ..., kotlin/String = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ...): dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.copy|copy(kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String;kotlin.String;kotlin.String?;kotlin.String?;kotlin.String?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData.toString|toString(){}[0]
+}
+
+final class dev.code93.kmp.qrd.data/MerchantInformationData { // dev.code93.kmp.qrd.data/MerchantInformationData|null[0]
+    constructor <init>(kotlin.collections/Map<dev.code93.kmp.qrd.data/ImmediatePaymentKeyType, kotlin/String?>?, kotlin/String?, kotlin/String?, kotlin/String?) // dev.code93.kmp.qrd.data/MerchantInformationData.<init>|<init>(kotlin.collections.Map<dev.code93.kmp.qrd.data.ImmediatePaymentKeyType,kotlin.String?>?;kotlin.String?;kotlin.String?;kotlin.String?){}[0]
+
+    final val acquirerNetworkId // dev.code93.kmp.qrd.data/MerchantInformationData.acquirerNetworkId|{}acquirerNetworkId[0]
+        final fun <get-acquirerNetworkId>(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantInformationData.acquirerNetworkId.<get-acquirerNetworkId>|<get-acquirerNetworkId>(){}[0]
+    final val aggregatorMerchantCode // dev.code93.kmp.qrd.data/MerchantInformationData.aggregatorMerchantCode|{}aggregatorMerchantCode[0]
+        final fun <get-aggregatorMerchantCode>(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantInformationData.aggregatorMerchantCode.<get-aggregatorMerchantCode>|<get-aggregatorMerchantCode>(){}[0]
+    final val immediatePaymentKey // dev.code93.kmp.qrd.data/MerchantInformationData.immediatePaymentKey|{}immediatePaymentKey[0]
+        final fun <get-immediatePaymentKey>(): kotlin.collections/Map<dev.code93.kmp.qrd.data/ImmediatePaymentKeyType, kotlin/String?>? // dev.code93.kmp.qrd.data/MerchantInformationData.immediatePaymentKey.<get-immediatePaymentKey>|<get-immediatePaymentKey>(){}[0]
+    final val merchantCode // dev.code93.kmp.qrd.data/MerchantInformationData.merchantCode|{}merchantCode[0]
+        final fun <get-merchantCode>(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantInformationData.merchantCode.<get-merchantCode>|<get-merchantCode>(){}[0]
+
+    final fun component1(): kotlin.collections/Map<dev.code93.kmp.qrd.data/ImmediatePaymentKeyType, kotlin/String?>? // dev.code93.kmp.qrd.data/MerchantInformationData.component1|component1(){}[0]
+    final fun component2(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantInformationData.component2|component2(){}[0]
+    final fun component3(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantInformationData.component3|component3(){}[0]
+    final fun component4(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantInformationData.component4|component4(){}[0]
+    final fun copy(kotlin.collections/Map<dev.code93.kmp.qrd.data/ImmediatePaymentKeyType, kotlin/String?>? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ...): dev.code93.kmp.qrd.data/MerchantInformationData // dev.code93.kmp.qrd.data/MerchantInformationData.copy|copy(kotlin.collections.Map<dev.code93.kmp.qrd.data.ImmediatePaymentKeyType,kotlin.String?>?;kotlin.String?;kotlin.String?;kotlin.String?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.code93.kmp.qrd.data/MerchantInformationData.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.code93.kmp.qrd.data/MerchantInformationData.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.code93.kmp.qrd.data/MerchantInformationData.toString|toString(){}[0]
+}
+
+final class dev.code93.kmp.qrd.data/MerchantInformationLanguageData { // dev.code93.kmp.qrd.data/MerchantInformationLanguageData|null[0]
+    constructor <init>(kotlin/String?, kotlin/String?, kotlin/String?) // dev.code93.kmp.qrd.data/MerchantInformationLanguageData.<init>|<init>(kotlin.String?;kotlin.String?;kotlin.String?){}[0]
+
+    final val alternateMerchantCity // dev.code93.kmp.qrd.data/MerchantInformationLanguageData.alternateMerchantCity|{}alternateMerchantCity[0]
+        final fun <get-alternateMerchantCity>(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantInformationLanguageData.alternateMerchantCity.<get-alternateMerchantCity>|<get-alternateMerchantCity>(){}[0]
+    final val alternateMerchantName // dev.code93.kmp.qrd.data/MerchantInformationLanguageData.alternateMerchantName|{}alternateMerchantName[0]
+        final fun <get-alternateMerchantName>(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantInformationLanguageData.alternateMerchantName.<get-alternateMerchantName>|<get-alternateMerchantName>(){}[0]
+    final val languagePreference // dev.code93.kmp.qrd.data/MerchantInformationLanguageData.languagePreference|{}languagePreference[0]
+        final fun <get-languagePreference>(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantInformationLanguageData.languagePreference.<get-languagePreference>|<get-languagePreference>(){}[0]
+
+    final fun component1(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantInformationLanguageData.component1|component1(){}[0]
+    final fun component2(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantInformationLanguageData.component2|component2(){}[0]
+    final fun component3(): kotlin/String? // dev.code93.kmp.qrd.data/MerchantInformationLanguageData.component3|component3(){}[0]
+    final fun copy(kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ...): dev.code93.kmp.qrd.data/MerchantInformationLanguageData // dev.code93.kmp.qrd.data/MerchantInformationLanguageData.copy|copy(kotlin.String?;kotlin.String?;kotlin.String?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.code93.kmp.qrd.data/MerchantInformationLanguageData.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.code93.kmp.qrd.data/MerchantInformationLanguageData.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.code93.kmp.qrd.data/MerchantInformationLanguageData.toString|toString(){}[0]
+}
+
+final class dev.code93.kmp.qrd.data/OtherTransactionsFieldsData { // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData|null[0]
+    constructor <init>(kotlin/String?, kotlin/String?, kotlin/String?, kotlin/String?, kotlin/String?, kotlin/String?, kotlin/String?, kotlin.collections/Map<dev.code93.kmp.qrd.data/DiscountApplicationType, kotlin/String?>?) // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.<init>|<init>(kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.collections.Map<dev.code93.kmp.qrd.data.DiscountApplicationType,kotlin.String?>?){}[0]
+
+    final val destinationAccount // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.destinationAccount|{}destinationAccount[0]
+        final fun <get-destinationAccount>(): kotlin/String? // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.destinationAccount.<get-destinationAccount>|<get-destinationAccount>(){}[0]
+    final val destinationAccountReference // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.destinationAccountReference|{}destinationAccountReference[0]
+        final fun <get-destinationAccountReference>(): kotlin/String? // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.destinationAccountReference.<get-destinationAccountReference>|<get-destinationAccountReference>(){}[0]
+    final val discountApplication // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.discountApplication|{}discountApplication[0]
+        final fun <get-discountApplication>(): kotlin.collections/Map<dev.code93.kmp.qrd.data/DiscountApplicationType, kotlin/String?>? // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.discountApplication.<get-discountApplication>|<get-discountApplication>(){}[0]
+    final val paymentReference // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.paymentReference|{}paymentReference[0]
+        final fun <get-paymentReference>(): kotlin/String? // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.paymentReference.<get-paymentReference>|<get-paymentReference>(){}[0]
+    final val productType // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.productType|{}productType[0]
+        final fun <get-productType>(): kotlin/String? // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.productType.<get-productType>|<get-productType>(){}[0]
+    final val serviceCode // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.serviceCode|{}serviceCode[0]
+        final fun <get-serviceCode>(): kotlin/String? // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.serviceCode.<get-serviceCode>|<get-serviceCode>(){}[0]
+    final val sourceAccount // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.sourceAccount|{}sourceAccount[0]
+        final fun <get-sourceAccount>(): kotlin/String? // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.sourceAccount.<get-sourceAccount>|<get-sourceAccount>(){}[0]
+    final val transferProductType // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.transferProductType|{}transferProductType[0]
+        final fun <get-transferProductType>(): kotlin/String? // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.transferProductType.<get-transferProductType>|<get-transferProductType>(){}[0]
+
+    final fun component1(): kotlin/String? // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.component1|component1(){}[0]
+    final fun component2(): kotlin/String? // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.component2|component2(){}[0]
+    final fun component3(): kotlin/String? // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.component3|component3(){}[0]
+    final fun component4(): kotlin/String? // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.component4|component4(){}[0]
+    final fun component5(): kotlin/String? // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.component5|component5(){}[0]
+    final fun component6(): kotlin/String? // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.component6|component6(){}[0]
+    final fun component7(): kotlin/String? // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.component7|component7(){}[0]
+    final fun component8(): kotlin.collections/Map<dev.code93.kmp.qrd.data/DiscountApplicationType, kotlin/String?>? // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.component8|component8(){}[0]
+    final fun copy(kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin.collections/Map<dev.code93.kmp.qrd.data/DiscountApplicationType, kotlin/String?>? = ...): dev.code93.kmp.qrd.data/OtherTransactionsFieldsData // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.copy|copy(kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.String?;kotlin.collections.Map<dev.code93.kmp.qrd.data.DiscountApplicationType,kotlin.String?>?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.code93.kmp.qrd.data/OtherTransactionsFieldsData.toString|toString(){}[0]
+}
+
+final class dev.code93.kmp.qrd.data/TransactionDetailData { // dev.code93.kmp.qrd.data/TransactionDetailData|null[0]
+    constructor <init>(kotlin/String, kotlin/String, kotlin/String?, kotlin/String?, kotlin/String?) // dev.code93.kmp.qrd.data/TransactionDetailData.<init>|<init>(kotlin.String;kotlin.String;kotlin.String?;kotlin.String?;kotlin.String?){}[0]
+
+    final val currencyCode // dev.code93.kmp.qrd.data/TransactionDetailData.currencyCode|{}currencyCode[0]
+        final fun <get-currencyCode>(): kotlin/String // dev.code93.kmp.qrd.data/TransactionDetailData.currencyCode.<get-currencyCode>|<get-currencyCode>(){}[0]
+    final val tipIndicator // dev.code93.kmp.qrd.data/TransactionDetailData.tipIndicator|{}tipIndicator[0]
+        final fun <get-tipIndicator>(): kotlin/String? // dev.code93.kmp.qrd.data/TransactionDetailData.tipIndicator.<get-tipIndicator>|<get-tipIndicator>(){}[0]
+    final val tipPercentage // dev.code93.kmp.qrd.data/TransactionDetailData.tipPercentage|{}tipPercentage[0]
+        final fun <get-tipPercentage>(): kotlin/String? // dev.code93.kmp.qrd.data/TransactionDetailData.tipPercentage.<get-tipPercentage>|<get-tipPercentage>(){}[0]
+    final val tipValue // dev.code93.kmp.qrd.data/TransactionDetailData.tipValue|{}tipValue[0]
+        final fun <get-tipValue>(): kotlin/String? // dev.code93.kmp.qrd.data/TransactionDetailData.tipValue.<get-tipValue>|<get-tipValue>(){}[0]
+    final val transactionValue // dev.code93.kmp.qrd.data/TransactionDetailData.transactionValue|{}transactionValue[0]
+        final fun <get-transactionValue>(): kotlin/String // dev.code93.kmp.qrd.data/TransactionDetailData.transactionValue.<get-transactionValue>|<get-transactionValue>(){}[0]
+
+    final fun component1(): kotlin/String // dev.code93.kmp.qrd.data/TransactionDetailData.component1|component1(){}[0]
+    final fun component2(): kotlin/String // dev.code93.kmp.qrd.data/TransactionDetailData.component2|component2(){}[0]
+    final fun component3(): kotlin/String? // dev.code93.kmp.qrd.data/TransactionDetailData.component3|component3(){}[0]
+    final fun component4(): kotlin/String? // dev.code93.kmp.qrd.data/TransactionDetailData.component4|component4(){}[0]
+    final fun component5(): kotlin/String? // dev.code93.kmp.qrd.data/TransactionDetailData.component5|component5(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/String? = ...): dev.code93.kmp.qrd.data/TransactionDetailData // dev.code93.kmp.qrd.data/TransactionDetailData.copy|copy(kotlin.String;kotlin.String;kotlin.String?;kotlin.String?;kotlin.String?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.code93.kmp.qrd.data/TransactionDetailData.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.code93.kmp.qrd.data/TransactionDetailData.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.code93.kmp.qrd.data/TransactionDetailData.toString|toString(){}[0]
+}
+
+final class dev.code93.kmp.qrd/CRCValidator { // dev.code93.kmp.qrd/CRCValidator|null[0]
+    constructor <init>() // dev.code93.kmp.qrd/CRCValidator.<init>|<init>(){}[0]
+
+    final object Companion { // dev.code93.kmp.qrd/CRCValidator.Companion|null[0]
+        final fun validate(kotlin/String): kotlin/Boolean // dev.code93.kmp.qrd/CRCValidator.Companion.validate|validate(kotlin.String){}[0]
+    }
+}
+
+final class dev.code93.kmp.qrd/EmvQrCodeDecoder { // dev.code93.kmp.qrd/EmvQrCodeDecoder|null[0]
+    constructor <init>(kotlin/String) // dev.code93.kmp.qrd/EmvQrCodeDecoder.<init>|<init>(kotlin.String){}[0]
+
+    final fun decode(): dev.code93.kmp.qrd/QRCodeEmvCoColombiaData // dev.code93.kmp.qrd/EmvQrCodeDecoder.decode|decode(){}[0]
+}
+
+final class dev.code93.kmp.qrd/QRCodeEmvCoColombiaData { // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData|null[0]
+    constructor <init>(dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData?, dev.code93.kmp.qrd.data/MerchantInformationData?, dev.code93.kmp.qrd.data/AdditionalMerchantInformationData?, dev.code93.kmp.qrd.data/OtherTransactionsFieldsData?, dev.code93.kmp.qrd.data/MerchantInformationLanguageData?, dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData?, dev.code93.kmp.qrd.data/TransactionDetailData?) // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.<init>|<init>(dev.code93.kmp.qrd.data.ConventionsQrCodeEmvCoData?;dev.code93.kmp.qrd.data.MerchantInformationData?;dev.code93.kmp.qrd.data.AdditionalMerchantInformationData?;dev.code93.kmp.qrd.data.OtherTransactionsFieldsData?;dev.code93.kmp.qrd.data.MerchantInformationLanguageData?;dev.code93.kmp.qrd.data.MerchantAdditionalFieldsData?;dev.code93.kmp.qrd.data.TransactionDetailData?){}[0]
+
+    final val additionalMerchantInformationData // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.additionalMerchantInformationData|{}additionalMerchantInformationData[0]
+        final fun <get-additionalMerchantInformationData>(): dev.code93.kmp.qrd.data/AdditionalMerchantInformationData? // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.additionalMerchantInformationData.<get-additionalMerchantInformationData>|<get-additionalMerchantInformationData>(){}[0]
+    final val conventionsQrCodeEmvCoData // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.conventionsQrCodeEmvCoData|{}conventionsQrCodeEmvCoData[0]
+        final fun <get-conventionsQrCodeEmvCoData>(): dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData? // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.conventionsQrCodeEmvCoData.<get-conventionsQrCodeEmvCoData>|<get-conventionsQrCodeEmvCoData>(){}[0]
+    final val merchantAdditionalFieldsData // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.merchantAdditionalFieldsData|{}merchantAdditionalFieldsData[0]
+        final fun <get-merchantAdditionalFieldsData>(): dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData? // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.merchantAdditionalFieldsData.<get-merchantAdditionalFieldsData>|<get-merchantAdditionalFieldsData>(){}[0]
+    final val merchantInformationData // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.merchantInformationData|{}merchantInformationData[0]
+        final fun <get-merchantInformationData>(): dev.code93.kmp.qrd.data/MerchantInformationData? // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.merchantInformationData.<get-merchantInformationData>|<get-merchantInformationData>(){}[0]
+    final val merchantInformationLanguageData // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.merchantInformationLanguageData|{}merchantInformationLanguageData[0]
+        final fun <get-merchantInformationLanguageData>(): dev.code93.kmp.qrd.data/MerchantInformationLanguageData? // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.merchantInformationLanguageData.<get-merchantInformationLanguageData>|<get-merchantInformationLanguageData>(){}[0]
+    final val otherTransactionsFieldsData // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.otherTransactionsFieldsData|{}otherTransactionsFieldsData[0]
+        final fun <get-otherTransactionsFieldsData>(): dev.code93.kmp.qrd.data/OtherTransactionsFieldsData? // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.otherTransactionsFieldsData.<get-otherTransactionsFieldsData>|<get-otherTransactionsFieldsData>(){}[0]
+    final val transactionDetailData // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.transactionDetailData|{}transactionDetailData[0]
+        final fun <get-transactionDetailData>(): dev.code93.kmp.qrd.data/TransactionDetailData? // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.transactionDetailData.<get-transactionDetailData>|<get-transactionDetailData>(){}[0]
+
+    final fun component1(): dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData? // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.component1|component1(){}[0]
+    final fun component2(): dev.code93.kmp.qrd.data/MerchantInformationData? // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.component2|component2(){}[0]
+    final fun component3(): dev.code93.kmp.qrd.data/AdditionalMerchantInformationData? // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.component3|component3(){}[0]
+    final fun component4(): dev.code93.kmp.qrd.data/OtherTransactionsFieldsData? // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.component4|component4(){}[0]
+    final fun component5(): dev.code93.kmp.qrd.data/MerchantInformationLanguageData? // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.component5|component5(){}[0]
+    final fun component6(): dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData? // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.component6|component6(){}[0]
+    final fun component7(): dev.code93.kmp.qrd.data/TransactionDetailData? // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.component7|component7(){}[0]
+    final fun copy(dev.code93.kmp.qrd.data/ConventionsQrCodeEmvCoData? = ..., dev.code93.kmp.qrd.data/MerchantInformationData? = ..., dev.code93.kmp.qrd.data/AdditionalMerchantInformationData? = ..., dev.code93.kmp.qrd.data/OtherTransactionsFieldsData? = ..., dev.code93.kmp.qrd.data/MerchantInformationLanguageData? = ..., dev.code93.kmp.qrd.data/MerchantAdditionalFieldsData? = ..., dev.code93.kmp.qrd.data/TransactionDetailData? = ...): dev.code93.kmp.qrd/QRCodeEmvCoColombiaData // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.copy|copy(dev.code93.kmp.qrd.data.ConventionsQrCodeEmvCoData?;dev.code93.kmp.qrd.data.MerchantInformationData?;dev.code93.kmp.qrd.data.AdditionalMerchantInformationData?;dev.code93.kmp.qrd.data.OtherTransactionsFieldsData?;dev.code93.kmp.qrd.data.MerchantInformationLanguageData?;dev.code93.kmp.qrd.data.MerchantAdditionalFieldsData?;dev.code93.kmp.qrd.data.TransactionDetailData?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.code93.kmp.qrd/QRCodeEmvCoColombiaData.toString|toString(){}[0]
+}

@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - KDoc on the entire public API, including the semantic values defined by the
   EASPBV spec (tax conditions, channels, transaction purposes, tip indicator).
 - API reference generated with Dokka and published to GitHub Pages.
+- Quality gates in CI: detekt static analysis, Kover coverage verification
+  (≥ 80% line coverage; currently ~98%) and the Kotlin built-in ABI validator
+  locking the public API surface (`emvdecoder/api/`).
 
 ## [1.0.0] - 2026-06-11
 
