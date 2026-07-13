@@ -128,6 +128,7 @@ Ambas apps demo comparten el mismo producto: 3 pestañas (Escanear / Generar / A
 ./gradlew :emvdecoder:allTests                 # todos los targets (Android host + simulador iOS)
 ./gradlew :emvdecoder:testAndroidHostTest      # solo unit tests Android/JVM
 ./gradlew :emvdecoder:iosSimulatorArm64Test    # solo tests del simulador iOS
+./gradlew :qrscanner-core:testAndroidHostTest :qrscanner-core:iosSimulatorArm64Test   # módulo de escaneo
 ```
 
 La suite incluye QRs reales de Redeban, QRs sintéticos de cobertura completa construidos con un helper TLV/CRC, casos de entrada malformada y el vector estándar CRC-16/CCITT-FALSE (`"123456789" → 0x29B1`).

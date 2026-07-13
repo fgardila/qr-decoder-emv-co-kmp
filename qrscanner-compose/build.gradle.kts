@@ -46,6 +46,12 @@ mavenPublishing {
     }
 }
 
+// Empaqueta README y LICENSE en los jars publicados: exploradores de paquetes
+// (socket.dev, etc.) leen el README desde dentro del artefacto, no desde GitHub.
+tasks.withType<Jar>().configureEach {
+    from(rootProject.file("README.md"), rootProject.file("LICENSE"))
+}
+
 kotlin {
     explicitApi()
 

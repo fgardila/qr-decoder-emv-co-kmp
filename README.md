@@ -128,6 +128,7 @@ Both demo apps share the same product: a 3-tab app (Scan / Generate / Settings) 
 ./gradlew :emvdecoder:allTests                 # all targets (Android host + iOS simulator)
 ./gradlew :emvdecoder:testAndroidHostTest      # Android/JVM unit tests only
 ./gradlew :emvdecoder:iosSimulatorArm64Test    # iOS simulator tests only
+./gradlew :qrscanner-core:testAndroidHostTest :qrscanner-core:iosSimulatorArm64Test   # scanner module
 ```
 
 The suite includes real Redeban QR samples, full-coverage synthetic QRs built with a TLV/CRC helper, malformed-input cases, and the standard CRC-16/CCITT-FALSE test vector (`"123456789" → 0x29B1`).
