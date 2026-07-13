@@ -8,4 +8,8 @@ plugins {
     alias(libs.plugins.kotlinSerialization).apply(false)
     alias(libs.plugins.ksp).apply(false)
     alias(libs.plugins.hilt).apply(false)
+    // Necesario con el plugin aplicado en varios módulos hermanos: sin esto, cada
+    // módulo lo carga en un classloader distinto y el build service compartido de
+    // Maven Central falla al crear enableAutomaticMavenCentralPublishing.
+    alias(libs.plugins.mavenPublish).apply(false)
 }
