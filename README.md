@@ -76,14 +76,23 @@ The full specification PDF (`EASPBV-Campos-QRCode-EMVCo-Industria-v1.4-2025.pdf`
 
 ## Installation
 
-The library is published to **Maven Central**:
+The SDK is published to **Maven Central** as three artifacts sharing a single version:
 
 ```kotlin
-// Android / JVM (or commonMain of your own KMP project)
 dependencies {
-    implementation("dev.code93:emvdecoder:2.0.0")
+    // Decoder only (raw text → typed EASPBV data) — Android / JVM / KMP commonMain
+    implementation("dev.code93:emvdecoder:2.1.0")
+
+    // Optional: headless QR reading (image bytes → raw text; ML Kit / Vision)
+    implementation("dev.code93:qrscanner-core:2.1.0")
+
+    // Optional: ready-made Compose Multiplatform scanner screen
+    // (camera + torch + gallery; ships the QrdKit umbrella iOS framework)
+    implementation("dev.code93:qrscanner-compose:2.1.0")
 }
 ```
+
+See the integration guide (with-UI and headless scenarios) in [docs/GUIA-INTEGRACION-SDK.md](docs/GUIA-INTEGRACION-SDK.md).
 
 For iOS you can also build the framework from source:
 
@@ -97,13 +106,18 @@ For iOS you can also build the framework from source:
 Follows the [recommended KMP project structure](https://kotlinlang.org/docs/multiplatform/multiplatform-project-recommended-structure.html) with **Gradle 9.5.1**, **AGP 9.2.1** (`com.android.kotlin.multiplatform.library` plugin) and **Kotlin 2.3.21**. JDK 17+ required.
 
 ```
-emvdecoder/   Kotlin Multiplatform library (commonMain: all parsing logic)
-androidApp/   "QR EMV Colombia" — Clean Architecture + MVVM + Hilt + Compose Navigation;
-              scans (CameraX/ML Kit), generates EASPBV test QRs and consumes the library
-              from Maven Central
-iosApp/       "QR EMV Colombia" — SwiftUI + MVVM with clean layers; AVFoundation camera,
-              Vision gallery detection, CoreImage QR generation (links the framework via
-              embedAndSignAppleFrameworkForXcode)
+emvdecoder/         Kotlin Multiplatform library (commonMain: all parsing logic)
+qrscanner-core/     Local KMP module: decodes a QR image (gallery bytes) to raw text
+                    via KScan (ML Kit on Android, Vision on iOS)
+qrscanner-compose/  Local Compose Multiplatform module: shared scanner screen (KScan
+                    camera + torch/flashlight + Calf gallery picker). Builds the QrdKit
+                    umbrella iOS framework (exports emvdecoder + qrscanner-core)
+androidApp/         "QR EMV Colombia" — Clean Architecture + MVVM + Hilt + Compose
+                    Navigation; uses the shared scanner screen, generates EASPBV test QRs
+                    and consumes the library from Maven Central
+iosApp/             "QR EMV Colombia" — SwiftUI + MVVM with clean layers; embeds the
+                    shared Compose scanner and gallery decoding via the QrdKit framework
+                    (embedAndSignAppleFrameworkForXcode), CoreImage QR generation
 ```
 
 Both demo apps share the same product: a 3-tab app (Scan / Generate / Settings) that decodes real Colombian payment QRs and generates spec-valid test QRs (TLV + CRC-16/CCITT-FALSE built in each app's domain layer and round-trip-verified against this library).
@@ -114,6 +128,7 @@ Both demo apps share the same product: a 3-tab app (Scan / Generate / Settings) 
 ./gradlew :emvdecoder:allTests                 # all targets (Android host + iOS simulator)
 ./gradlew :emvdecoder:testAndroidHostTest      # Android/JVM unit tests only
 ./gradlew :emvdecoder:iosSimulatorArm64Test    # iOS simulator tests only
+./gradlew :qrscanner-core:testAndroidHostTest :qrscanner-core:iosSimulatorArm64Test   # scanner module
 ```
 
 The suite includes real Redeban QR samples, full-coverage synthetic QRs built with a TLV/CRC helper, malformed-input cases, and the standard CRC-16/CCITT-FALSE test vector (`"123456789" → 0x29B1`).

@@ -7,7 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import dev.code93.emvqr.presentation.generate.GenerateQrScreen
 import dev.code93.emvqr.presentation.scanner.ScannerScreen
-import dev.code93.emvqr.presentation.scanner.camera.CameraScannerScreen
+import dev.code93.qrscanner.compose.QrScannerScreen
 import dev.code93.emvqr.presentation.settings.LicensesScreen
 import dev.code93.emvqr.presentation.settings.SettingsScreen
 
@@ -35,8 +35,8 @@ fun QrdNavHost(
         }
 
         composable<Route.CameraScanner> {
-            CameraScannerScreen(
-                onQrScanned = { rawText ->
+            QrScannerScreen(
+                onResult = { rawText ->
                     navController.previousBackStackEntry
                         ?.savedStateHandle
                         ?.set(SCANNED_QR_RESULT_KEY, rawText)

@@ -17,3 +17,5 @@ dependencyResolutionManagement {
 rootProject.name = "qrd"
 include(":androidApp")
 include(":emvdecoder")
+include(":qrscanner-core")
+include(":qrscanner-compose")

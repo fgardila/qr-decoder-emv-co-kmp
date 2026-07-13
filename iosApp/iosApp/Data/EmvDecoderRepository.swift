@@ -1,5 +1,5 @@
 import Foundation
-import emvdecoder
+import QrdKit
 
 /// Adapta la librería KMP (EmvQr) al dominio de la app, agrupando los campos
 /// por secciones del estándar EASPBV v1.4 y omitiendo valores vacíos.

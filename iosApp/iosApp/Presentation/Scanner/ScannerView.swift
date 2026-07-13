@@ -14,10 +14,13 @@ struct ScannerView: View {
             content
                 .navigationTitle("Escanear código QR")
                 .fullScreenCover(isPresented: $viewModel.isCameraPresented) {
-                    CameraScannerView { rawText in
-                        viewModel.isCameraPresented = false
-                        viewModel.onQrScanned(rawText)
-                    }
+                    ComposeQrScannerView(
+                        onResult: { rawText in
+                            viewModel.isCameraPresented = false
+                            viewModel.onQrScanned(rawText)
+                        },
+                        onClose: { viewModel.isCameraPresented = false }
+                    )
                     .ignoresSafeArea()
                 }
         }

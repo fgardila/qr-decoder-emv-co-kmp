@@ -51,6 +51,8 @@ kotlin {
 
 dependencies {
     implementation(libs.emvdecoder)
+    implementation(projects.qrscannerCore)
+    implementation(projects.qrscannerCompose)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
@@ -70,14 +72,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
-
-    implementation(libs.androidx.camera.core)
-    implementation(libs.androidx.camera.camera2)
-    implementation(libs.androidx.camera.lifecycle)
-    implementation(libs.androidx.camera.view)
-    implementation(libs.androidx.camera.extensions)
-    implementation(libs.androidx.camera.mlkit.vision)
-    implementation(libs.google.mlkit.vision.barcode)
 
     implementation(libs.zxing.core)
 

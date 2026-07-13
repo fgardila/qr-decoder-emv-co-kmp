@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-07-13
+
+QR reading goes multiplatform: two new artifacts join `emvdecoder` on Maven
+Central, all sharing a single project version.
+
+### Added
+
+- **`dev.code93:qrscanner-core`** — headless KMP module: decodes a QR image
+  (PNG/JPEG bytes) to its raw text via KScan (ML Kit on Android, Vision on
+  iOS), with an `NSData` overload for Swift.
+- **`dev.code93:qrscanner-compose`** — Compose Multiplatform scanner screen
+  (`QrScannerScreen`): live camera, **torch/flashlight toggle**, gallery
+  import decoded to raw text (Calf picker) and built-in camera permission
+  handling, with Spanish UI texts. Ships the **`QrdKit`** umbrella iOS
+  framework exporting `qrscanner-core` and `emvdecoder` (single Kotlin
+  runtime per app).
+- Integration guide for third-party apps (with-UI and headless scenarios):
+  `docs/GUIA-INTEGRACION-SDK.md`.
+- `README.md` and `LICENSE` are now bundled inside the published jars so
+  package explorers (socket.dev, etc.) can render them.
+- Release workflow now publishes all three artifacts, attaches their AARs to
+  the GitHub Release and auto-opens a PR bumping the demo app's `emvdecoder`
+  pin after publishing.
+
+### Changed
+
+- Single shared release version for all artifacts, defined once in
+  `gradle.properties` (`VERSION_NAME`).
+- Demo apps now use the shared scanner screen and gallery decoding (the
+  duplicated CameraX/ML Kit and AVFoundation/Vision scanning code was
+  removed); the iOS app embeds only the `QrdKit` framework.
+- No changes to the `emvdecoder` public API.
+
 ## [2.0.0] - 2026-06-12
 
 API redesign release. Migration from 1.x:

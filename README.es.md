@@ -76,14 +76,23 @@ El PDF completo de la especificación (`EASPBV-Campos-QRCode-EMVCo-Industria-v1.
 
 ## Instalación
 
-La librería está publicada en **Maven Central**:
+El SDK está publicado en **Maven Central** como tres artefactos con una versión única compartida:
 
 ```kotlin
-// Android / JVM (o el commonMain de tu propio proyecto KMP)
 dependencies {
-    implementation("dev.code93:emvdecoder:2.0.0")
+    // Solo decodificador (raw text → datos EASPBV tipados) — Android / JVM / commonMain KMP
+    implementation("dev.code93:emvdecoder:2.1.0")
+
+    // Opcional: lectura headless de QR (bytes de imagen → raw text; ML Kit / Vision)
+    implementation("dev.code93:qrscanner-core:2.1.0")
+
+    // Opcional: pantalla de escaneo Compose Multiplatform lista para usar
+    // (cámara + linterna + galería; genera el framework umbrella QrdKit para iOS)
+    implementation("dev.code93:qrscanner-compose:2.1.0")
 }
 ```
+
+Guía de integración (escenarios con UI y headless): [docs/GUIA-INTEGRACION-SDK.md](docs/GUIA-INTEGRACION-SDK.md).
 
 Para iOS también puedes construir el framework desde el código fuente:
 
@@ -97,13 +106,18 @@ Para iOS también puedes construir el framework desde el código fuente:
 Sigue la [estructura recomendada de proyectos KMP](https://kotlinlang.org/docs/multiplatform/multiplatform-project-recommended-structure.html) con **Gradle 9.5.1**, **AGP 9.2.1** (plugin `com.android.kotlin.multiplatform.library`) y **Kotlin 2.3.21**. Requiere JDK 17+.
 
 ```
-emvdecoder/   Librería Kotlin Multiplatform (commonMain: toda la lógica de parsing)
-androidApp/   "QR EMV Colombia" — Clean Architecture + MVVM + Hilt + Compose Navigation;
-              escanea (CameraX/ML Kit), genera QRs de prueba EASPBV y consume la librería
-              desde Maven Central
-iosApp/       "QR EMV Colombia" — SwiftUI + MVVM con capas limpias; cámara AVFoundation,
-              detección en galería con Vision, generación con CoreImage (enlaza el
-              framework vía embedAndSignAppleFrameworkForXcode)
+emvdecoder/         Librería Kotlin Multiplatform (commonMain: toda la lógica de parsing)
+qrscanner-core/     Módulo KMP local: decodifica el QR de una imagen (bytes de galería) a
+                    raw text vía KScan (ML Kit en Android, Vision en iOS)
+qrscanner-compose/  Módulo Compose Multiplatform local: pantalla de escaneo compartida
+                    (cámara KScan + linterna/flash + picker de galería Calf). Genera el
+                    framework umbrella QrdKit para iOS (exporta emvdecoder + qrscanner-core)
+androidApp/         "QR EMV Colombia" — Clean Architecture + MVVM + Hilt + Compose
+                    Navigation; usa la pantalla de escaneo compartida, genera QRs de prueba
+                    EASPBV y consume la librería desde Maven Central
+iosApp/             "QR EMV Colombia" — SwiftUI + MVVM con capas limpias; embebe el escáner
+                    Compose compartido y la decodificación de galería vía el framework QrdKit
+                    (embedAndSignAppleFrameworkForXcode), generación con CoreImage
 ```
 
 Ambas apps demo comparten el mismo producto: 3 pestañas (Escanear / Generar / Ajustes) que decodifican QRs de pago colombianos reales y generan QRs de prueba válidos según la spec (TLV + CRC-16/CCITT-FALSE construidos en la capa de dominio de cada app y verificados por round-trip contra esta librería).
@@ -114,6 +128,7 @@ Ambas apps demo comparten el mismo producto: 3 pestañas (Escanear / Generar / A
 ./gradlew :emvdecoder:allTests                 # todos los targets (Android host + simulador iOS)
 ./gradlew :emvdecoder:testAndroidHostTest      # solo unit tests Android/JVM
 ./gradlew :emvdecoder:iosSimulatorArm64Test    # solo tests del simulador iOS
+./gradlew :qrscanner-core:testAndroidHostTest :qrscanner-core:iosSimulatorArm64Test   # módulo de escaneo
 ```
 
 La suite incluye QRs reales de Redeban, QRs sintéticos de cobertura completa construidos con un helper TLV/CRC, casos de entrada malformada y el vector estándar CRC-16/CCITT-FALSE (`"123456789" → 0x29B1`).

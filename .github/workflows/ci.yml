@@ -35,6 +35,9 @@ jobs:
       - name: Run Android host and JVM tests with coverage gate
         run: ./gradlew :emvdecoder:testAndroidHostTest :emvdecoder:jvmTest :emvdecoder:koverVerify :emvdecoder:koverXmlReport
 
+      - name: Run qrscanner host tests
+        run: ./gradlew :qrscanner-core:testAndroidHostTest
+
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
         with:
@@ -79,10 +82,19 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Run iOS simulator tests
-        run: ./gradlew :emvdecoder:iosSimulatorArm64Test
+        run: ./gradlew :emvdecoder:iosSimulatorArm64Test :qrscanner-core:iosSimulatorArm64Test
 
       - name: Build iOS frameworks
         run: ./gradlew :emvdecoder:linkReleaseFrameworkIosArm64 :emvdecoder:linkDebugFrameworkIosSimulatorArm64
+
+      - name: Build QrdKit umbrella framework
+        run: ./gradlew :qrscanner-compose:linkDebugFrameworkIosSimulatorArm64
+
+      - name: Smoke build iOS app (validates pbxproj + framework embed)
+        run: >
+          xcodebuild -project iosApp/iosApp.xcodeproj -scheme iosApp
+          -sdk iphonesimulator -destination 'generic/platform=iOS Simulator'
+          ARCHS=arm64 ONLY_ACTIVE_ARCH=YES build CODE_SIGNING_ALLOWED=NO
 
       - name: Upload test reports
         if: failure()

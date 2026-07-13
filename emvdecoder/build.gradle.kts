@@ -41,7 +41,8 @@ mavenPublishing {
     publishToMavenCentral()
     signAllPublications()
 
-    coordinates("dev.code93", "emvdecoder", "2.0.0")
+    // group y version vienen de gradle.properties (GROUP / VERSION_NAME)
+    coordinates(artifactId = "emvdecoder")
 
     pom {
         name.set("EMV QR Decoder Colombia")
@@ -71,6 +72,12 @@ mavenPublishing {
             developerConnection.set("scm:git:ssh://git@github.com/fgardila/qr-decoder-emv-co-kmp.git")
         }
     }
+}
+
+// Empaqueta README y LICENSE en los jars publicados: exploradores de paquetes
+// (socket.dev, etc.) leen el README desde dentro del artefacto, no desde GitHub.
+tasks.withType<Jar>().configureEach {
+    from(rootProject.file("README.md"), rootProject.file("LICENSE"))
 }
 
 kotlin {
