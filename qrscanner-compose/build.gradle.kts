@@ -5,6 +5,45 @@ plugins {
     alias(libs.plugins.androidKmpLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.mavenPublish)
+}
+
+mavenPublishing {
+    publishToMavenCentral()
+    signAllPublications()
+
+    // group y version vienen de gradle.properties (GROUP / VERSION_NAME)
+    coordinates(artifactId = "qrscanner-compose")
+
+    pom {
+        name.set("QR Scanner Compose (KMP)")
+        description.set(
+            "Compose Multiplatform QR scanner screen for Android/iOS: KScan camera " +
+                "with torch/flashlight control, gallery import (Calf) decoded to raw text " +
+                "and built-in camera permission handling. Ships the QrdKit umbrella iOS framework."
+        )
+        inceptionYear.set("2026")
+        url.set("https://github.com/fgardila/qr-decoder-emv-co-kmp")
+        licenses {
+            license {
+                name.set("MIT License")
+                url.set("https://opensource.org/license/mit/")
+                distribution.set("repo")
+            }
+        }
+        developers {
+            developer {
+                id.set("fgardila")
+                name.set("Fabian Guillermo Ardila Castro")
+                url.set("https://github.com/fgardila")
+            }
+        }
+        scm {
+            url.set("https://github.com/fgardila/qr-decoder-emv-co-kmp")
+            connection.set("scm:git:git://github.com/fgardila/qr-decoder-emv-co-kmp.git")
+            developerConnection.set("scm:git:ssh://git@github.com/fgardila/qr-decoder-emv-co-kmp.git")
+        }
+    }
 }
 
 kotlin {

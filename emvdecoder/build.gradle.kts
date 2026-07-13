@@ -41,7 +41,8 @@ mavenPublishing {
     publishToMavenCentral()
     signAllPublications()
 
-    coordinates("dev.code93", "emvdecoder", "2.0.0")
+    // group y version vienen de gradle.properties (GROUP / VERSION_NAME)
+    coordinates(artifactId = "emvdecoder")
 
     pom {
         name.set("EMV QR Decoder Colombia")

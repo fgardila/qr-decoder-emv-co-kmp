@@ -9,6 +9,8 @@ mavenPublish = "0.36.0"
 dokka = "2.2.0"
 kover = "0.9.8"
 detekt = "1.23.8"
+# Versión CONSUMIDA por androidApp desde Maven Central (subir a 2.1.0 después de publicar el tag).
+# La versión de PUBLICACIÓN de todos los módulos vive en gradle.properties (VERSION_NAME).
 emvdecoder = "2.0.0"
 hilt = "2.59.2"
 ksp = "2.3.9"

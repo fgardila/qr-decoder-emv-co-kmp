@@ -33,7 +33,7 @@ iOS app smoke build (no signing): `xcodebuild -project iosApp/iosApp.xcodeproj -
 
 ## Releasing
 
-The library publishes to Maven Central as `dev.code93:emvdecoder` via the vanniktech maven-publish plugin. Pushing a `v*` tag triggers `.github/workflows/release.yml` (tests → `publishAndReleaseToMavenCentral` → GitHub Release). The version lives in the `coordinates(...)` call in `emvdecoder/build.gradle.kts` — bump it there before tagging. Signing/credentials come from repository secrets (`MAVEN_CENTRAL_USERNAME/PASSWORD`, `SIGNING_KEY/PASSWORD`); local test: `./gradlew :emvdecoder:publishToMavenLocal --no-configuration-cache`.
+Three artifacts publish to Maven Central under **one shared version**: `dev.code93:emvdecoder`, `dev.code93:qrscanner-core` and `dev.code93:qrscanner-compose` (vanniktech maven-publish plugin in each module). The version lives in `gradle.properties` (`VERSION_NAME`, plus `GROUP=dev.code93`) — bump it there before tagging; each module's `coordinates(artifactId = ...)` only sets the artifact name. Pushing a `v*` tag triggers `.github/workflows/release.yml` (tests → root `publishAndReleaseToMavenCentral`, which publishes every module with the plugin applied → GitHub Release with the three AARs). Signing/credentials come from repository secrets (`MAVEN_CENTRAL_USERNAME/PASSWORD`, `SIGNING_KEY/PASSWORD`); without a local signing key, `publishToMavenLocal` fails at `sign*Publication` (expected — verify POMs with the `generatePomFileFor*Publication` tasks instead). After a release, bump the `emvdecoder` version in `libs.versions.toml` (the Maven Central version androidApp consumes) to match.
 
 ## Architecture
 

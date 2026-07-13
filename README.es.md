@@ -76,14 +76,23 @@ El PDF completo de la especificación (`EASPBV-Campos-QRCode-EMVCo-Industria-v1.
 
 ## Instalación
 
-La librería está publicada en **Maven Central**:
+El SDK está publicado en **Maven Central** como tres artefactos con una versión única compartida:
 
 ```kotlin
-// Android / JVM (o el commonMain de tu propio proyecto KMP)
 dependencies {
-    implementation("dev.code93:emvdecoder:2.0.0")
+    // Solo decodificador (raw text → datos EASPBV tipados) — Android / JVM / commonMain KMP
+    implementation("dev.code93:emvdecoder:2.1.0")
+
+    // Opcional: lectura headless de QR (bytes de imagen → raw text; ML Kit / Vision)
+    implementation("dev.code93:qrscanner-core:2.1.0")
+
+    // Opcional: pantalla de escaneo Compose Multiplatform lista para usar
+    // (cámara + linterna + galería; genera el framework umbrella QrdKit para iOS)
+    implementation("dev.code93:qrscanner-compose:2.1.0")
 }
 ```
+
+Guía de integración (escenarios con UI y headless): [docs/GUIA-INTEGRACION-SDK.md](docs/GUIA-INTEGRACION-SDK.md).
 
 Para iOS también puedes construir el framework desde el código fuente:
 

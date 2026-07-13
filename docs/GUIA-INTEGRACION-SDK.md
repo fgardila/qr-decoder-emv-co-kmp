@@ -7,7 +7,7 @@ Instrucciones de implementación del SDK de **code93** para lectura y decodifica
 | `com.banco.colombia` | 2 apps Android nativas + 1 app iOS | **Con UI del SDK** (pantalla de escaneo lista: cámara + linterna + galería) |
 | `com.cooperativa.bogota` | Android / iOS | **Sin UI (headless)**: interfaz gráfica propia, el SDK solo lee y decodifica |
 
-> **Nota de disponibilidad**: esta guía asume que los tres artefactos ya están publicados en Maven Central. Hoy solo `emvdecoder` está publicado; `qrscanner-core` y `qrscanner-compose` se publicarán en una próxima versión.
+> **Versionado**: los tres artefactos comparten una versión única (un solo proyecto, una sola versión). Disponibles en Maven Central a partir de la **2.1.0**.
 
 ---
 
@@ -17,9 +17,9 @@ El SDK son tres artefactos independientes; cada app integra solo los que necesit
 
 | Artefacto | Coordenada Maven | Qué hace | Quién lo usa |
 |---|---|---|---|
-| **emvdecoder** | `dev.code93:emvdecoder:2.0.0` | Decodifica el **raw text** de un QR al modelo tipado del estándar EASPBV v1.4 (TLV, CRC, diagnósticos). No usa cámara ni imágenes. | Ambas apps |
-| **qrscanner-core** | `dev.code93:qrscanner-core:1.0.0` | **Headless**: decodifica una **imagen** (bytes PNG/JPEG de galería, screenshot, archivo) a raw text. ML Kit en Android, Vision en iOS. | Cooperativa (y lo usa internamente la UI) |
-| **qrscanner-compose** | `dev.code93:qrscanner-compose:1.0.0` | Pantalla completa de escaneo (`QrScannerScreen`): cámara en vivo, **botón de linterna/flash**, **botón de galería**, gestión del permiso de cámara y textos en español. En iOS se entrega dentro del framework **`QrdKit`**. | Banco |
+| **emvdecoder** | `dev.code93:emvdecoder:2.1.0` | Decodifica el **raw text** de un QR al modelo tipado del estándar EASPBV v1.4 (TLV, CRC, diagnósticos). No usa cámara ni imágenes. | Ambas apps |
+| **qrscanner-core** | `dev.code93:qrscanner-core:2.1.0` | **Headless**: decodifica una **imagen** (bytes PNG/JPEG de galería, screenshot, archivo) a raw text. ML Kit en Android, Vision en iOS. | Cooperativa (y lo usa internamente la UI) |
+| **qrscanner-compose** | `dev.code93:qrscanner-compose:2.1.0` | Pantalla completa de escaneo (`QrScannerScreen`): cámara en vivo, **botón de linterna/flash**, **botón de galería**, gestión del permiso de cámara y textos en español. En iOS se entrega dentro del framework **`QrdKit`**. | Banco |
 
 Cadena típica de uso: **imagen o cámara → raw text → `EmvQr` → datos tipados**.
 
@@ -116,8 +116,8 @@ El banco quiere ahorrar desarrollo: usa la pantalla de escaneo completa del SDK 
 
 ```kotlin
 dependencies {
-    implementation("dev.code93:qrscanner-compose:1.0.0") // pantalla de escaneo (trae qrscanner-core transitivo)
-    implementation("dev.code93:emvdecoder:2.0.0")        // decodificador EASPBV
+    implementation("dev.code93:qrscanner-compose:2.1.0") // pantalla de escaneo (trae qrscanner-core transitivo)
+    implementation("dev.code93:emvdecoder:2.1.0")        // decodificador EASPBV
 }
 ```
 
@@ -222,8 +222,8 @@ La cooperativa tiene su propio diseño de interfaz. El SDK aporta solo la inteli
 
 ```kotlin
 dependencies {
-    implementation("dev.code93:qrscanner-core:1.0.0")   // imagen → raw text
-    implementation("dev.code93:emvdecoder:2.0.0")       // raw text → datos
+    implementation("dev.code93:qrscanner-core:2.1.0")   // imagen → raw text
+    implementation("dev.code93:emvdecoder:2.1.0")       // raw text → datos
 }
 ```
 

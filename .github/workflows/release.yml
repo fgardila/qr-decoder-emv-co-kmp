@@ -26,8 +26,10 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Run tests
-        run: ./gradlew :emvdecoder:allTests
+        run: ./gradlew :emvdecoder:allTests :qrscanner-core:allTests
 
+      # Publica TODOS los módulos con el plugin vanniktech aplicado:
+      # emvdecoder, qrscanner-core y qrscanner-compose (versión única VERSION_NAME).
       - name: Publish to Maven Central
         run: ./gradlew publishAndReleaseToMavenCentral --no-configuration-cache
         env:
@@ -37,7 +39,7 @@ jobs:
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_PASSWORD }}
 
       - name: Build release artifacts
-        run: ./gradlew :emvdecoder:assemble :emvdecoder:linkReleaseFrameworkIosArm64
+        run: ./gradlew :emvdecoder:assemble :qrscanner-core:assemble :qrscanner-compose:assemble :emvdecoder:linkReleaseFrameworkIosArm64
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -45,3 +47,5 @@ jobs:
           generate_release_notes: true
           files: |
             emvdecoder/build/outputs/aar/*.aar
+            qrscanner-core/build/outputs/aar/*.aar
+            qrscanner-compose/build/outputs/aar/*.aar
