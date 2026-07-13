@@ -97,13 +97,18 @@ Para iOS también puedes construir el framework desde el código fuente:
 Sigue la [estructura recomendada de proyectos KMP](https://kotlinlang.org/docs/multiplatform/multiplatform-project-recommended-structure.html) con **Gradle 9.5.1**, **AGP 9.2.1** (plugin `com.android.kotlin.multiplatform.library`) y **Kotlin 2.3.21**. Requiere JDK 17+.
 
 ```
-emvdecoder/   Librería Kotlin Multiplatform (commonMain: toda la lógica de parsing)
-androidApp/   "QR EMV Colombia" — Clean Architecture + MVVM + Hilt + Compose Navigation;
-              escanea (CameraX/ML Kit), genera QRs de prueba EASPBV y consume la librería
-              desde Maven Central
-iosApp/       "QR EMV Colombia" — SwiftUI + MVVM con capas limpias; cámara AVFoundation,
-              detección en galería con Vision, generación con CoreImage (enlaza el
-              framework vía embedAndSignAppleFrameworkForXcode)
+emvdecoder/         Librería Kotlin Multiplatform (commonMain: toda la lógica de parsing)
+qrscanner-core/     Módulo KMP local: decodifica el QR de una imagen (bytes de galería) a
+                    raw text vía KScan (ML Kit en Android, Vision en iOS)
+qrscanner-compose/  Módulo Compose Multiplatform local: pantalla de escaneo compartida
+                    (cámara KScan + linterna/flash + picker de galería Calf). Genera el
+                    framework umbrella QrdKit para iOS (exporta emvdecoder + qrscanner-core)
+androidApp/         "QR EMV Colombia" — Clean Architecture + MVVM + Hilt + Compose
+                    Navigation; usa la pantalla de escaneo compartida, genera QRs de prueba
+                    EASPBV y consume la librería desde Maven Central
+iosApp/             "QR EMV Colombia" — SwiftUI + MVVM con capas limpias; embebe el escáner
+                    Compose compartido y la decodificación de galería vía el framework QrdKit
+                    (embedAndSignAppleFrameworkForXcode), generación con CoreImage
 ```
 
 Ambas apps demo comparten el mismo producto: 3 pestañas (Escanear / Generar / Ajustes) que decodifican QRs de pago colombianos reales y generan QRs de prueba válidos según la spec (TLV + CRC-16/CCITT-FALSE construidos en la capa de dominio de cada app y verificados por round-trip contra esta librería).

@@ -25,12 +25,6 @@
     <string name="copy_value">Copiar valor</string>
     <string name="scanner_scan_again">Escanear otro</string>
 
-    <!-- Cámara -->
-    <string name="camera_title">Apunta al código QR</string>
-    <string name="camera_permission_title">Se necesita acceso a la cámara</string>
-    <string name="camera_permission_message">La cámara se usa únicamente para escanear códigos QR. No se capturan ni almacenan imágenes.</string>
-    <string name="camera_permission_grant">Conceder permiso</string>
-    <string name="camera_close">Cerrar cámara</string>
 
     <!-- Generador -->
     <string name="generate_title">Generar QR de prueba</string>

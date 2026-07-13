@@ -97,13 +97,18 @@ For iOS you can also build the framework from source:
 Follows the [recommended KMP project structure](https://kotlinlang.org/docs/multiplatform/multiplatform-project-recommended-structure.html) with **Gradle 9.5.1**, **AGP 9.2.1** (`com.android.kotlin.multiplatform.library` plugin) and **Kotlin 2.3.21**. JDK 17+ required.
 
 ```
-emvdecoder/   Kotlin Multiplatform library (commonMain: all parsing logic)
-androidApp/   "QR EMV Colombia" — Clean Architecture + MVVM + Hilt + Compose Navigation;
-              scans (CameraX/ML Kit), generates EASPBV test QRs and consumes the library
-              from Maven Central
-iosApp/       "QR EMV Colombia" — SwiftUI + MVVM with clean layers; AVFoundation camera,
-              Vision gallery detection, CoreImage QR generation (links the framework via
-              embedAndSignAppleFrameworkForXcode)
+emvdecoder/         Kotlin Multiplatform library (commonMain: all parsing logic)
+qrscanner-core/     Local KMP module: decodes a QR image (gallery bytes) to raw text
+                    via KScan (ML Kit on Android, Vision on iOS)
+qrscanner-compose/  Local Compose Multiplatform module: shared scanner screen (KScan
+                    camera + torch/flashlight + Calf gallery picker). Builds the QrdKit
+                    umbrella iOS framework (exports emvdecoder + qrscanner-core)
+androidApp/         "QR EMV Colombia" — Clean Architecture + MVVM + Hilt + Compose
+                    Navigation; uses the shared scanner screen, generates EASPBV test QRs
+                    and consumes the library from Maven Central
+iosApp/             "QR EMV Colombia" — SwiftUI + MVVM with clean layers; embeds the
+                    shared Compose scanner and gallery decoding via the QrdKit framework
+                    (embedAndSignAppleFrameworkForXcode), CoreImage QR generation
 ```
 
 Both demo apps share the same product: a 3-tab app (Scan / Generate / Settings) that decodes real Colombian payment QRs and generates spec-valid test QRs (TLV + CRC-16/CCITT-FALSE built in each app's domain layer and round-trip-verified against this library).

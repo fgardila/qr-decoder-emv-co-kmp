@@ -10,7 +10,7 @@ struct AppContainer {
     static func live() -> AppContainer {
         AppContainer(
             emvDecoder: EmvDecoderRepository(),
-            qrImageDecoder: VisionQrImageDecoder(),
+            qrImageDecoder: QrdKitQrImageDecoder(),
             qrGenerator: CoreImageQrGenerator()
         )
     }
