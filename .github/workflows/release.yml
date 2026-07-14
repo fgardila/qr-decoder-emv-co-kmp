@@ -38,8 +38,11 @@ jobs:
           ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_KEY }}
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_PASSWORD }}
 
+      # Solo los AARs para adjuntar al GitHub Release. No usar :qrscanner-compose:assemble
+      # aquí: enlazaría los frameworks iOS release (LTO de Compose) y el runner de CI
+      # se queda sin memoria (OOM en el release v2.1.0).
       - name: Build release artifacts
-        run: ./gradlew :emvdecoder:assemble :qrscanner-core:assemble :qrscanner-compose:assemble :emvdecoder:linkReleaseFrameworkIosArm64
+        run: ./gradlew :emvdecoder:bundleAndroidMainAar :qrscanner-core:bundleAndroidMainAar :qrscanner-compose:bundleAndroidMainAar
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
